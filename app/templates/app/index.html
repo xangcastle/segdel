@@ -30,7 +30,8 @@
         <![endif]-->
     </head>
     <body class="green dark">
-        <!-- Static navbar --><nav class="navbar navbar-default yamm navbar-fixed-top">
+        {% block static-navbar %}
+        <nav class="navbar navbar-default yamm navbar-fixed-top">
             <div class="container-fluid">
                 <button type="button" class="navbar-minimalize minimalize-styl-2  pull-left "><i class="fa fa-bars"></i></button>
 
@@ -232,8 +233,9 @@
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
         </nav>
+        {% endblock static-navbar %}
         <section class="page">
-
+          {% block aside-bar %}
             <nav class="navbar-aside navbar-static-side" role="navigation">
                 <div class="sidebar-collapse nano">
                     <div class="nano-content">
@@ -423,7 +425,7 @@
                     </div>
                 </div>
             </nav>
-
+            {% endblock aside-bar %}
             <div id="wrapper">
                 <div class="content-wrapper container">
                     <div class="row">

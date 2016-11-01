@@ -10,6 +10,7 @@ class Import(models.Model):
     identificacion = models.CharField(max_length=14)
     telefono = models.CharField(max_length=50)
     direccion = models.TextField(max_length=600)
+    nodoc = models.CharField(max_length=15, null=True, verbose_name="numero de documento")
     monto = models.FloatField()
     fecha = models.DateField()
 
@@ -40,7 +41,8 @@ class Import(models.Model):
 
     def save(self, *args, **kwargs):
         Factura(cliente=self.get_cliente(), empresa=self.get_empresa(),
-            monto=self.monto, fecha=self.fecha).save()
+            monto=self.monto, fecha=self.fecha, nodoc=self.nodoc).save()
+
 
 class Empresa(models.Model):
     razon_social = models.CharField(max_length=255)
@@ -61,6 +63,7 @@ class Cliente(models.Model):
 
 
 class Factura(models.Model):
+    nodoc = models.CharField(max_length=15, null=True, verbose_name="numero de documento")
     empresa = models.ForeignKey(Empresa)
     cliente = models.ForeignKey(Cliente)
     monto = models.FloatField()
