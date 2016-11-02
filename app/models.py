@@ -84,8 +84,6 @@ class Comentario(models.Model):
     fecha = models.DateField(auto_now_add=True)
     usuario = models.ForeignKey(User)
 
-    def __unicode__(self):
-        return "Comentario de %s: %s" % (self.usuario, self.descripcion)
 
 class Cliente(models.Model):
     identificacion = models.CharField(max_length=14)
@@ -104,8 +102,6 @@ class Cliente(models.Model):
     def saldo_cliente(self):
         return self.facturas().aggregate(Sum('saldo_factura'))['saldo_factura__sum']
 
-    # def comentarios(self):
-    #     return Cliente_Comentario.objects.filter(cliente=self)
 
 
 class Factura(models.Model):
@@ -116,9 +112,6 @@ class Factura(models.Model):
     fecha = models.DateField()
     fecha_vence=models.DateField(null=True, blank=True)
     pagada = models.BooleanField(default=False)
-
-    def __unicode__(self):
-        return "%s-%s" % (self.cliente, str(self.monto))
 
     def abonos(self):
         return Factura_Abono.objects.filter(factura=self)
@@ -134,14 +127,3 @@ class Factura_Abono(models.Model):
     factura = models.ForeignKey(Factura)
     monto_abono = models.FloatField()
     fecha_abono = models.DateField()
-
-
-
-
-
-# class Cliente_Comentario(models.Model):
-#     cliente = models.ForeignKey(Cliente)
-#     comentario = models.ForeignKey(Comentario)
-#
-#     def __unicode__(self):
-#         return "%s para el cliente: %s" % (self.comentario, self.cliente)

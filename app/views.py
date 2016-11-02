@@ -56,23 +56,20 @@ def add_comentario_cliente(request):
         obj_json['mensaje'] = "ERROR: Usuario invalido";
     else:
         try:
-            cliente=Cliente.objects.get(id=int(id_cliente))
+            cliente = Cliente.objects.get(id=int(id_cliente))
         except Exception as e:
             obj_json['code'] = "500"
             obj_json['mensaje'] = "ERROR: Cliente no encontrado"
             cliente = None
 
         if cliente:
-            comentario = Comentario.objects.create(usuario = usuario)
-            comentario.descripcion=comentario
-            comentario.usuario = usuario
+            comentario = Comentario.objects.create(usuario=usuario, descripcion=comentario)
             comentario.save()
 
             cliente.comentarios.add(comentario)
             cliente.save()
             obj_json['code'] = "200"
             obj_json['mensaje'] = "Comentario registrado exitosamente!"
-
 
     data.append(obj_json)
     data = json.dumps(data)
