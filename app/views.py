@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 import json
@@ -37,8 +38,10 @@ def get_cliente_comentarios(request):
     if request.GET.get('id'):
         id_cliente = int(request.GET.get('id'))
         comentarios = Cliente.objects.get(id=id_cliente).comentarios.all()
-    return render_to_response('/app/partial/_comentarios.html', {'comentario': comentarios},
-                              context_instance=RequestContext(request))
+    html = render_to_string('app/partial/_comentarios.html', {'comentarios': comentarios})
+    return HttpResponse(html)
+    # return render_to_response('/app/partial/_comentarios.html', {'comentario': comentarios},
+    #                           context_instance=RequestContext(request))
 
 
 @csrf_exempt
@@ -81,6 +84,49 @@ def add_comentario_cliente(request):
             cliente.save()
             obj_json['code'] = "200"
             obj_json['mensaje'] = "Comentario registrado exitosamente!"
+
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
+
+
+@csrf_exempt
+def add_abono_factura(request):
+    data = []
+    obj_json = {}
+    id_doc = request.POST.get('id_doc');
+    monto = request.POST.get('monto');
+    id_usuario = request.POST.get('id_usuario');
+    if id_usuario:
+        try:
+            usuario = User.objects.get(id=id_usuario)
+        except Exception as e:
+            usuario = None
+    else:
+        usuario = request.user
+
+    if not id_doc:
+        obj_json['code'] = "400"
+        obj_json['mensaje'] = "ERROR: Documento invalido";
+    elif not monto:
+        obj_json['code'] = "400"
+        obj_json['mensaje'] = "ERROR: Monto invalido";
+    elif not usuario:
+        obj_json['code'] = "400"
+        obj_json['mensaje'] = "ERROR: Usuario invalido";
+    else:
+        try:
+            factura = Factura.objects.get(id=int(id_doc))
+        except Exception as e:
+            obj_json['code'] = "500"
+            obj_json['mensaje'] = "ERROR: Documento no encontrado"
+            factura = None
+
+        if factura:
+            abono = Factura_Abono.objects.create(usuario=usuario, monto=float(monto), factura=factura)
+            abono.save()
+            obj_json['code'] = "200"
+            obj_json['mensaje'] = "Abono registrado exitosamente!"
 
     data.append(obj_json)
     data = json.dumps(data)

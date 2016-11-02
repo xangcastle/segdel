@@ -113,17 +113,20 @@ class Factura(models.Model):
     fecha_vence=models.DateField(null=True, blank=True)
     pagada = models.BooleanField(default=False)
 
+    @property
     def abonos(self):
         return Factura_Abono.objects.filter(factura=self)
 
+    @property
     def saldo_factura(self):
         '''
         esta funcion regresa el saldo dela facturara (monto) menos todos los abonos a la factura
         '''
-        return self.monto - self.abonos().aggregate(Sum('monto_abonado'))['monto_abonado__sum']
+        return self.monto - self.abonos().aggregate(Sum('monto_abono'))['monto_abonado__sum']
 
 
 class Factura_Abono(models.Model):
     factura = models.ForeignKey(Factura)
-    monto_abono = models.FloatField()
-    fecha_abono = models.DateField()
+    monto_abono = models.FloatField(null = False)
+    fecha_abono = models.DateField(null = False, auto_now_add=True)
+    usuario = models.ForeignKey(User, null = True)

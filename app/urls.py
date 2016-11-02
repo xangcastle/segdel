@@ -14,4 +14,6 @@ urlpatterns = [
         name='add_comentario_cliente'),
     url(r'^get_comentario_cliente/', get_cliente_comentarios,
         name='get_cliente_comentarios'),
+    url(r'^add_abono_factura/', add_abono_factura,
+        name='add_abono_factura'),
 ]
