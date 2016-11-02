@@ -425,10 +425,11 @@
                     </div>
                 </div>
             </nav>
-            {% endblock aside-bar %}
+          {% endblock aside-bar %}
             <div id="wrapper">
                 <div class="content-wrapper container">
-                    <div class="row">
+                    {% block breadcrums %}
+                        <div class="row">
                         <div class="col-sm-12">
                             <div class="page-title">
                                 <h1>Dashboard<small></small></h1>
@@ -438,8 +439,12 @@
                                 </ol>
                             </div>
                         </div>
-                    </div><!-- end .page title-->
-                    <div class="row">
+                    </div>
+                    {% endblock breadcrums %}
+                </div>
+                <div class="content-wrapper container">
+                     {% block cuerpo %}
+                    {% comment %}<div class="row">
                         <div class="col-sm-12">
                             <div class="panel panel-card recent-activites">
                                 <!-- Start .panel -->
@@ -510,8 +515,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="panel panel-card recent-activites">
@@ -552,7 +555,6 @@
 
 
                     </div>
-
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="panel panel-card recent-activites">
@@ -724,9 +726,8 @@
                                 </div>
                             </div><!-- End .panel -->
                         </div>
-                    </div>
-
-
+                    </div>{% endcomment %}
+                    {% endblock cuerpo %}
                 </div>
             </div>
         </section>
@@ -748,19 +749,17 @@
         <script src="/static/app/js/morris_chart/raphael-2.1.0.min.js"></script>
         <script src="/static/app/js/morris_chart/morris.js"></script>
         <script src="/static/app/js/jquery.sparkline.min.js"></script>
-
-
         <script type="text/javascript" src="/static/app/js/custom.js"></script>
         <!-- ChartJS-->
         <script src="/static/app/js/chartjs/Chart.min.js"></script>
-
         <!--page js-->
         <script src="/static/app/js/moment.min.js"></script>
-
         <script src="/static/app/js/jquery.simpleWeather.min.js"></script>
         <script src="/static/app/js/fullcalendar.min.js"></script>
+{#        <script src="/static/app/js/index2.js"></script>#}
+        {% block scripts-block %}
 
-        <script src="/static/app/js/index2.js"></script>
+        {% endblock scripts-block %}
     </body>
 
 <!-- Mirrored from flicksbootstrap.com/demo/boost-admin/v1.3/boost-admin/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Sep 2016 01:49:34 GMT -->

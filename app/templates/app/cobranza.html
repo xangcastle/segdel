@@ -1,5 +1,136 @@
 {% extends "app/index.html" %}
 
-{% block static-navbar %}{% endblock static-navbar %}
+{% comment %}{% block static-navbar %}{% endblock static-navbar %}
 
 {% block aside-bar %}{% endblock aside-bar %}
+{% endcomment %}
+{% block breadcrums %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title">
+            <h1>Cobranza<small></small></h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-money"></i></a></li>
+                <li class="active">Cobranza</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock breadcrums %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-card recent-activites">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title">Listado de clientes</h4>
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                </div>
+            </div>
+            <div class="panel-body text-center">
+                <table id="basic-datatables" class="table table-bordered dataTable" role="grid" aria-describedby="basic-datatables_info">
+                    <thead>
+                        <tr>
+                            <th>Identificación  <i class="fa fa-address-card fa-fw"></i></th>
+                            <th>Nombre <i class="fa fa-user fa-fw"></i></th>
+                            <th>Telefono  <i class="fa fa-phone fa-fw"></i></th>
+                            <th>Saldo Pendiente  <i class="fa fa-money fa-fw"></i></th>
+                            <th>Acción <i class="fa fa-flash fa-fw"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for cliente in clientes %}
+                        <tr role="row">
+                            <td>{{ cliente.identificacion }}</td>
+                            <td>{{ cliente.nombre }}</td>
+                            <td>{{ cliente.telefono }}</td>
+                            <td>3,348.00 US$</td>
+                            <td>
+                                <a data-toggle="modal" data-target="#myModal">Comentarios</a>|
+                                <a href="../cobranza_cliente/?id={{ cliente.id }}">Ver mas</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Comentarios</h4>
+                <small>Registre su comentario en la parte inferior</small>
+            </div>
+            <div class="modal-body">
+               <div class="panel">
+                    <div class="panel-heading">3 Comments</div>
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img src="images/avtar-2.jpg" class="media-object img-circle" alt="" width="60">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 id="media-heading" class="media-heading"><a href="">Susan Grant</a>
+                                    <small>10 min</small>
+                                    <a href="#media-heading">
+                                        <span class="anchorjs-icon"></span>
+                                    </a>
+                                </h4>
+                                <p>Donec ac massa tortor. In hac habitasse platea dictumst. Nam blandit fringilla faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget metus semper congue.</p>
+                                <p>Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img src="images/avtar-1.jpg" class="media-object img-circle" alt="" width="60">
+                                </a>
+                            </div>
+                            <div class="media-body mb-lg">
+                                <h4 id="media-heading1" class="media-heading"><a href="">Dustin Dunn</a>
+                                    <small>20 min</small>
+
+                                </h4>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
+                                lacinia congue felis in faucibus.
+                                <hr>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="images/avtar-3.jpg" class="media-object img-circle" alt="" width="60">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 id="nested-media-heading" class="media-heading"><a href="">Marcus Gomez</a>
+                                            <small>1 hour</small>
+
+                                        </h4>Integer ac nisl et urna gravida malesuada. Vivamus fermentum libero vel felis aliquet interdum.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock cuerpo %}
+{% block scripts-block %}
+    <script src="/static/app/js/data-tables/jquery.dataTables.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.tableTools.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.bootstrap.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
+    <script src="/static/app/js/data-tables/tables-data.js"></script>
+{% endblock %}

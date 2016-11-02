@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from django.db.models import Sum
+from django.contrib.auth.models import User
 
 class Import(models.Model):
     razon_social = models.CharField(max_length=255)
@@ -52,14 +53,59 @@ class Empresa(models.Model):
         return "%s-%s" % (self.numero_ruc, self.razon_social)
 
 
+class Gestion_Resultado(models.Model):
+    nombre = models.CharField(max_length=100)
+    activo = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.nombre
+
+
+class Tipo_Gestion(models.Model):
+    nombre = models.CharField(max_length=100)
+    activo = models.BooleanField(default=True)
+    resultados = models.ManyToManyField(Gestion_Resultado, blank=True)
+
+    def __unicode__(self):
+        return self.nombre
+
+
+class Gestion(models.Model):
+    tipo_gestion = models.ForeignKey(Tipo_Gestion)
+    fecha_creacion = models.DateField(auto_now_add=True)
+    # usuario_creacion = models.ForeignKey(User)
+    fecha_completa = models.DateField(auto_now=True)
+    # usuario_completa = models.ForeignKey(User, null=True, blank=True)
+    resultado = models.ForeignKey(Gestion_Resultado, null=True, blank=True)
+    descripcion = models.CharField(max_length=400)
+
+class Comentario(models.Model):
+    descripcion = models.CharField(max_length=400)
+    fecha = models.DateField(auto_now_add=True)
+    usuario = models.ForeignKey(User)
+
+    def __unicode__(self):
+        return "Comentario de %s: %s" % (self.usuario, self.descripcion)
+
 class Cliente(models.Model):
     identificacion = models.CharField(max_length=14)
     nombre = models.CharField(max_length=165)
     telefono = models.CharField(max_length=50)
     direccion = models.TextField(max_length=600)
+    gestiones = models.ManyToManyField(Gestion)
+    comentarios = models.ManyToManyField(Comentario)
 
     def __unicode__(self):
         return "%s-%s" % (self.identificacion, self.nombre)
+
+    def facturas(self):
+        return Factura.objects.filter(cliente=self)
+
+    def saldo_cliente(self):
+        return self.facturas().aggregate(Sum('saldo_factura'))['saldo_factura__sum']
+
+    # def comentarios(self):
+    #     return Cliente_Comentario.objects.filter(cliente=self)
 
 
 class Factura(models.Model):
@@ -68,6 +114,34 @@ class Factura(models.Model):
     cliente = models.ForeignKey(Cliente)
     monto = models.FloatField()
     fecha = models.DateField()
+    fecha_vence=models.DateField(null=True, blank=True)
+    pagada = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "%s-%s" % (self.cliente, str(self.monto))
+
+    def abonos(self):
+        return Factura_Abono.objects.filter(factura=self)
+
+    def saldo_factura(self):
+        '''
+        esta funcion regresa el saldo dela facturara (monto) menos todos los abonos a la factura
+        '''
+        return self.monto - self.abonos().aggregate(Sum('monto_abonado'))['monto_abonado__sum']
+
+
+class Factura_Abono(models.Model):
+    factura = models.ForeignKey(Factura)
+    monto_abono = models.FloatField()
+    fecha_abono = models.DateField()
+
+
+
+
+
+# class Cliente_Comentario(models.Model):
+#     cliente = models.ForeignKey(Cliente)
+#     comentario = models.ForeignKey(Comentario)
+#
+#     def __unicode__(self):
+#         return "%s para el cliente: %s" % (self.comentario, self.cliente)

@@ -3,11 +3,16 @@ from .models import *
 from import_export.admin import ImportExportModelAdmin
 
 admin.site.register(Import, ImportExportModelAdmin)
+class base_tabular(admin.TabularInline):
+    extra = 0
+    classes = ('grp-collapse grp-open',)
+
 class empresa_admin(admin.ModelAdmin):
     list_display = ('numero_ruc', 'razon_social')
 admin.site.register(Empresa)
 class cliente_admin(admin.ModelAdmin):
     list_display = ('identificacion', 'nombre', 'telefono', 'direccion')
+    list_filter = ('identificacion', 'nombre', 'telefono')
 admin.site.register(Cliente, cliente_admin)
 class factura_admin(admin.ModelAdmin):
     list_display = ('empresa', 'cliente', 'fecha', 'monto')
