@@ -1,0 +1,58 @@
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Cliente:</label>
+        <div class="col-sm-8">
+            <input class="form-control" disabled="" placeholder="Cliente" type="text" value="{{ factura.cliente.nombre }}">
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">No Documento:</label>
+        <div class="col-sm-8">
+            <input class="form-control" disabled="" placeholder="No Documento:" type="text" value="{{ factura.nodoc }}">
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Fecha Emision:</label>
+        <div class="col-sm-8">
+            <input class="form-control" disabled="" placeholder="Fecha Emision:" type="text" value="{{ factura.fecha }}">
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Fecha Vencimiento:</label>
+        <div class="col-sm-8">
+            <input class="form-control" disabled="" placeholder="Fecha Vencimiento:" type="text" value="{{ factura.fecha_vence }}">
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Monto a pendiete:</label>
+        <div class="col-sm-8">
+            <input id="monto_factura_saldo" class="form-control" disabled="" placeholder="Monto pendiente:" value="{{ factura.saldo_factura }}">
+        </div>
+    </div>
+</div>
+ <div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Monto a pagar:</label>
+        <div class="col-sm-8">
+            {% if is_cacelacion %}
+                <input id="monto_factura_pago" class="form-control" disabled="" placeholder="Monto a pagar:" type="number" value="{{ factura.saldo_factura }}">
+            {% else %}
+                <input id="monto_factura_pago" class="form-control" placeholder="Monto a pagar:" type="number" >
+            {% endif %}
+        </div>
+    </div>
+</div>
+<input type="hidden" id="id_factura_pago" value="{{ factura.id }}">

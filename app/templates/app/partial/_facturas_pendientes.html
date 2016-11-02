@@ -1,0 +1,24 @@
+{% for factura in facturas %}
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-2"><strong>No Doc:</strong> </div>
+            <div class="col-sm-3">{{ factura.nodoc }}</div>
+            <div class="col-sm-3"><strong>Saldo:</strong> </div>
+            <div class="col-sm-4">{{ factura.saldo_factura }}</div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2"><strong>Emisión:</strong></div>
+            <div class="col-sm-3">{{ factura.fecha }}</div>
+            <div class="col-sm-3"><strong>Vencimiento:</strong></div>
+            <div class="col-sm-4">{{ factura.fecha_vence }}</div>
+        </div>
+        <div class="form-group">
+
+        </div>
+        <div class="btn-group">
+            <button onclick="cargarPagoFactura({{ factura.id }}, false);" class="btn btn-3d btn-success">Abonar</button>
+            <button onclick="cargarPagoFactura({{ factura.id }}, true);"  class="btn btn-3d btn-primary">Cancelar</button>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+{% endfor %}
