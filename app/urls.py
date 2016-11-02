@@ -12,4 +12,6 @@ urlpatterns = [
         name='cobranza_cliente'),
     url(r'^add_comentario_cliente/', add_comentario_cliente,
         name='add_comentario_cliente'),
+    url(r'^get_comentario_cliente/', get_cliente_comentarios,
+        name='get_cliente_comentarios'),
 ]

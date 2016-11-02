@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 import json
@@ -27,7 +29,16 @@ class cobranza_cliente(TemplateView):
             id_cliente = int(request.GET.get('id'))
             context['cliente'] = Cliente.objects.get(id=id_cliente)
             context['facturas'] = Factura.objects.all().filter(cliente=Cliente.objects.get(id=id_cliente))
+            context['comentarios'] = Cliente.objects.get(id=id_cliente).comentarios.all()
         return super(cobranza_cliente, self).render_to_response(context)
+
+
+def get_cliente_comentarios(request):
+    if request.GET.get('id'):
+        id_cliente = int(request.GET.get('id'))
+        comentarios = Cliente.objects.get(id=id_cliente).comentarios.all()
+    return render_to_response('/app/partial/_comentarios.html', {'comentario': comentarios},
+                              context_instance=RequestContext(request))
 
 
 @csrf_exempt

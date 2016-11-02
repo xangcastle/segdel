@@ -32,6 +32,7 @@
                 </div>
             </div>
             <div class="panel-body">
+                <input id="clienteid" type="hidden" value="{{ cliente.id }}">
                 <div class="row">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Identificación:</label>
@@ -126,10 +127,30 @@
                 <div class="nano has-scrollbar" style="height:240px">
                     <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
                         <div class="panel panel-warning">
-                            <div class="panel-heading">3 Comentarios</div>
+                            <div class="panel-heading">{{ comentarios|length }} Comentarios</div>
                             <div class="panel-body">
                                 <br/>
-                                <div class="media">
+                                {% for comentario in comentarios %}
+                                    <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="/static/app/images/avtar-2.jpg" class="media-object img-circle" alt="" width="60">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 id="media-heading" class="media-heading"><a href="">{{ comentario.usuario }}</a>
+                                            <small>10 min</small>
+                                            <a href="#media-heading">
+                                                <span class="anchorjs-icon"></span>
+                                            </a>
+                                        </h4>
+                                        <p>{{ comentario.descripcion }}</p>
+                                    </div>
+                                </div>
+                                    <hr>
+                                {% endfor %}
+
+                                {% comment %}<div class="media">
                                     <div class="media-left">
                                         <a href="#">
                                             <img src="/static/app/images/avtar-2.jpg" class="media-object img-circle" alt="" width="60">
@@ -173,7 +194,7 @@
                                                 </h4>Integer ac nisl et urna gravida malesuada. Vivamus fermentum libero vel felis aliquet interdum.</div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>{% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -187,7 +208,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <button class="btn btn-effect-ripple btn-primary">Enviar comentario</button>
+                            <button id="comentar" class="btn btn-effect-ripple btn-primary">Enviar comentario</button>
                         </div>
                     </div>
                 </div>
@@ -220,5 +241,30 @@
     <script src="/static/app/js/data-tables/dataTables.tableTools.js"></script>
     <script src="/static/app/js/data-tables/dataTables.bootstrap.js"></script>
     <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
-    <script src="/static/app/js/data-tables/tables-data.js"></script>
+    <script src="/static/app/js/data-tables/tables-data.js"></script>   
+    <script>
+    $(document).ready(function () {
+        $("#comentar").on('click',function () {
+            var comment= $("#post-comment").val();
+            var cliente = $("#clienteid").val();
+            $.ajax({
+                url:"../add_comentario_cliente/",
+                type:"POST",
+                dataType: 'json',
+                data: {comentario:comment,id_cliente:cliente},
+                success: function (result) {
+                    data=result[0];
+                    alert(data.mensaje);
+                }
+            });
+        })
+        $.ajax({
+            url:"../get_comentario_cliente/?id={{ cliente.id }}",
+            type:"GET",
+            success:function (result) {
+                alert(result)
+            }
+        });
+    })
+    </script>
 {% endblock %}

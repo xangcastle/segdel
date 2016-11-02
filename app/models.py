@@ -73,9 +73,9 @@ class Tipo_Gestion(models.Model):
 class Gestion(models.Model):
     tipo_gestion = models.ForeignKey(Tipo_Gestion)
     fecha_creacion = models.DateField(auto_now_add=True)
-    # usuario_creacion = models.ForeignKey(User)
+    usuario_creacion = models.ForeignKey(User, null=True, related_name='usuario_creacion')
     fecha_completa = models.DateField(auto_now=True)
-    # usuario_completa = models.ForeignKey(User, null=True, blank=True)
+    usuario_completa = models.ForeignKey(User, null=True, blank=True, related_name='usuario_completa')
     resultado = models.ForeignKey(Gestion_Resultado, null=True, blank=True)
     descripcion = models.CharField(max_length=400)
 
