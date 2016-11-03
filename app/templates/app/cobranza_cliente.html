@@ -202,7 +202,7 @@
             url:"../add_comentario_cliente/",
             type:"POST",
             dataType: 'json',
-            data: {comentario:comment,id_cliente:cliente},
+            data: {comentario:comment,id_cliente:cliente, csrfmiddlewaretoken: '{{ csrf_token }}'},
             success: function (result) {
                 data=result[0];
                 $("#post-comment").val("");
