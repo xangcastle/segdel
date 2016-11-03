@@ -44,7 +44,6 @@ def get_cliente_comentarios(request):
     return HttpResponse(html)
 
 
-@csrf_exempt
 def add_comentario_cliente(request):
     data = []
     obj_json = {}
@@ -89,6 +88,7 @@ def add_comentario_cliente(request):
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
 
+
 def get_facturas_pendientes(request):
     if request.GET.get('id'):
         id_cliente = int(request.GET.get('id'))
@@ -97,7 +97,7 @@ def get_facturas_pendientes(request):
     html = render_to_string('app/partial/_facturas_pendientes.html', {'facturas': facturas})
     return HttpResponse(html)
 
-@csrf_exempt
+
 def render_add_abono_factura(request):
     id_factura = request.GET.get('id_factura')
     is_cacelacion = bool(request.GET.get('is_cacelacion'))
@@ -135,7 +135,6 @@ def render_add_abono_factura(request):
     return HttpResponse(html)
 
 
-@csrf_exempt
 def add_abono_factura(request):
     data = []
     obj_json = {}

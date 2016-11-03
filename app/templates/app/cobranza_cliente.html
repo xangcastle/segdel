@@ -177,19 +177,7 @@
     <script>
     $(document).ready(function () {
         $("#comentar").on('click',function () {
-            var comment= $("#post-comment").val();
-            var cliente = $("#clienteid").val();
-            $.ajax({
-                url:"../add_comentario_cliente/",
-                type:"POST",
-                dataType: 'json',
-                data: {comentario:comment,id_cliente:cliente},
-                success: function (result) {
-                    data=result[0];
-                    $("#post-comment").val("");
-                    cargarComentarios();
-                }
-            });
+            comentar();
         })
         cargarComentarios();
         cargarFacturasPendientes();
@@ -197,6 +185,7 @@
             aplicarPagoFactura();
         })
     })
+
     function cargarComentarios() {
         $.ajax({
             url:"../get_comentario_cliente/?id={{ cliente.id }}",
@@ -206,6 +195,22 @@
             }
         });
     }
+    function comentar() {
+        var comment= $("#post-comment").val();
+        var cliente = $("#clienteid").val();
+        $.ajax({
+            url:"../add_comentario_cliente/",
+            type:"POST",
+            dataType: 'json',
+            data: {comentario:comment,id_cliente:cliente},
+            success: function (result) {
+                data=result[0];
+                $("#post-comment").val("");
+                cargarComentarios();
+            }
+        });
+    }
+
     function cargarFacturasPendientes() {
         $.ajax({
             url:"../get_facturas_pendientes/?id={{ cliente.id }}",
@@ -234,6 +239,7 @@
         var id_factura = $("#id_factura_pago").val();
         var monto_pago = parseFloat($("#monto_factura_pago").val());
         var monto_pendiente = parseFloat($("#monto_factura_saldo").val());
+
         if(isNaN(monto_pago)){
             swal({
                  title: "Upss. ha ocurrido un error",
@@ -261,7 +267,7 @@
             function(){
                 $.ajax({
                     url:"../add_abono_factura/",
-                    data: {id_doc:id_factura,monto:monto_pago,id_usuario:usuario},
+                    data: {id_doc:id_factura,monto:monto_pago,id_usuario:usuario, csrfmiddlewaretoken: '{{ csrf_token }}' },
                     type:"POST",
                     success:function (result) {
                         data=result[0];
