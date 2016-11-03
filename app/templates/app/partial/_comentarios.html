@@ -1,0 +1,72 @@
+ <div class="panel panel-warning">
+    <div class="panel-heading">{{ comentarios|length }} Comentarios</div>
+    <div class="panel-body">
+        <br/>
+        {% for comentario in comentarios %}
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img src="/static/app/images/avtar-2.jpg" class="media-object img-circle" alt="" width="60">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 id="media-heading" class="media-heading"><a href="">{{ comentario.usuario }}</a>
+                        <small>10 min</small>
+                        <a href="#media-heading">
+                            <span class="anchorjs-icon"></span>
+                        </a>
+                    </h4>
+                    <p>{{ comentario.descripcion }}</p>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+
+
+        {% comment %}<div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img src="/static/app/images/avtar-2.jpg" class="media-object img-circle" alt="" width="60">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 id="media-heading" class="media-heading"><a href="">Susan Grant</a>
+                    <small>10 min</small>
+                    <a href="#media-heading">
+                        <span class="anchorjs-icon"></span>
+                    </a>
+                </h4>
+                <p>Donec ac massa tortor. In hac habitasse platea dictumst. Nam blandit fringilla faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget metus semper congue.</p>
+                <p>Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.</p>
+            </div>
+        </div>
+        <hr>
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img src="/static/app/images/avtar-1.jpg" class="media-object img-circle" alt="" width="60">
+                </a>
+            </div>
+            <div class="media-body mb-lg">
+                <h4 id="media-heading1" class="media-heading"><a href="">Dustin Dunn</a>
+                    <small>20 min</small>
+
+                </h4>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
+                lacinia congue felis in faucibus.
+                <hr>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img src="/static/app/images/avtar-3.jpg" class="media-object img-circle" alt="" width="60">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 id="nested-media-heading" class="media-heading"><a href="">Marcus Gomez</a>
+                            <small>1 hour</small>
+
+                        </h4>Integer ac nisl et urna gravida malesuada. Vivamus fermentum libero vel felis aliquet interdum.</div>
+                </div>
+            </div>
+        </div>{% endcomment %}
+    </div>
+</div>

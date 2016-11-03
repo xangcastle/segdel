@@ -4,216 +4,168 @@
 
 {% block aside-bar %}{% endblock aside-bar %}
 {% endcomment %}
+{% block css-content %}
+    <link href="/static/app/css/sweetalert.css" rel="stylesheet">
+{% endblock css-content %}
 {% block breadcrums %}
-<div class="row">
-    <div class="col-sm-12">
-        <div class="page-title" style="margin-bottom: 0px;">
-            <h1>Cobranza al Cliente {{ cliente.nombre }}<small></small></h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-money"></i></a></li>
-                <li><a href="../cobranza">Cobranza</a></li>
-                <li class="active">Cliente</li>
-            </ol>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title" style="margin-bottom: 0px;">
+                <h1>Cobranza al Cliente {{ cliente.nombre }}<small></small></h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-money"></i></a></li>
+                    <li><a href="../cobranza">Cobranza</a></li>
+                    <li class="active">Cliente</li>
+                </ol>
+            </div>
         </div>
     </div>
-</div>
 {% endblock breadcrums %}
 
 {% block cuerpo %}
-<div class="row">
-    <div class="col-sm-12">
-        <div class="panel panel-card recent-activites">
-            <!-- Start .panel -->
-            <div class="panel-heading">
-                <h4 class="panel-title">Datos Generales</h4>
-                <div class="panel-actions">
-                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Identificación:</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" disabled="true" placeholder="identificacion:" type="text" value="{{ cliente.identificacion }}">
-                        </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-card recent-activites">
+                <!-- Start .panel -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">Datos Generales</h4>
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                     </div>
                 </div>
-                <div class="hr-line-dashed"></div>
-                <div class="row">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Nombre:</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" disabled="true" placeholder="Nombre:" type="text" value="{{ cliente.nombre }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="row">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Telefono:</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" disabled="true" placeholder="Telefono:" type="text" value="{{ cliente.telefono }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="row">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Dirección:</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" disabled="true" placeholder="Dirección:" type="text" value="{{ cliente.direccion }}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="panel panel-card recent-activites">
-            <!-- Start .panel -->
-            <div class="panel-heading">
-                <h4 class="panel-title">Facturas</h4>
-                <div class="panel-actions">
-                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="nano has-scrollbar" style="height:440px">
-                    <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
-                        {% for factura in facturas %}
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-sm-4"><strong>No Factura:</strong> </div>
-                                    <div class="col-sm-8">{{ factura.nodoc }}</div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4"><strong>Fecha Emisión:</strong></div>
-                                    <div class="col-sm-8">{{ factura.fecha }}</div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-4"><strong>Fecha Vencimiento:</strong></div>
-                                    <div class="col-sm-4">{{ factura.fecha_vence }}</div>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn btn-3d btn-success">Abonar</button>
-                                    <button class="btn btn-3d btn-primary">Cancelar</button>
-                                </div>
+                <div class="panel-body">
+                    <input id="clienteid" type="hidden" value="{{ cliente.id }}">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Identificación:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" disabled="true" placeholder="identificacion:" type="text" value="{{ cliente.identificacion }}">
                             </div>
-                            <div class="hr-line-dashed"></div>
-                        {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="panel panel-card recent-activites ">
-            <!-- Start .panel -->
-            <div class="panel-heading">
-                <h4 class="panel-title">Comentarios</h4>
-                <div class="panel-actions">
-                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="nano has-scrollbar" style="height:240px">
-                    <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">3 Comentarios</div>
-                            <div class="panel-body">
-                                <br/>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img src="/static/app/images/avtar-2.jpg" class="media-object img-circle" alt="" width="60">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 id="media-heading" class="media-heading"><a href="">Susan Grant</a>
-                                            <small>10 min</small>
-                                            <a href="#media-heading">
-                                                <span class="anchorjs-icon"></span>
-                                            </a>
-                                        </h4>
-                                        <p>Donec ac massa tortor. In hac habitasse platea dictumst. Nam blandit fringilla faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget metus semper congue.</p>
-                                        <p>Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img src="/static/app/images/avtar-1.jpg" class="media-object img-circle" alt="" width="60">
-                                        </a>
-                                    </div>
-                                    <div class="media-body mb-lg">
-                                        <h4 id="media-heading1" class="media-heading"><a href="">Dustin Dunn</a>
-                                            <small>20 min</small>
-
-                                        </h4>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-                                        lacinia congue felis in faucibus.
-                                        <hr>
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img src="/static/app/images/avtar-3.jpg" class="media-object img-circle" alt="" width="60">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 id="nested-media-heading" class="media-heading"><a href="">Marcus Gomez</a>
-                                                    <small>1 hour</small>
-
-                                                </h4>Integer ac nisl et urna gravida malesuada. Vivamus fermentum libero vel felis aliquet interdum.</div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nombre:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" disabled="true" placeholder="Nombre:" type="text" value="{{ cliente.nombre }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Telefono:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" disabled="true" placeholder="Telefono:" type="text" value="{{ cliente.telefono }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Dirección:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" disabled="true" placeholder="Dirección:" type="text" value="{{ cliente.direccion }}">
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <textarea id="post-comment" name="post-comment" rows="4" placeholder="Su comentario aquí.." class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-card recent-activites">
+                <!-- Start .panel -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">Documentos x Cobrar</h4>
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="nano has-scrollbar" style="height:440px">
+                        <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
+                            <div id="content-facturas-pendientes"></div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <button class="btn btn-effect-ripple btn-primary">Enviar comentario</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-card recent-activites ">
+                <!-- Start .panel -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">Comentarios</h4>
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="nano has-scrollbar" style="height:240px">
+                        <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
+                            <div id="conten-comentarios"></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <textarea id="post-comment" name="post-comment" rows="4" placeholder="Su comentario aquí.." class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <button id="comentar" class="btn btn-effect-ripple btn-primary">Enviar comentario</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="panel panel-card recent-activites">
-            <!-- Start .panel -->
-            <div class="panel-heading">
-                <h4 class="panel-title">Visitas / Promesas de pago / Gestiones</h4>
-                <div class="panel-actions">
-                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-card recent-activites">
+                <!-- Start .panel -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">Visitas / Promesas de pago / Gestiones</h4>
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
                 </div>
-            </div>
-            <div class="panel-body">
+                <div class="panel-body">
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="modal fade in" id="modal_pago" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Pago a factura</h4>
+                <small>Detalle de la factura</small>
+            </div>
+            <div class="modal-body">
+                <div id="content-pago-facutua"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="btn-aplicar-pago" type="button" class="btn btn-primary">Aplicar pago</button>
+            </div>
+        </div>
+    </div>
+    <input id="clienteid" type="hidden">
+</div>
 {% endblock cuerpo %}
 {% block scripts-block %}
     <script src="/static/app/js/data-tables/jquery.dataTables.js"></script>
@@ -221,4 +173,131 @@
     <script src="/static/app/js/data-tables/dataTables.bootstrap.js"></script>
     <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
     <script src="/static/app/js/data-tables/tables-data.js"></script>
+    <script src="/static/app/js/sweet-alert/sweetalert.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#comentar").on('click',function () {
+            comentar();
+        })
+        cargarComentarios();
+        cargarFacturasPendientes();
+        $("#btn-aplicar-pago").on('click',function () {
+            aplicarPagoFactura();
+        })
+    })
+
+    function cargarComentarios() {
+        $.ajax({
+            url:"../get_comentario_cliente/?id={{ cliente.id }}",
+            type:"GET",
+            success:function (result) {
+                $("#conten-comentarios").empty().html(result);
+            }
+        });
+    }
+    function comentar() {
+        var comment= $("#post-comment").val();
+        var cliente = $("#clienteid").val();
+        $.ajax({
+            url:"../add_comentario_cliente/",
+            type:"POST",
+            dataType: 'json',
+            data: {comentario:comment,id_cliente:cliente},
+            success: function (result) {
+                data=result[0];
+                $("#post-comment").val("");
+                cargarComentarios();
+            }
+        });
+    }
+
+    function cargarFacturasPendientes() {
+        $.ajax({
+            url:"../get_facturas_pendientes/?id={{ cliente.id }}",
+            type:"GET",
+            success:function (result) {
+                $("#content-facturas-pendientes").empty().html(result);
+            }
+        });
+    }
+    function cargarPagoFactura(factura, iscacelacion) {
+        if(iscacelacion){
+            var URL="../render_add_abono_factura/?id_factura=" + factura + "&is_cacelacion=" + iscacelacion + "&id_usuario=" + {{ user.id }};
+        }else {
+            var URL="../render_add_abono_factura/?id_factura=" + factura + "&id_usuario=" + {{ user.id }};
+        }
+        $.ajax({
+            url:URL,
+            type:"GET",
+            success:function (result) {
+                $("#content-pago-facutua").empty().html(result);
+                $("#modal_pago").modal('show')
+            }
+        });
+    }
+    function aplicarPagoFactura() {
+        var id_factura = $("#id_factura_pago").val();
+        var monto_pago = parseFloat($("#monto_factura_pago").val());
+        var monto_pendiente = parseFloat($("#monto_factura_saldo").val());
+
+        if(isNaN(monto_pago)){
+            swal({
+                 title: "Upss. ha ocurrido un error",
+                text: "El monto del pago es invalido",
+                type: "warning",
+                showCancelButton: true
+            });
+            return;
+        }
+        var usuario = {{ user.id }};
+        if(monto_pago<=monto_pendiente){
+            if(monto_pago==monto_pendiente)
+                var text_info = "La factura sera cancelada por un monto igual al saldo pendiente actual, estas seguro de realizar esta operación?";
+            else
+                var text_info = "La factura sera abonada por un monto de " + monto_pago + ", estas seguro de realizar esta operación?";
+            swal({
+                title: "Estas seguro?",
+                text: text_info,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#4286f4",
+                confirmButtonText: "Si, aplicar pago",
+                closeOnConfirm: true
+            },
+            function(){
+                $.ajax({
+                    url:"../add_abono_factura/",
+                    data: {id_doc:id_factura,monto:monto_pago,id_usuario:usuario, csrfmiddlewaretoken: '{{ csrf_token }}' },
+                    type:"POST",
+                    success:function (result) {
+                        data=result[0];
+                        if(data.code==200){
+                            cargarFacturasPendientes() ;
+                            $("#modal_pago").modal('hide')
+                            swal({
+                                 title: "Exito!",
+                                text: data.mensaje,
+                                type: "success"
+                            });
+                        }else {
+                            swal({
+                                title: "Upss. ha ocurrido un error",
+                                text: data.mensaje,
+                                type: "success"
+                            });
+                        }
+                    }
+                });
+            });
+        }else {
+            swal({
+                 title: "Upss. ha ocurrido un error",
+                text: "El monto del pago supera el saldo de la factura",
+                type: "warning",
+                showCancelButton: true
+            });
+        }
+
+    }
+    </script>
 {% endblock %}

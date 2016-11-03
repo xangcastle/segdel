@@ -49,7 +49,7 @@
                             <td>{{ cliente.telefono }}</td>
                             <td>3,348.00 US$</td>
                             <td>
-                                <a data-toggle="modal" data-target="#myModal">Comentarios</a>|
+                                <a href="#" onclick="mostrarComentarios({{ cliente.id }}); return false;">Comentarios</a>|
                                 <a href="../cobranza_cliente/?id={{ cliente.id }}">Ver mas</a>
                             </td>
                         </tr>
@@ -69,53 +69,22 @@
                 <small>Registre su comentario en la parte inferior</small>
             </div>
             <div class="modal-body">
-               <div class="panel">
-                    <div class="panel-heading">3 Comments</div>
-                    <div class="panel-body">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img src="images/avtar-2.jpg" class="media-object img-circle" alt="" width="60">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 id="media-heading" class="media-heading"><a href="">Susan Grant</a>
-                                    <small>10 min</small>
-                                    <a href="#media-heading">
-                                        <span class="anchorjs-icon"></span>
-                                    </a>
-                                </h4>
-                                <p>Donec ac massa tortor. In hac habitasse platea dictumst. Nam blandit fringilla faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget metus semper congue.</p>
-                                <p>Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.</p>
-                            </div>
+                <div class="nano has-scrollbar" style="height:240px">
+                    <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
+                        <div id="conten-comentarios"></div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <textarea id="post-comment" name="post-comment" rows="2" placeholder="Su comentario aquí.." class="form-control"></textarea>
                         </div>
-                        <hr>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img src="images/avtar-1.jpg" class="media-object img-circle" alt="" width="60">
-                                </a>
-                            </div>
-                            <div class="media-body mb-lg">
-                                <h4 id="media-heading1" class="media-heading"><a href="">Dustin Dunn</a>
-                                    <small>20 min</small>
+                    </div>
 
-                                </h4>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-                                lacinia congue felis in faucibus.
-                                <hr>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img src="images/avtar-3.jpg" class="media-object img-circle" alt="" width="60">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 id="nested-media-heading" class="media-heading"><a href="">Marcus Gomez</a>
-                                            <small>1 hour</small>
-
-                                        </h4>Integer ac nisl et urna gravida malesuada. Vivamus fermentum libero vel felis aliquet interdum.</div>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button id="comentar" class="btn btn-effect-ripple btn-primary">Enviar comentario</button>
                         </div>
                     </div>
                 </div>
@@ -125,6 +94,7 @@
             </div>
         </div>
     </div>
+    <input id="clienteid" type="hidden">
 </div>
 {% endblock cuerpo %}
 {% block scripts-block %}
@@ -133,4 +103,34 @@
     <script src="/static/app/js/data-tables/dataTables.bootstrap.js"></script>
     <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
     <script src="/static/app/js/data-tables/tables-data.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#comentar").on('click',function () {
+                        var comment= $("#post-comment").val();
+                        var cliente = $("#clienteid").val();
+                        $.ajax({
+                            url:"../add_comentario_cliente/",
+                            type:"POST",
+                            dataType: 'json',
+                            data: {comentario:comment,id_cliente:cliente},
+                            success: function (result) {
+                                data=result[0];
+                                $("#post-comment").val("");
+                                mostrarComentarios(cliente);
+                            }
+                        });
+            });
+        });
+        function mostrarComentarios(id_cliente) {
+            $("#clienteid").val(id_cliente);
+            $.ajax({
+                url:"../get_comentario_cliente/?id=" + id_cliente,
+                type:"GET",
+                success:function (result) {
+                    $("#conten-comentarios").empty().html(result);
+                    $("#myModal").modal('show')
+                }
+            });
+        }
+    </script>
 {% endblock %}

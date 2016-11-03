@@ -73,9 +73,9 @@ class Tipo_Gestion(models.Model):
 class Gestion(models.Model):
     tipo_gestion = models.ForeignKey(Tipo_Gestion)
     fecha_creacion = models.DateField(auto_now_add=True)
-    # usuario_creacion = models.ForeignKey(User)
+    usuario_creacion = models.ForeignKey(User, null=True, related_name='usuario_creacion')
     fecha_completa = models.DateField(auto_now=True)
-    # usuario_completa = models.ForeignKey(User, null=True, blank=True)
+    usuario_completa = models.ForeignKey(User, null=True, blank=True, related_name='usuario_completa')
     resultado = models.ForeignKey(Gestion_Resultado, null=True, blank=True)
     descripcion = models.CharField(max_length=400)
 
@@ -113,17 +113,31 @@ class Factura(models.Model):
     fecha_vence=models.DateField(null=True, blank=True)
     pagada = models.BooleanField(default=False)
 
+    @property
     def abonos(self):
-        return Factura_Abono.objects.filter(factura=self)
+        return Factura_Abono.objects.all().filter(factura=self)
 
+    @property
     def saldo_factura(self):
         '''
         esta funcion regresa el saldo dela facturara (monto) menos todos los abonos a la factura
         '''
-        return self.monto - self.abonos().aggregate(Sum('monto_abonado'))['monto_abonado__sum']
+        if Factura_Abono.objects.all().filter(factura=self):
+            return self.monto - Factura_Abono.objects.all().filter(factura=self).aggregate(Sum('monto_abono'))['monto_abono__sum']
+        else:
+            return self.monto
 
+    @staticmethod
+    def facturas_pendientes(cliente):
+        factresult=[]
+        facturas = Factura.objects.all().filter(cliente=cliente)
+        for factura in facturas:
+            if factura.saldo_factura > 0:
+                factresult.append(factura)
+        return factresult
 
 class Factura_Abono(models.Model):
     factura = models.ForeignKey(Factura)
-    monto_abono = models.FloatField()
-    fecha_abono = models.DateField()
+    monto_abono = models.FloatField(null = False)
+    fecha_abono = models.DateField(auto_now_add=True)
+    usuario = models.ForeignKey(User, null = True)
