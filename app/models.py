@@ -77,7 +77,12 @@ class Gestion(models.Model):
     fecha_completa = models.DateField(auto_now=True)
     usuario_completa = models.ForeignKey(User, null=True, blank=True, related_name='usuario_completa')
     resultado = models.ForeignKey(Gestion_Resultado, null=True, blank=True)
-    descripcion = models.CharField(max_length=400)
+    comentario = models.CharField(max_length=400, null=True),
+    descripcion_resultado = models.CharField(max_length=400, null=True)
+
+
+    def __unicode__(self):
+        return "%s - %s" % (self.tipo_gestion.nombre, self.descripcion)
 
 class Comentario(models.Model):
     descripcion = models.CharField(max_length=400)

@@ -1,0 +1,35 @@
+{% for gestion in gestiones %}
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img src="/static/app/images/avtar-2.jpg" class="media-object img-circle" alt="" width="60">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 id="media-heading" class="media-heading">Creado por: <a href="">{{ gestion.usuario_creacion }}</a>
+                <small>10 min</small>
+                <a href="#media-heading">
+                    <span class="anchorjs-icon"></span>
+                </a>
+            </h4>
+            <strong>comentario</strong>
+            <p>{{ gestion.comentario }}</p>
+            {% if gestion.usuario_completa %}
+            <h4 id="media-heading" class="media-heading">Finalizado por: <a href="">{{ gestion.usuario_completa }}</a>
+                <small>10 min</small>
+                <a href="#media-heading">
+                    <span class="anchorjs-icon"></span>
+                </a>
+            </h4>
+            <strong>comentario de finalización</strong>
+            <p>{{ gestion.descripcion_resultado }}</p>
+            {% else %}
+                <div style="float: right">
+                    <button class="btn btn-warning btn-3d">Finalizar</button>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+{% endfor %}

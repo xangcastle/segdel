@@ -20,4 +20,14 @@ urlpatterns = [
         name='render_add_abono_factura'),
     url(r'^add_abono_factura/', add_abono_factura,
         name='add_abono_factura'),
+    url(r'^render_gestiones/', render_gestiones,
+        name='render_gestiones'),
+    url(r'^get_tipo_gestion_resultado/', get_tipo_gestion_resultado,
+        name='get_tipo_gestion_resultado'),
+    url(r'^render_add_gestion/', render_add_gestion,
+        name='render_add_gestion'),
+    url(r'^add_new_cliente_gestion/', add_new_cliente_gestion,
+        name='add_new_cliente_gestion'),
+
+
 ]

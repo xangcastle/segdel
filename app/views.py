@@ -1,3 +1,4 @@
+from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -138,9 +139,9 @@ def render_add_abono_factura(request):
 def add_abono_factura(request):
     data = []
     obj_json = {}
-    id_doc = request.POST.get('id_doc');
-    monto = request.POST.get('monto');
-    id_usuario = request.POST.get('id_usuario');
+    id_doc = request.POST.get('id_doc')
+    monto = request.POST.get('monto')
+    id_usuario = request.POST.get('id_usuario')
     if id_usuario:
         try:
             usuario = User.objects.get(id=id_usuario)
@@ -151,13 +152,13 @@ def add_abono_factura(request):
 
     if not id_doc:
         obj_json['code'] = 400
-        obj_json['mensaje'] = "ERROR: Documento invalido";
+        obj_json['mensaje'] = "ERROR: Documento invalido"
     elif not monto:
         obj_json['code'] = 400
-        obj_json['mensaje'] = "ERROR: Monto invalido";
+        obj_json['mensaje'] = "ERROR: Monto invalido"
     elif not usuario:
         obj_json['code'] = 400
-        obj_json['mensaje'] = "ERROR: Usuario invalido";
+        obj_json['mensaje'] = "ERROR: Usuario invalido"
     else:
         try:
             factura = Factura.objects.get(id=int(id_doc))
@@ -175,3 +176,84 @@ def add_abono_factura(request):
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
+
+def render_gestiones(request):
+    if request.GET.get('id_cliente'):
+        id_cliente = int(request.GET.get('id_cliente'))
+        gestiones = Cliente.objects.get(id=id_cliente).gestiones.all()
+    html = render_to_string('app/partial/_gestiones.html', {'gestiones': gestiones})
+    return HttpResponse(html)
+
+def render_add_gestion(request):
+    tipo_gestiones = Tipo_Gestion.objects.filter(activo=True)
+    html = render_to_string('app/partial/_gestion_add.html', {'tipo_gestiones': tipo_gestiones})
+    return HttpResponse(html)
+
+def add_new_cliente_gestion(request):
+    data = []
+    obj_json = {}
+    id_cliente = request.POST.get('id_cliente')
+    id_tipo_gestion = request.POST.get('id_tipo_gestion')
+    descripcion = request.POST.get('descripcion')
+    id_usuario = request.POST.get('id_usuario')
+    if id_usuario:
+        try:
+            usuario = User.objects.get(id=id_usuario)
+        except Exception as e:
+            usuario = None
+    else:
+        usuario = request.user
+
+    if id_tipo_gestion:
+        try:
+            tipo_gestion = Tipo_Gestion.objects.get(id=id_cliente)
+        except Exception as e:
+            tipo_gestion = None
+    else:
+        tipo_gestion = None
+
+    if id_cliente:
+        try:
+            cliente = Cliente.objects.get(id=id_cliente)
+        except Exception as e:
+            cliente = None
+    else:
+        cliente = None
+
+    if not cliente:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Cliente invalido"
+    elif not tipo_gestion:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Tipo gestion invalida"
+    elif not usuario:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Usuario invalido"
+    else:
+        gestion = Gestion.objects.create(tipo_gestion=tipo_gestion, usuario_creacion=usuario)
+        gestion.comentario = str(descripcion)
+        gestion.save()
+
+        cliente.gestiones.add(gestion)
+        cliente.save()
+
+        obj_json['code'] = 200
+        obj_json['mensaje'] = "Gestion registrada exitosamente!"
+
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
+
+@csrf_exempt
+def get_tipo_gestion_resultado(request):
+    id_tipo = request.POST.get('id_tipo')
+    if id_tipo:
+        try:
+            tipo_gestion = Tipo_Gestion.objects.get(id=id_tipo)
+        except Exception as e:
+            tipo_gestion = None
+
+    resultado = tipo_gestion.resultados.all()
+    data = serializers.serialize("json", resultado)
+    return HttpResponse(data, content_type='application/json')
+

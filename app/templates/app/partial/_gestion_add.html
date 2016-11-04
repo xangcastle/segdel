@@ -1,0 +1,35 @@
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Tipo de Gestion:</label>
+        <div class="col-sm-8">
+            <select id="tipo_gestion" class="form-control" >
+                {% for tipo_estion in tipo_gestiones %}
+                <option value="{{ tipo_estion.id }}">{{ tipo_estion.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Descripcion:</label>
+        <div class="col-sm-8">
+            <textarea id="gestion_descripcion" cols="2" class="form-control" placeholder="Descripcion" type="text"></textarea>
+        </div>
+    </div>
+</div>
+{% comment %}<div class="hr-line-dashed"></div>
+<div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Resultado:</label>
+        <div class="col-sm-8">
+            <select id="resultado_gestion" class="form-control">
+            </select>
+        </div>
+    </div>
+</div>{% endcomment %}
+<input type="hidden" id="gestion-accion" value="add" >
+<script type="javascript">
+
+</script>

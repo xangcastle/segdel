@@ -137,35 +137,51 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">Visitas / Promesas de pago / Gestiones</h4>
                     <div class="panel-actions">
+                        <button id="btnAgregarGestion" class="btn btn-success btn-3d">Agregar gestion</button>
                         <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
                         <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                     </div>
                 </div>
                 <div class="panel-body">
-
+                    <div id="content-gestiones"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="modal fade in" id="modal_pago" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title">Pago a factura</h4>
-                <small>Detalle de la factura</small>
-            </div>
-            <div class="modal-body">
-                <div id="content-pago-facutua"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="btn-aplicar-pago" type="button" class="btn btn-primary">Aplicar pago</button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Pago a factura</h4>
+                    <small>Detalle de la factura</small>
+                </div>
+                <div class="modal-body">
+                    <div id="content-pago-facutua"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="btn-aplicar-pago" type="button" class="btn btn-primary">Aplicar pago</button>
+                </div>
             </div>
         </div>
     </div>
-    <input id="clienteid" type="hidden">
-</div>
+    <div class="modal fade in" id="modal_gestion" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Gestion</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="content-detalle-gestion"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button id="btn-guardar-gestion" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock cuerpo %}
 {% block scripts-block %}
     <script src="/static/app/js/data-tables/jquery.dataTables.js"></script>
@@ -181,8 +197,15 @@
         })
         cargarComentarios();
         cargarFacturasPendientes();
+        cargarGestiones();
         $("#btn-aplicar-pago").on('click',function () {
             aplicarPagoFactura();
+        })
+        $("#btnAgregarGestion").on('click',function () {
+            cargarAgregarGestion();
+        })
+        $("#btn-guardar-gestion").on('click',function () {
+            guardarGestion();
         })
     })
 
@@ -297,6 +320,91 @@
                 showCancelButton: true
             });
         }
+
+    }
+    function cargarGestiones() {
+        $.ajax({
+            url: "../render_gestiones/?id_cliente={{ cliente.id }}",
+            type:"GET",
+            success: function (result) {
+                $("#content-gestiones").empty().html(result);
+            }
+        });
+    }
+    function cargarAgregarGestion() {
+        $.ajax({
+            url:"../render_add_gestion/",
+            type:"GET",
+            success:function (result) {
+                $("#content-detalle-gestion").empty().html(result);
+                $("#modal_gestion").modal('show');
+            }
+        });
+    }
+    function get_resultados(id_tipo) {
+        $.ajax({
+                url:"../get_tipo_gestion_resultado/",
+                data:{id_tipo:id_tipo},
+                type:"POST",
+                success: function (result) {
+                    $("#resultado_gestion").empty();
+                     $.each(result, function (index, value) {
+                         $("#resultado_gestion").append($("<option></option>")
+                                                        .attr("value",value.pk)
+                                                        .text(value.fields.nombre));
+                     });
+
+                }
+            });
+    }
+    function guardarGestion() {
+
+        var accion =  $("#gestion-accion").val();
+        if(accion == "add"){
+            text_info="Estas seguro que deseas registrar esta nueva gestión?"
+        }
+        swal({
+                title: "Estas seguro?",
+                text: text_info,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#4286f4",
+                confirmButtonText: "Si",
+                closeOnConfirm: true
+            },
+            function(){
+                if(accion == "add"){
+                    var cliente = $("#clienteid").val();
+                    var tipo_gestion = $("#tipo_gestion").val();
+                    var descripcion = $("#gestion_descripcion").val();
+
+                    $.ajax({
+                        url:"../add_new_cliente_gestion/",
+                        data:{id_cliente:cliente, id_tipo_gestion:tipo_gestion, descripcion:descripcion,
+                            id_usuario:{{ user.id }}, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                        type:"POST",
+                        success:function (result) {
+                            data=result[0];
+                            if(data.code==200){
+                                cargarGestiones() ;
+                                $("#modal_gestion").modal('hide')
+                                swal({
+                                     title: "Exito!",
+                                    text: data.mensaje,
+                                    type: "success"
+                                });
+                            }else {
+                                swal({
+                                    title: "Upss. ha ocurrido un error",
+                                    text: data.mensaje,
+                                    type: "success"
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        );
 
     }
     </script>
