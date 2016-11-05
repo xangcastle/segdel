@@ -8,11 +8,23 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 import json
+from django.http import HttpResponseRedirect
 from app.models import *
+from datetime import datetime
+
+
+def inicio(request):
+    return HttpResponseRedirect("/app")
 
 
 class index(TemplateView):
     template_name = "app/index.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        context['total_cartera'] = Factura.objects.all().aggregate(Sum('monto'))['monto__sum'] - \
+        Factura_Abono.objects.all().aggregate(Sum('monto_abono'))['monto_abono__sum']
+        return super(index, self).render_to_response(context)
 
 
 class cobranza(TemplateView):
@@ -406,4 +418,3 @@ def get_tipo_gestion_resultado(request):
     resultado = tipo_gestion.resultados.all()
     data = serializers.serialize("json", resultado)
     return HttpResponse(data, content_type='application/json')
-

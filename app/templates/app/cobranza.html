@@ -47,7 +47,7 @@
                             <td>{{ cliente.identificacion }}</td>
                             <td>{{ cliente.nombre }}</td>
                             <td>{{ cliente.telefono }}</td>
-                            <td>3,348.00 US$</td>
+                            <td>{{ cliente.saldo_cliente }}</td>
                             <td>
                                 <a href="#" onclick="mostrarComentarios({{ cliente.id }}); return false;">Comentarios</a>|
                                 <a href="../cobranza_cliente/?id={{ cliente.id }}">Ver mas</a>

@@ -105,8 +105,17 @@ class Cliente(models.Model):
     def facturas(self):
         return Factura.objects.filter(cliente=self)
 
+    def abonos(self):
+        return Factura_Abono.objects.filter(factura__in=self.facturas())
+
     def saldo_cliente(self):
-        return self.facturas().aggregate(Sum('saldo_factura'))['saldo_factura__sum']
+        if self.facturas() and self.abonos():
+            return self.facturas().aggregate(Sum('monto'))['monto__sum'] - \
+            self.abonos().aggregate(Sum('monto_abono'))['monto_abono__sum']
+        elif self.facturas():
+            return self.facturas().aggregate(Sum('monto'))['monto__sum']
+        else:
+            return 0.0
 
 
 

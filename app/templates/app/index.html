@@ -445,7 +445,21 @@
                 </div>
                 <div class="content-wrapper container">
                      {% block cuerpo %}
-                    {% comment %}<div class="row">
+                     <div class="row">
+                         <div class="col-md-3">
+                             <a href="/app/cobranza/">
+                               <div class="widget-box clearfix">
+                                   <div>
+                                       <h2><i class="fa fa-usd pull-right p4-color"></i></h2>
+                                       <h4>Cartera y Cobro</h4>
+                                       <h2>{{ total_cartera }}</h2>
+                                   </div>
+                               </div>
+                             </a>
+                         </div>
+             </div>
+                    {% comment %}
+                    <div class="row">
                         <div class="col-sm-12">
                             <div class="panel panel-card recent-activites">
                                 <!-- Start .panel -->
