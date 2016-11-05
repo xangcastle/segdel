@@ -2,7 +2,10 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-class Import(models.Model):
+from app.models import Empresa
+
+
+class Import_Imventario(models.Model):
     razon_social = models.CharField(max_length=255)
     numero_ruc = models.CharField(max_length=14)
     producto_codigo = models.CharField(max_length=10)
@@ -26,30 +29,49 @@ class Import(models.Model):
                 razon_social=self.razon_social)
         return o
 
+    def get_medida(self):
+        o = None
+        try:
+            o = Producto_Medida.objects.get(medida=self.producto_medida)
+        except:
+            o, create = Producto_Medida.objects.get_or_create(
+                medida=self.producto_medida)
+        return o
+
+    def get_marca(self):
+        o = None
+        try:
+            o = Producto_Marca.objects.get(medida=self.producto_marca)
+        except:
+            o, create = Producto_Marca.objects.get_or_create(
+                marca=self.producto_marca)
+        return o
+
+    def get_categoria(self):
+        o = None
+        try:
+            o = Producto_Categoria.objects.get(categoria=self.producto_categoria)
+        except:
+            o, create = Producto_Categoria.objects.get_or_create(
+                categoria=self.producto_categoria)
+        return o
+
     def get_producto(self):
         o = None
         try:
             o = Producto.objects.get(codigo=self.producto_codigo)
         except:
             o, create = Producto.objects.get_or_create(
-                codigo=self.identificacion,
-                nombre=self.nombre,
-                categoria=self.telefono,
+                codigo=self.producto_codigo,
+                nombre=self.producto_nombre,
+                categoria=self.get_categoria(),
                 empresa=self.get_empresa(),
-                medida=self.telefono,
-                marca=self.direccion,)
+                medida=self.get_medida(),
+                marca=self.get_marca(),)
         return o
 
     def save(self, *args, **kwargs):
-        Factura(cliente=self.get_cliente(), empresa=self.get_empresa(),
-            monto=self.monto, fecha=self.fecha, nodoc=self.nodoc).save()
-
-class Empresa(models.Model):
-    razon_social = models.CharField(max_length=255)
-    numero_ruc = models.CharField(max_length=14)
-
-    def __unicode__(self):
-        return "%s-%s" % (self.numero_ruc, self.razon_social)
+        self.get_producto()
 
 class Producto_Marca(models.Model):
     marca = models.CharField(max_length=100)

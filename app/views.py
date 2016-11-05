@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -189,12 +191,31 @@ def render_add_gestion(request):
     html = render_to_string('app/partial/_gestion_add.html', {'tipo_gestiones': tipo_gestiones})
     return HttpResponse(html)
 
+def render_edit_gestion(request):
+    if request.GET.get('id_gestion'):
+        id_gestion = int(request.GET.get('id_gestion'))
+        gestion = Gestion.objects.get(id=id_gestion)
+    tipo_gestiones = Tipo_Gestion.objects.filter(activo=True)
+    html = render_to_string('app/partial/_gestion_edit.html', {'gestion':gestion, 'tipo_gestiones': tipo_gestiones})
+    return HttpResponse(html)
+
+def render_finish_gestion(request):
+    if request.GET.get('id_gestion'):
+        id_gestion = int(request.GET.get('id_gestion'))
+        gestion = Gestion.objects.get(id=id_gestion)
+    tipo_gestiones = Tipo_Gestion.objects.filter(activo=True)
+    resultados = gestion.tipo_gestion.resultados.all()
+    html = render_to_string('app/partial/_gestion_finish.html', {'gestion':gestion, 'tipo_gestiones': tipo_gestiones,
+                                                               'resultados':resultados})
+    return HttpResponse(html)
+
 def add_new_cliente_gestion(request):
     data = []
     obj_json = {}
     id_cliente = request.POST.get('id_cliente')
     id_tipo_gestion = request.POST.get('id_tipo_gestion')
     descripcion = request.POST.get('descripcion')
+    str_programacion = request.POST.get('programacion')
     id_usuario = request.POST.get('id_usuario')
     if id_usuario:
         try:
@@ -220,6 +241,11 @@ def add_new_cliente_gestion(request):
     else:
         cliente = None
 
+    if str_programacion:
+        programacion = datetime.strptime(str_programacion, '%Y-%M-%d')
+    else:
+        programacion = None
+
     if not cliente:
         obj_json['code'] = 400
         obj_json['mensaje'] = "ERROR: Cliente invalido"
@@ -230,8 +256,8 @@ def add_new_cliente_gestion(request):
         obj_json['code'] = 400
         obj_json['mensaje'] = "ERROR: Usuario invalido"
     else:
-        gestion = Gestion.objects.create(tipo_gestion=tipo_gestion, usuario_creacion=usuario)
-        gestion.comentario = str(descripcion)
+        gestion = Gestion.objects.create(tipo_gestion=tipo_gestion, usuario_creacion=usuario,
+                                         descripcion=descripcion, programacion=programacion)
         gestion.save()
 
         cliente.gestiones.add(gestion)
@@ -239,6 +265,130 @@ def add_new_cliente_gestion(request):
 
         obj_json['code'] = 200
         obj_json['mensaje'] = "Gestion registrada exitosamente!"
+
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
+
+def edit_cliente_gestion(request):
+    data = []
+    obj_json = {}
+    id_gestion = request.POST.get('id_gestion')
+    id_cliente = request.POST.get('id_cliente')
+    id_tipo_gestion = request.POST.get('id_tipo_gestion')
+    descripcion = request.POST.get('descripcion')
+    str_programacion = request.POST.get('programacion')
+    id_usuario = request.POST.get('id_usuario')
+    if id_usuario:
+        try:
+            usuario = User.objects.get(id=id_usuario)
+        except Exception as e:
+            usuario = None
+    else:
+        usuario = request.user
+
+    if id_tipo_gestion:
+        try:
+            tipo_gestion = Tipo_Gestion.objects.get(id=id_tipo_gestion)
+        except Exception as e:
+            tipo_gestion = None
+    else:
+        tipo_gestion = None
+
+    if id_cliente:
+        try:
+            cliente = Cliente.objects.get(id=id_cliente)
+        except Exception as e:
+            cliente = None
+    else:
+        cliente = None
+
+    if str_programacion:
+        programacion = datetime.strptime(str_programacion, '%Y-%M-%d')
+    else:
+        programacion = None
+
+    if not cliente:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Cliente invalido"
+    elif not tipo_gestion:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Tipo gestion invalida"
+    elif not usuario:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Usuario invalido"
+    elif not id_gestion:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Gestion invalida"
+    else:
+
+        gestion = Gestion.objects.get(id=id_gestion)
+        if not gestion:
+            obj_json['code'] = 400
+            obj_json['mensaje'] = "ERROR: Gestion no encontrada"
+        else:
+            gestion.tipo_gestion=tipo_gestion
+            gestion.usuario_creacion=usuario
+            gestion.descripcion=descripcion
+            gestion.programacion=programacion
+            gestion.fecha_creacion = datetime.now()
+            gestion.save()
+
+            obj_json['code'] = 200
+            obj_json['mensaje'] = "Gestion registrada exitosamente!"
+
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
+
+def finish_cliente_gestion(request):
+    data = []
+    obj_json = {}
+    id_gestion = request.POST.get('id_gestion')
+    id_resultado = request.POST.get('id_resultado')
+    descripcion = request.POST.get('descripcion')
+    id_usuario = request.POST.get('id_usuario')
+    if id_usuario:
+        try:
+            usuario = User.objects.get(id=id_usuario)
+        except Exception as e:
+            usuario = None
+    else:
+        usuario = request.user
+
+    if id_resultado:
+        try:
+            resultado = Gestion_Resultado.objects.get(id=id_resultado)
+        except Exception as e:
+            resultado = None
+    else:
+        resultado = None
+
+
+    if not id_resultado:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Resultado gestion invalida"
+    elif not usuario:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Usuario invalido"
+    elif not id_gestion:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "ERROR: Gestion invalida"
+    else:
+
+        gestion = Gestion.objects.get(id=id_gestion)
+        if not gestion:
+            obj_json['code'] = 400
+            obj_json['mensaje'] = "ERROR: Gestion no encontrada"
+        else:
+            gestion.usuario_completa=usuario
+            gestion.descripcion_resultado=descripcion
+            gestion.resultado=resultado
+            gestion.fecha_completa = datetime.now()
+            gestion.save()
+
+            obj_json['code'] = 200
+            obj_json['mensaje'] = "Gestion finalizada exitosamente!"
 
     data.append(obj_json)
     data = json.dumps(data)

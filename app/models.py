@@ -72,13 +72,14 @@ class Tipo_Gestion(models.Model):
 
 class Gestion(models.Model):
     tipo_gestion = models.ForeignKey(Tipo_Gestion)
-    fecha_creacion = models.DateField(auto_now_add=True)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
     usuario_creacion = models.ForeignKey(User, null=True, related_name='usuario_creacion')
-    fecha_completa = models.DateField(auto_now=True)
+    fecha_completa = models.DateTimeField(null=True)
     usuario_completa = models.ForeignKey(User, null=True, blank=True, related_name='usuario_completa')
     resultado = models.ForeignKey(Gestion_Resultado, null=True, blank=True)
-    comentario = models.CharField(max_length=400, null=True),
+    descripcion = models.TextField(max_length=400, null=True)
     descripcion_resultado = models.CharField(max_length=400, null=True)
+    programacion = models.DateField(null=True, blank=True)
 
 
     def __unicode__(self):

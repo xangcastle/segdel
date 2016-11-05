@@ -26,8 +26,18 @@ urlpatterns = [
         name='get_tipo_gestion_resultado'),
     url(r'^render_add_gestion/', render_add_gestion,
         name='render_add_gestion'),
+    url(r'^render_edit_gestion/', render_edit_gestion,
+        name='render_edit_gestion'),
+    url(r'^render_finish_gestion/', render_finish_gestion,
+        name='render_finish_gestion'),
     url(r'^add_new_cliente_gestion/', add_new_cliente_gestion,
         name='add_new_cliente_gestion'),
+    url(r'^edit_cliente_gestion/', edit_cliente_gestion,
+        name='edit_cliente_gestion'),
+    url(r'^finish_cliente_gestion/', finish_cliente_gestion,
+        name='finish_cliente_gestion'),
+
+
 
 
 ]

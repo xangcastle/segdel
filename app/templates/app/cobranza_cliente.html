@@ -6,6 +6,7 @@
 {% endcomment %}
 {% block css-content %}
     <link href="/static/app/css/sweetalert.css" rel="stylesheet">
+    <link href="/static/app/css/bootstrap-datetimepicker.css" rel="stylesheet">
 {% endblock css-content %}
 {% block breadcrums %}
     <div class="row">
@@ -77,7 +78,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-lg-6 col-sm12">
             <div class="panel panel-card recent-activites">
                 <!-- Start .panel -->
                 <div class="panel-heading">
@@ -96,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-lg-6 col-sm12">
             <div class="panel panel-card recent-activites ">
                 <!-- Start .panel -->
                 <div class="panel-heading">
@@ -121,7 +122,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <button id="comentar" class="btn btn-effect-ripple btn-primary">Enviar comentario</button>
+                                <a href="javascript:void(0)" id="comentar" class="btn btn-effect-ripple btn-primary"> <i class="fa fa-comment fa-fw"></i> Enviar comentario</a>
                             </div>
                         </div>
                     </div>
@@ -137,12 +138,16 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">Visitas / Promesas de pago / Gestiones</h4>
                     <div class="panel-actions">
-                        <button id="btnAgregarGestion" class="btn btn-success btn-3d">Agregar gestion</button>
                         <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
                         <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                     </div>
                 </div>
                 <div class="panel-body">
+                    <div class="float-right right align-right">
+                         <a id="btnAgregarGestion" style="float: right" class="btn btn-success btn-3d" href="javascript:void(0)"><i class="fa fa-plus fa-fw"></i> Agregar gestion</a>
+                    </div>
+
+                    <hr/>
                     <div id="content-gestiones"></div>
                 </div>
             </div>
@@ -190,6 +195,7 @@
     <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
     <script src="/static/app/js/data-tables/tables-data.js"></script>
     <script src="/static/app/js/sweet-alert/sweetalert.min.js"></script>
+    <script src="/static/app/js/bootstrap-datetimepicker.js"></script>
     <script>
     $(document).ready(function () {
         $("#comentar").on('click',function () {
@@ -208,7 +214,11 @@
             guardarGestion();
         })
     })
-
+    function loadDatePicker() {
+        $(".datetimepicker").datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+    }
     function cargarComentarios() {
         $.ajax({
             url:"../get_comentario_cliente/?id={{ cliente.id }}",
@@ -322,6 +332,8 @@
         }
 
     }
+
+
     function cargarGestiones() {
         $.ajax({
             url: "../render_gestiones/?id_cliente={{ cliente.id }}",
@@ -338,6 +350,29 @@
             success:function (result) {
                 $("#content-detalle-gestion").empty().html(result);
                 $("#modal_gestion").modal('show');
+                loadDatePicker();
+            }
+        });
+    }
+    function cargarEditarGestion(id_gestion) {
+        $.ajax({
+            url:"../render_edit_gestion/?id_gestion=" + id_gestion,
+            type:"GET",
+            success:function (result) {
+                $("#content-detalle-gestion").empty().html(result);
+                $("#modal_gestion").modal('show');
+                loadDatePicker();
+            }
+        });
+    }
+    function cargarFinalizarGestion(id_gestion) {
+        $.ajax({
+            url:"../render_finish_gestion/?id_gestion=" + id_gestion,
+            type:"GET",
+            success:function (result) {
+                $("#content-detalle-gestion").empty().html(result);
+                $("#modal_gestion").modal('show');
+                loadDatePicker();
             }
         });
     }
@@ -360,8 +395,15 @@
     function guardarGestion() {
 
         var accion =  $("#gestion-accion").val();
+        var text_info =""
         if(accion == "add"){
             text_info="Estas seguro que deseas registrar esta nueva gestión?"
+        }
+        if(accion == "edit"){
+            text_info="Estas seguro que deseas modificar esta gestión?"
+        }
+        if(accion == "finish"){
+           text_info="Estas seguro que deseas finalizar esta gestión?"
         }
         swal({
                 title: "Estas seguro?",
@@ -377,10 +419,73 @@
                     var cliente = $("#clienteid").val();
                     var tipo_gestion = $("#tipo_gestion").val();
                     var descripcion = $("#gestion_descripcion").val();
+                    var programacion = $("#gestion_programacion").val();
 
                     $.ajax({
                         url:"../add_new_cliente_gestion/",
                         data:{id_cliente:cliente, id_tipo_gestion:tipo_gestion, descripcion:descripcion,
+                            programacion:programacion, id_usuario:{{ user.id }}, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                        type:"POST",
+                        success:function (result) {
+                            data=result[0];
+                            if(data.code==200){
+                                cargarGestiones() ;
+                                $("#modal_gestion").modal('hide')
+                                swal({
+                                     title: "Exito!",
+                                    text: data.mensaje,
+                                    type: "success"
+                                });
+                            }else {
+                                swal({
+                                    title: "Upss. ha ocurrido un error",
+                                    text: data.mensaje,
+                                    type: "error"
+                                });
+                            }
+                        }
+                    });
+                }
+                if(accion=="edit"){
+                    var cliente = $("#clienteid").val();
+                    var tipo_gestion = $("#tipo_gestion").val();
+                    var descripcion = $("#gestion_descripcion").val();
+                    var programacion = $("#gestion_programacion").val();
+                    var id_gestion = $("#gestion-edit-id").val();
+
+                    $.ajax({
+                        url:"../edit_cliente_gestion/",
+                        data:{id_cliente:cliente, id_tipo_gestion:tipo_gestion, descripcion:descripcion, id_gestion:id_gestion,
+                            programacion:programacion, id_usuario:{{ user.id }}, csrfmiddlewaretoken: '{{ csrf_token }}'},
+                        type:"POST",
+                        success:function (result) {
+                            data=result[0];
+                            if(data.code==200){
+                                cargarGestiones() ;
+                                $("#modal_gestion").modal('hide')
+                                swal({
+                                     title: "Exito!",
+                                    text: data.mensaje,
+                                    type: "success"
+                                });
+                            }else {
+                                swal({
+                                    title: "Upss. ha ocurrido un error",
+                                    text: data.mensaje,
+                                    type: "warning"
+                                });
+                            }
+                        }
+                    });
+                }
+                if(accion=="finish"){
+                    var resultado = $("#tipo_resultado").val();
+                    var descripcion = $("#gestion_descripcion-resultado").val();
+                    var id_gestion = $("#gestion-edit-id").val();
+
+                    $.ajax({
+                        url:"../finish_cliente_gestion/",
+                        data:{id_resultado:resultado, descripcion:descripcion, id_gestion:id_gestion,
                             id_usuario:{{ user.id }}, csrfmiddlewaretoken: '{{ csrf_token }}'},
                         type:"POST",
                         success:function (result) {
@@ -397,7 +502,7 @@
                                 swal({
                                     title: "Upss. ha ocurrido un error",
                                     text: data.mensaje,
-                                    type: "success"
+                                    type: "warning"
                                 });
                             }
                         }
@@ -406,6 +511,15 @@
             }
         );
 
+    }
+    function programarGestion() {
+        var value = $('#gestion_programar').is(':checked')
+        if(value){
+            $("#gestion_programacion").removeAttr('disabled');
+        }else{
+            $("#gestion_programacion").val("");
+            $("#gestion_programacion").attr('disabled','disabled');
+        }
     }
     </script>
 {% endblock %}

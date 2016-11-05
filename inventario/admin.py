@@ -1,3 +1,6 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 
-# Register your models here.
+from inventario.models import *
+
+admin.site.register(Import_Imventario, ImportExportModelAdmin)

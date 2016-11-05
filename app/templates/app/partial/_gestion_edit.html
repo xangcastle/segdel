@@ -1,0 +1,58 @@
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Tipo de Gestion:</label>
+        <div class="col-sm-8">
+            <select id="tipo_gestion" class="form-control" >
+                {% for tipo_estion in tipo_gestiones %}
+                    {% ifequal gestion.tipo_gestion tipo_estion %}
+                        <option  selected="selected" value="{{ tipo_estion.id }}">{{ tipo_estion.nombre|title }}</option>
+                    {% else %}
+                        <option value="{{ tipo_estion.id }}">{{ tipo_estion.nombre|title }}</option>
+                    {% endifequal %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Descripcion:</label>
+        <div class="col-sm-8">
+            <textarea id="gestion_descripcion" cols="2" class="form-control" placeholder="Descripcion" type="text">{{ gestion.descripcion }}</textarea>
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Porgramación:</label>
+        <div class="col-sm-8">
+            <div class="input-group">
+                {% if gestion.programacion %}
+                    <span class="input-group-addon" id="basic-addon1">
+                      programar
+                      <input type="checkbox" checked="checked" id="gestion_programar" onclick="programarGestion()">
+                    </span>
+                    <input id="gestion_programacion"  value="{{ gestion.programacion|date:'Y-m-d' }}"
+                     type="text" class="form-control datetimepicker"
+                     placeholder="Fecha de programación" aria-describedby="basic-addon1">
+                {% else %}
+                    <span class="input-group-addon" id="basic-addon1">
+                      programar
+                      <input type="checkbox" id="gestion_programar" onclick="programarGestion()">
+                    </span>
+                    <input id="gestion_programacion"
+                     type="text" disabled="disabled" class="form-control datetimepicker"
+                     placeholder="Fecha de programación" aria-describedby="basic-addon1">
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="gestion-accion" value="edit" >
+<input type="hidden" id="gestion-edit-id" value="{{ gestion.id }}">
+<script type="javascript">
+
+</script>

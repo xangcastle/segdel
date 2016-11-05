@@ -12,23 +12,33 @@
                     <span class="anchorjs-icon"></span>
                 </a>
             </h4>
-            <strong>comentario</strong>
-            <p>{{ gestion.comentario }}</p>
+                <div style="float: right">
+                    {% if not gestion.usuario_completa %}
+                        <button class="btn btn-primary btn-3d" onclick="cargarEditarGestion({{ gestion.id }})"><i class="fa fa-edit fa-fw"></i>Editar</button>
+                        <button class="btn btn-warning btn-3d" onclick="cargarFinalizarGestion({{ gestion.id }})"><i class="fa fa-edit fa-fw"></i>Finalizar</button>
+                    {% endif %}
+
+                </div>
+            <span><strong>Tipo de Gestion:</strong> {{ gestion.tipo_gestion }}</span><br/>
+            {% if gestion.programacion %}
+            <span><strong>Programación:</strong> {{ gestion.programacion }}</span><br/>
+            {% endif %}
+            <strong>comentario:</strong>
+            <p>{{ gestion.descripcion }}</p>
+
             {% if gestion.usuario_completa %}
+                <hr/>
             <h4 id="media-heading" class="media-heading">Finalizado por: <a href="">{{ gestion.usuario_completa }}</a>
                 <small>10 min</small>
                 <a href="#media-heading">
                     <span class="anchorjs-icon"></span>
                 </a>
             </h4>
+            <span><strong>Resultado:</strong> {{ gestion.resultado }}</span><br/>
             <strong>comentario de finalización</strong>
             <p>{{ gestion.descripcion_resultado }}</p>
-            {% else %}
-                <div style="float: right">
-                    <button class="btn btn-warning btn-3d">Finalizar</button>
-                </div>
-
             {% endif %}
+
         </div>
     </div>
     <hr>
