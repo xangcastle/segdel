@@ -4,8 +4,6 @@ from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [
-    url(r'^$', login_required(index.as_view()),
-        name='index'),
     url(r'^cobranza/', login_required(cobranza.as_view()),
         name='cobranza'),
     url(r'^cobranza_cliente/', login_required(cobranza_cliente.as_view()),
