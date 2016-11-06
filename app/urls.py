@@ -35,6 +35,8 @@ urlpatterns = [
     url(r'^finish_cliente_gestion/', finish_cliente_gestion,
         name='finish_cliente_gestion'),
 
+    url(r'^facturacion/', login_required(cobranza.as_view()),
+        name='cobranza'),
 
 
 
