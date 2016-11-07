@@ -71,6 +71,22 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade in" id="modal-factura-preview" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Factura</h4>
+            </div>
+            <div class="modal-body">
+                <iframe id="conten-factura-preview" width="100%" style="height: 400px;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock cuerpo %}
 {% block scripts-block %}
     <script src="/static/app/js/data-tables/jquery.dataTables.js"></script>
@@ -126,6 +142,48 @@
                     }
                 }
             });
+        }
+        function anular_factura(factura) {
+            swal({
+                title: "Anulación",
+                text: "Esta seguro que desea anular esta factura?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#4286f4",
+                confirmButtonText: "Si, anular",
+                closeOnConfirm: true
+            },
+            function(){
+                $.ajax({
+                    url:"../anular_nueva_factura/",
+                    data: {id_factura:factura, csrfmiddlewaretoken: '{{ csrf_token }}' },
+                    type:"POST",
+                    success:function (result) {
+                        data=result[0];
+                        if(data.code==200){
+                            mostrarFacturas();
+                            swal({
+                                 title: "Exito!",
+                                text: data.mensaje,
+                                type: "success"
+                            });
+                        }else {
+                            swal({
+                                title: "Upss. ha ocurrido un error",
+                                text: data.mensaje,
+                                type: "success"
+                            });
+                        }
+                    }
+                });
+            });
+        }
+        function mostar_factura(factura) {
+            var $iframe = $("#conten-factura-preview");
+            var url="../mostrar_factura_pdf/?id_factura=" + factura;
+            $iframe.attr('src',url);
+            $("#modal-factura-preview").modal('show');
+            return false;
         }
 
         function showaddProducto() {
@@ -192,40 +250,6 @@
             parent.find('.total').text(total);
 
         }
-        function anular_factura(factura) {
-            swal({
-                title: "Anulación",
-                text: "Esta seguro que desea anular esta factura?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#4286f4",
-                confirmButtonText: "Si, anular",
-                closeOnConfirm: true
-            },
-            function(){
-                $.ajax({
-                    url:"../anular_nueva_factura/",
-                    data: {id_factura:factura, csrfmiddlewaretoken: '{{ csrf_token }}' },
-                    type:"POST",
-                    success:function (result) {
-                        data=result[0];
-                        if(data.code==200){
-                            mostrarFacturas();
-                            swal({
-                                 title: "Exito!",
-                                text: data.mensaje,
-                                type: "success"
-                            });
-                        }else {
-                            swal({
-                                title: "Upss. ha ocurrido un error",
-                                text: data.mensaje,
-                                type: "success"
-                            });
-                        }
-                    }
-                });
-            });
-        }
+
     </script>
 {% endblock %}

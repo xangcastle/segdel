@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
+from app.html_to_pdf import render_to_pdf
 from inventario.models import *
 
 
@@ -18,15 +19,18 @@ class facturacion(TemplateView):
         # context['clientes'] = Fa.objects.all()
         return super(facturacion, self).render_to_response(context)
 
+
 def render_listado_factura(request):
     facturas = Factura.objects.all()
     html = render_to_string('inventario/partial/_facturas.html', {'facturas': facturas})
     return HttpResponse(html)
 
+
 def render_nueva_factura(request):
     facturas = Factura.objects.all()
     html = render_to_string('inventario/partial/_factura.html')
     return HttpResponse(html)
+
 
 @csrf_exempt
 def add_nueva_factura(request):
@@ -37,7 +41,7 @@ def add_nueva_factura(request):
     detalles = request.POST.getlist('id')
     cantidades = request.POST.getlist('cantidad')
 
-    vendedor = request.user # User.objects.get(id=id_vendedor) HAY QUE HACER QUE EL VENDEDOR SE SELECCIONE DE UNA LISTA
+    vendedor = request.user  # User.objects.get(id=id_vendedor) HAY QUE HACER QUE EL VENDEDOR SE SELECCIONE DE UNA LISTA
     try:
         no_fac = float(Factura.objects.all().aggregate(Max('no_fac')))
     except:
@@ -52,7 +56,7 @@ def add_nueva_factura(request):
         usuario_creacion=vendedor
     )
     factura.save()
-    stotal =0
+    stotal = 0
     for i in range(len(detalles)):
         id_detalle = int(detalles[i])
         try:
@@ -61,18 +65,18 @@ def add_nueva_factura(request):
             detalle = None
 
         factura_detalle = Factura_Detalle.objects.create(
-            factura = factura,
-            producto = detalle.producto,
-            bodega = detalle.bodega,
-            cantidad = float(cantidades[i]),
-            valor = float(cantidades[i])*detalle.producto.precio
+            factura=factura,
+            producto=detalle.producto,
+            bodega=detalle.bodega,
+            cantidad=float(cantidades[i]),
+            valor=float(cantidades[i]) * detalle.producto.precio
         )
         factura_detalle.save()
-        stotal+=factura_detalle.valor
+        stotal += factura_detalle.valor
 
-    factura.stotal=stotal
-    factura.impuesto=stotal*0.15
-    factura.total=stotal+(stotal*0.15)
+    factura.stotal = stotal
+    factura.impuesto = stotal * 0.15
+    factura.total = stotal + (stotal * 0.15)
     factura.save()
 
     obj_json['code'] = 200
@@ -80,6 +84,7 @@ def add_nueva_factura(request):
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
+
 
 def anular_nueva_factura(request):
     data = []
@@ -92,19 +97,52 @@ def anular_nueva_factura(request):
         try:
             factura = Factura.objects.get(id=id_factura)
         except:
-            factura=None
+            factura = None
 
         if not factura:
             obj_json['code'] = 400
             obj_json['mensaje'] = "Factura no encontrada"
         else:
-            factura.anulada=True
+            factura.anulada = True
             factura.save()
             obj_json['code'] = 200
             obj_json['mensaje'] = "Factura anulada!"
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
+
+
+def mostrar_factura_pdf(request):
+    data = []
+    obj_json = {}
+    id_factura = request.GET.get('id_factura')
+    if not id_factura:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "Factura invalida"
+    else:
+        try:
+            factura = Factura.objects.get(id=id_factura)
+        except:
+            factura = None
+
+        if not factura:
+            obj_json['code'] = 400
+            obj_json['mensaje'] = "Factura no encontrada"
+        else:
+            factura_detalle = Factura_Detalle.objects.filter(factura=factura)
+            return render_to_pdf(
+                'inventario/plantilla_factura.html',
+                {
+                    'pagesize': 'A4',
+                    'factura': factura,
+                    'factura_detalle': factura_detalle,
+                }
+            )
+
+        data.append(obj_json)
+        data = json.dumps(data)
+        return HttpResponse(data, content_type='application/json')
+
 
 def render_listado_producto(request):
     bodega_detalles = Bodega_Detalle.objects.all()

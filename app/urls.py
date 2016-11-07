@@ -47,6 +47,8 @@ urlpatterns = [
         name='add_nueva_factura'),
     url(r'^anular_nueva_factura/', login_required(anular_nueva_factura),
         name='anular_nueva_factura'),
+    url(r'^mostrar_factura_pdf/', login_required(mostrar_factura_pdf),
+        name='mostrar_factura_pdf'),
 
     url(r'^render_listado_producto/', login_required(render_listado_producto),
         name='render_listado_producto'),
