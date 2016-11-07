@@ -424,7 +424,7 @@ navbar-default .navbar-nav>.open>a, navbar-default .navbar-nav>.open>a:focus, na
 
     .navbar-static-side {
 
-        z-index: 2001;
+        z-index: 999;
 
         width: 220px;
 
@@ -470,7 +470,7 @@ navbar-default .navbar-nav>.open>a, navbar-default .navbar-nav>.open>a:focus, na
 
 .navbar-default{
 
-    z-index: 9999;
+    z-index: 1000;
 
 }
 

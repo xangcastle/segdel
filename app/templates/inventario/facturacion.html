@@ -1,4 +1,7 @@
 {% extends "app/index.html" %}
+{% block css-content %}
+    <link href="/static/app/css/sweetalert.css" rel="stylesheet">
+{% endblock css-content %}
 {% block breadcrums %}
 <div class="row">
     <div class="col-sm-12">
@@ -12,3 +15,208 @@
     </div>
 </div>
 {% endblock breadcrums %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-card recent-activites">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title">Listado de facturas</h4>
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <a id="btnNuevaFactura" style="float: right" class="btn btn-success btn-3d" href="javascript:void(0)"><i class="fa fa-plus fa-fw"></i> Nueva Factura</a>
+                <hr/>
+                <div id="content-listado-fatura"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Factura</h4>
+                <small>Registro de factura</small>
+            </div>
+            <div class="modal-body">
+                <div id="conten-factura"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="guardarFactura()"><i class="fa fa-save fa-fw"></i>Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade in" id="modal-productos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Productos</h4>
+                <small>Busque su producto en la lista, tenga en cuenta que la <strong>existencia</strong>  del producto es por <strong>bodega</strong></small>
+            </div>
+            <div class="modal-body">
+                <div id="conten-productos"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock cuerpo %}
+{% block scripts-block %}
+    <script src="/static/app/js/data-tables/jquery.dataTables.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.tableTools.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.bootstrap.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
+    <script src="/static/app/js/data-tables/tables-data.js"></script>
+    <script src="/static/app/js/sweet-alert/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            mostrarFacturas();
+            $("#btnNuevaFactura").on('click',function () {
+                nuevaFactura();
+            });
+
+        });
+
+        function mostrarFacturas() {
+            $.ajax({
+                url:"../render_listado_factura/",
+                type:"GET",
+                success:function (result) {
+                    $("#content-listado-fatura").empty().html(result);
+                }
+            });
+        }
+        function nuevaFactura() {
+            $.ajax({
+                url:"../render_nueva_factura/",
+                type:"GET",
+                success: function (result) {
+                    $("#conten-factura").empty().html(result);
+                    $("#myModal").modal({
+                      backdrop: 'static',
+                      keyboard: false
+                    });
+                }
+            });
+        }
+        function guardarFactura() {
+            var data =$('#conten-factura :input').serialize();
+
+            $.ajax({
+                url:"../add_nueva_factura/?csrfmiddlewaretoken={{ csrf_token }}",
+                type:"post",
+                data:data,
+                success: function (result) {
+                    var data=result[0];
+                    if(data.code==200){
+                        $("#myModal").modal('hide');
+                        mostrarFacturas();
+                    }
+                }
+            });
+        }
+
+        function showaddProducto() {
+            $.ajax({
+                url:"../render_listado_producto/",
+                type:"GET",
+                success:function (result) {
+                    $("#conten-productos").empty().html(result);
+                    $("#modal-productos").modal('show');
+                    var table = $("#table-listado-productos").dataTable();
+                    $('#table-listado-productos tbody').on( 'click', 'tr', function () {
+                        if ( $(this).hasClass('active') ) {
+                            $(this).removeClass('active');
+                        }
+                        else {
+                            table.$('tr.active').removeClass('active');
+                            $(this).addClass('active');
+                        }
+                    } );
+                }
+            });
+
+        }
+        function agregarProductoDetalle(nombre, id_detalle, existencia, precio) {
+            $("#modal-productos").modal('hide');
+            $("#myModal").modal('show');
+            var rowCount = $('#table_factura_detalle >tbody >tr').length;
+            $("#table_factura_detalle > tbody").append(
+                    "<tr>" +
+                        "<td>"+nombre+"</td>" +
+                        "<td class='existencia'>"+existencia+"</td>" +
+                        "<td><input type='hidden' name='id' value='"+ id_detalle +"'><input name='cantidad' value='0' class='form-control' onchange='changeCantidadProductoDetalle(this)'></td>" +
+                        "<td class='precio'>"+precio+"</td>" +
+                        "<td class='total'>0</td>" +
+                        "<td><button onclick='borarProductoDetalle(this)' class='tbn btn-danger tbn-3d'><i class='fa fa-trash fa-fw'></></button></td>" +
+                    +"</tr>"
+            );
+        }
+        function borarProductoDetalle(value) {
+            var parent = value.closest('tr');
+            parent.remove();
+        }
+        function changeCantidadProductoDetalle(input) {
+            input=$(input);
+            var parent = $(input.closest('tr'));
+            var cantidad=input.val();
+            var existencia=parseFloat(parent.find('.existencia').text());
+            if(cantidad>existencia){
+                cantidad=existencia;
+                input.val(cantidad);
+
+            }
+            var precio = parseFloat(parent.find('.precio').text());
+            var total = cantidad*precio;
+            parent.find('.total').text(total);
+
+        }
+        function anular_factura(factura) {
+            swal({
+                title: "Anulación",
+                text: "Esta seguro que desea anular esta factura?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#4286f4",
+                confirmButtonText: "Si, anular",
+                closeOnConfirm: true
+            },
+            function(){
+                $.ajax({
+                    url:"../anular_nueva_factura/",
+                    data: {id_factura:factura, csrfmiddlewaretoken: '{{ csrf_token }}' },
+                    type:"POST",
+                    success:function (result) {
+                        data=result[0];
+                        if(data.code==200){
+                            mostrarFacturas();
+                            swal({
+                                 title: "Exito!",
+                                text: data.mensaje,
+                                type: "success"
+                            });
+                        }else {
+                            swal({
+                                title: "Upss. ha ocurrido un error",
+                                text: data.mensaje,
+                                type: "success"
+                            });
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+{% endblock %}

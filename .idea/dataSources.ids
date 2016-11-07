@@ -250,6 +250,41 @@
       <index name="inventario_bodeg_detalle_bb91903a" unique="true" columns="producto_id"/>
       <index name="inventario_bodeg_detalle_5dbc19d8" unique="true" columns="bodega_id"/>
     </table>
+    <table name="inventario_factura" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="no_fac" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="stotal" sqlType="REAL" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <column name="impuesto" sqlType="REAL" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <column name="total" sqlType="REAL" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <column name="fecha_creacion" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="anulada" sqlType="BOOL" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="fecha_anulacion" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="usuario_anulacion_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="usuario_creacion_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="cliente" sqlType="VARCHAR(200)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="serie" sqlType="VARCHAR(2)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+      <foreign-key name="#FAKE_inventario_factura_1" columns="usuario_creacion_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_inventario_factura_2" columns="usuario_anulacion_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="inventario_factura_bd4e6c42" unique="true" columns="usuario_creacion_id"/>
+      <index name="inventario_factura_adb8f116" unique="true" columns="usuario_anulacion_id"/>
+    </table>
+    <table name="inventario_factura_detalle" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="cantidad" sqlType="REAL" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <column name="valor" sqlType="REAL" precision="0" scale="-1" nullable="false" jdbcType="6"/>
+      <column name="entregado" sqlType="BOOL" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="bodega_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="factura_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="producto_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <primary-key columns="id"/>
+      <foreign-key name="#FAKE_inventario_factura_detalle_1" columns="producto_id" ref-table="inventario_producto" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_inventario_factura_detalle_2" columns="factura_id" ref-table="inventario_factura" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_inventario_factura_detalle_3" columns="bodega_id" ref-table="inventario_bodega" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="inventario_factura_detalle_bb91903a" unique="true" columns="producto_id"/>
+      <index name="inventario_factura_detalle_b2945002" unique="true" columns="factura_id"/>
+      <index name="inventario_factura_detalle_5dbc19d8" unique="true" columns="bodega_id"/>
+    </table>
     <table name="inventario_import_imventario" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="razon_social" sqlType="VARCHAR(255)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
@@ -262,8 +297,8 @@
       <column name="producto_medida" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="bodega" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="producto_costo" sqlType="REAL" precision="0" scale="-1" nullable="false" jdbcType="6"/>
-      <column name="producto_precio" sqlType="REAL" precision="0" scale="-1" nullable="false" jdbcType="6"/>
       <column name="producto_serie" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="producto_precio" sqlType="REAL" precision="0" scale="-1" nullable="false" jdbcType="6"/>
       <primary-key columns="id"/>
     </table>
     <table name="inventario_producto" schema="" catalog="" type="TABLE">

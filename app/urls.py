@@ -1,4 +1,6 @@
 from django.conf.urls import url
+
+from inventario.views import *
 from .views import *
 from django.contrib.auth.decorators import login_required
 
@@ -35,9 +37,17 @@ urlpatterns = [
     url(r'^finish_cliente_gestion/', finish_cliente_gestion,
         name='finish_cliente_gestion'),
 
-    url(r'^facturacion/', login_required(cobranza.as_view()),
+    url(r'^facturacion/', login_required(facturacion.as_view()),
         name='cobranza'),
+    url(r'^render_listado_factura/', login_required(render_listado_factura),
+        name='render_listado_factura'),
+    url(r'^render_nueva_factura/', login_required(render_nueva_factura),
+        name='render_nueva_factura'),
+    url(r'^add_nueva_factura/', login_required(add_nueva_factura),
+        name='add_nueva_factura'),
+    url(r'^anular_nueva_factura/', login_required(anular_nueva_factura),
+        name='anular_nueva_factura'),
 
-
-
+    url(r'^render_listado_producto/', login_required(render_listado_producto),
+        name='render_listado_producto'),
 ]

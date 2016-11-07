@@ -174,7 +174,8 @@ class Bodega_Detalle(models.Model):
 
 class Factura(models.Model):
     no_fac = models.CharField(max_length=10)
-    serie = models.CharField(max_length=2)
+    serie = models.CharField(max_length=2, default="A")
+    cliente = models.CharField(max_length=200)
     stotal = models.FloatField(null=False)
     impuesto = models.FloatField(null=False)
     total = models.FloatField(null=False)
@@ -183,6 +184,8 @@ class Factura(models.Model):
     anulada = models.BooleanField(default=False)
     fecha_anulacion = models.DateTimeField(null=True)
     usuario_anulacion = models.ForeignKey(User, null=True,related_name="factura_usuario_anulacion")
+
+
 
 class Factura_Detalle(models.Model):
     factura = models.ForeignKey(Factura, null=False)

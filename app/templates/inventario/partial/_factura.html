@@ -1,0 +1,42 @@
+
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Vendedor:</label>
+        <div class="col-sm-8">
+            <input name="vendedor" class="form-control" placeholder="Vendedor" type="text" value="{{ User.id }}" >
+        </div>
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Cliente:</label>
+        <div class="col-sm-8">
+            <input name="cliente" class="form-control" placeholder="Nombre del cliente" type="text">
+        </div>
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="col-sm-12">
+        <button id="addProducto" onclick="showaddProducto()"><i class="fa fa-plus fa-fw"></i> Agregar Producto</button>
+        <table id="table_factura_detalle" class="table table-bordered tablesaw-swipe table-responsive" >
+            <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Existencia</th>
+                <th>Cantidad</th>
+                <th>P/U</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<input type="hidden" id="factura-accion" value="add" >
