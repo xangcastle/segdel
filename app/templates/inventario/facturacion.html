@@ -38,7 +38,7 @@
 </div>
 
 <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title">Factura</h4>
@@ -56,7 +56,7 @@
 </div>
 
 <div class="modal fade in" id="modal-productos" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title">Productos</h4>
@@ -135,7 +135,15 @@
                 success:function (result) {
                     $("#conten-productos").empty().html(result);
                     $("#modal-productos").modal('show');
-                    var table = $("#table-listado-productos").dataTable();
+                    var table = $("#table-listado-productos").dataTable({
+                        "pageLength": 5,
+                        "columnDefs": [
+                            {"width": "100%", "targets": 0 },
+                            { "width": "120px", "targets": 1 },
+                            { "width": "100px", "targets": 2 },
+                            { "width": "90px", "targets": 3 }
+                          ]
+                    });
                     $('#table-listado-productos tbody').on( 'click', 'tr', function () {
                         if ( $(this).hasClass('active') ) {
                             $(this).removeClass('active');
@@ -163,6 +171,7 @@
                         "<td><button onclick='borarProductoDetalle(this)' class='tbn btn-danger tbn-3d'><i class='fa fa-trash fa-fw'></></button></td>" +
                     +"</tr>"
             );
+
         }
         function borarProductoDetalle(value) {
             var parent = value.closest('tr');

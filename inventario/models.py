@@ -75,6 +75,8 @@ class Import_Imventario(models.Model):
         producto = None
         try:
             producto = Producto.objects.get(codigo=self.producto_codigo, serie=self.producto_serie)
+            producto.costo_promedio=(producto.costo_promedio+self.producto_costo)/2
+            producto.save()
         except:
             producto, create = Producto.objects.get_or_create(
                 codigo=self.producto_codigo,
@@ -93,6 +95,7 @@ class Import_Imventario(models.Model):
         try:
             detalle = Bodega_Detalle.objects.get(bodega=bodega, producto=producto)
             detalle.existencia += self.producto_existencia
+            detalle.save()
         except:
             detalle, create = Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto,
                                                                    existencia=self.producto_existencia)

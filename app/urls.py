@@ -38,7 +38,7 @@ urlpatterns = [
         name='finish_cliente_gestion'),
 
     url(r'^facturacion/', login_required(facturacion.as_view()),
-        name='cobranza'),
+        name='facturacion'),
     url(r'^render_listado_factura/', login_required(render_listado_factura),
         name='render_listado_factura'),
     url(r'^render_nueva_factura/', login_required(render_nueva_factura),
