@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a26dd6c-92f4-4a28-949c-be83e9209ce9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/inventario/partial/_pedidos.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/inventario/plantilla_pedido.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/inventario/proformas.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out.pdf" afterPath="$PROJECT_DIR$/out.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin.py" afterPath="$PROJECT_DIR$/app/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" afterPath="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/urls.py" afterPath="$PROJECT_DIR$/app/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inventario/models.py" afterPath="$PROJECT_DIR$/inventario/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inventario/views.py" afterPath="$PROJECT_DIR$/inventario/views.py" />
     </list>
     <ignored path="segdel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -548,6 +536,14 @@
       <workItem from="1474383018934" duration="1739000" />
       <workItem from="1474393140521" duration="1456000" />
     </task>
+    <task id="LOCAL-00001" summary="modulo de pedidos&#10;">
+      <created>1478675201421</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1478675201421</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -613,6 +609,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="modulo de pedidos&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="modulo de pedidos&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
