@@ -49,7 +49,19 @@ urlpatterns = [
         name='anular_nueva_factura'),
     url(r'^mostrar_factura_pdf/', login_required(mostrar_factura_pdf),
         name='mostrar_factura_pdf'),
-
     url(r'^render_listado_producto/', login_required(render_listado_producto),
         name='render_listado_producto'),
+
+    url(r'^proformas/', login_required(proformas.as_view()),
+        name='proformas'),
+    url(r'^render_listado_pedido/', login_required(render_listado_pedido),
+        name='render_listado_pedido'),
+    url(r'^render_nuevo_pedido/', login_required(render_nuevo_pedido),
+        name='render_nuevo_pedido'),
+    url(r'^add_nuevo_pedido/', login_required(add_nuevo_pedido),
+        name='add_nuevo_pedido'),
+    url(r'^anular_nuevo_pedido/', login_required(anular_nuevo_pedido),
+        name='anular_nuevo_pedido'),
+    url(r'^mostrar_pedido_pdf/', login_required(mostrar_pedido_pdf),
+        name='mostrar_pedido_pdf'),
 ]

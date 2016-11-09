@@ -3,19 +3,23 @@
     <tr>
         <th>Nombre</th>
         <th>Serie</th>
-        <th>Bodega</th>
-        <th>Existencia</th>
+        <th>Marca</th>
+        <th>Precio</th>
+        {% comment %}<th>Bodega</th>
+        <th>Existencia</th>{% endcomment %}
         <th></th>
     </tr>
     </thead>
     <tbody>
     {% for detalle in bodega_detalles %}
     <tr>
-        <td >{{ detalle.producto.nombre }}</td>
-        <td >{{ detalle.producto.serie }}</td>
-        <td >{{ detalle.bodega.nombre }}</td>
-        <td >{{ detalle.cant_disponible }}</td>
-        <td><button class="btn btn-3d btn-success btn-sm" onclick="agregarProductoDetalle('{{ detalle.producto.nombre }}-{{ detalle.producto.serie }}',{{ detalle.id }},{{ detalle.cant_disponible }},{{ detalle.producto.precio }})"><i class="fa fa-plus fa-fw"></i>Agregar</button></td>
+        <td>{{ detalle.producto.nombre }}</td>
+        <td>{{ detalle.producto.serie }}</td>
+        <td>{{ detalle.producto.marca.marca }}</td>
+        <td>{{ detalle.producto.precio }}</td>
+        {% comment %}<td >{{ detalle.bodega.nombre }}</td>
+        <td >{{ detalle.cant_disponible }}</td>{% endcomment %}
+        <td><button class="btn btn-3d btn-success btn-sm" onclick="agregarProductoDetalle('{{ detalle.producto.nombre }}','{{ detalle.producto.serie }}','{{ detalle.producto.marca.marca }}',{{ detalle.id }},{{ detalle.cant_disponible }},{{ detalle.producto.precio }})"><i class="fa fa-plus fa-fw"></i>Agregar</button></td>
     </tr>
     {% endfor %}
     </tbody>

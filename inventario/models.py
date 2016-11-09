@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
 
-from app.models import Empresa
+from app.models import *
 
 
 class Import_Imventario(models.Model):
@@ -175,10 +175,12 @@ class Bodega_Detalle(models.Model):
         else:
             return self.existencia
 
+
+
 class Factura(models.Model):
     no_fac = models.CharField(max_length=10)
     serie = models.CharField(max_length=2, default="A")
-    cliente = models.CharField(max_length=200)
+    cliente = models.ForeignKey(Cliente, null=False, related_name="inventario_factura_cliente")
     stotal = models.FloatField(null=False)
     impuesto = models.FloatField(null=False)
     total = models.FloatField(null=False)
@@ -186,7 +188,8 @@ class Factura(models.Model):
     usuario_creacion = models.ForeignKey(User, related_name="factura_usuario_creacion")
     anulada = models.BooleanField(default=False)
     fecha_anulacion = models.DateTimeField(null=True)
-    usuario_anulacion = models.ForeignKey(User, null=True,related_name="factura_usuario_anulacion")
+    usuario_anulacion = models.ForeignKey(User, null=True, related_name="factura_usuario_anulacion")
+    comentario = models.CharField(max_length=200, null=True)
 
 
 
@@ -197,3 +200,24 @@ class Factura_Detalle(models.Model):
     cantidad = models.FloatField(null=False)
     valor = models.FloatField(null=False)
     entregado = models.BooleanField(default=False, null=False)
+
+class Pedido(models.Model):
+    no_pedido = models.CharField(max_length=10)
+    cliente = models.ForeignKey(Cliente, null=False)
+    vendedor = models.ForeignKey(Vendedor, null=False, related_name="pedido_usuario_vendedor")
+    stotal = models.FloatField(null=False)
+    impuesto = models.FloatField(null=False)
+    total = models.FloatField(null=False)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    usuario_creacion = models.ForeignKey(User, related_name="pedido_usuario_creacion")
+    anulado = models.BooleanField(default=False)
+    fecha_anulacion = models.DateTimeField(null=True)
+    usuario_anulacion = models.ForeignKey(User, null=True, related_name="pedido_usuario_anulacion")
+    comentario = models.CharField(max_length=200, null=True)
+
+class Pedido_Detalle(models.Model):
+    pedido = models.ForeignKey(Pedido, null=False)
+    producto = models.ForeignKey(Producto, null=False)
+    bodega = models.ForeignKey(Bodega, null=False)
+    cantidad = models.FloatField(null=False)
+    valor = models.FloatField(null=False)

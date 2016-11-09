@@ -1,0 +1,62 @@
+
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Vendedor:</label>
+        <div class="col-sm-8">
+            <select name="vendedor" class="form-control">
+                <option selected="selected" disabled="disabled">--seleccione vendedor--</option>
+                {% for vendedor in vendedores %}
+                <option value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Cliente:</label>
+        <div class="col-sm-8">
+            <select name="cliente" class="form-control" type="text">
+                <option selected="selected" disabled="disabled">--seleccione cliente--</option>
+                {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.identificacion }}; {{ cliente.nombre }}; {{ cliente.telefono }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Comentario:</label>
+        <div class="col-sm-8">
+            <textarea cols="2" name="comentario" class="form-control" type="text" placeholder="Sus comentarios"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="col-sm-12">
+        <button id="addProducto" onclick="showaddProducto()"><i class="fa fa-plus fa-fw"></i> Agregar Producto</button>
+        <table id="table_pedido_detalle" class="table table-bordered tablesaw-swipe table-responsive" >
+            <thead>
+            <tr>
+                <th width="30%">Producto</th>
+                <th width="100px">Serie</th>
+                <th width="300px">Marca</th>
+                <th width="90px">Existencia</th>
+                <th width="90px">Cantidad</th>
+                <th width="50px">P/U</th>
+                <th width="90px">Total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<input type="hidden" id="peido-accion" value="add" >

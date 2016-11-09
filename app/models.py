@@ -117,7 +117,12 @@ class Cliente(models.Model):
         else:
             return 0.0
 
+class Vendedor(models.Model):
+    usuario = models.ForeignKey(User, null=False)
+    activo = models.BooleanField(default=True, null=False)
 
+    def __unicode__(self):
+        return '%s | %s'% (self.usuario.get_full_name(), self.usuario.get_username())
 
 class Factura(models.Model):
     nodoc = models.CharField(max_length=15, null=True, verbose_name="numero de documento")

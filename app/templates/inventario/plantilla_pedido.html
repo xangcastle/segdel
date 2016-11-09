@@ -1,0 +1,165 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="background-color: white">
+<div class="container">
+<div class="row">
+
+
+<div class="row">
+    <div class="col-xs-6">
+<h1>
+    <a href=" ">
+    <img alt="" src="/app/static/app/images/tulogoaquifooter.png" />
+        Logo aquí </a></h1>
+</div>
+<div class="col-xs-6 text-right">
+<h1>PEDIDO</h1>
+<h1><small>Pedido #{{ pedido.no_pedido }}</small></h1>
+</div>
+</div>
+
+<hr />
+
+
+<div class="row">
+    <div class="col-xs-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><a href="#">Comentario</a></h4>
+            </div>
+            <div class="panel-body">
+                {{ pedido.comentario }}
+            </div>
+        </div>
+        {% comment %}
+            DESCOMENTAR EN CASO DE QUE SE QUIERA LLEVAR REGISTRO DE LA EMPRESA EL SIGUIENTE PANEL
+            EN ESTA FILA SERIA ENLUGAR DEL CLIENTE UN CAMPO DE MENSION EN LA FACTURA A UN REPRESENTANTE
+            LEGAL
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>De: <a href="#">Su Nombre</a></h4>
+            </div>
+            <div class="panel-body">
+                Dirección
+                detalles
+                más detalles
+            </div>
+        </div>{% endcomment %}
+    </div>
+    <div class="col-xs-5 col-xs-offset-2 text-right">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Cliente : <a href="#">{{ pedido.cliente.nombre }}</a></h4>
+            </div>
+            <div class="panel-body">
+                <strong>Identificacion: </strong> {{ pedido.cliente.identificacion }}<br>
+                <strong>Dirección: </strong> {{ pedido.cliente.direccion }}<br>
+                <strong>Telefono: </strong> {{ pedido.cliente.telefono }}<br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+            <h4>Producto</h4>
+            </th>
+            <th>
+            <h4>Descripción</h4>
+            </th>
+            <th>
+            <h4>Cantidad</h4>
+            </th>
+            <th>
+            <h4>Precio</h4>
+            </th>
+            <th>
+            <h4>Importe</h4>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for detalle in pedido_detalle %}
+    <tr>
+        <td>{{ detalle.producto.codigo }}</td>
+        <td><a href="#">
+            {{ detalle.producto.nombre }}
+            {% if detalle.producto.serie %}
+            - {{ detalle.producto.serie }}
+            {% endif %}
+            {% if detalle.producto.marca %}
+            - {{ detalle.producto.marca }}
+            {% endif %}
+            </a></td>
+        <td class=" text-right ">{{ detalle.cantidad }}</td>
+        <td class=" text-right ">{{ detalle.producto.precio }}</td>
+        <td class=" text-right ">{{ detalle.valor }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+
+<div class="row text-right">
+    <div class="col-xs-3 col-xs-offset-7">
+        <strong>
+        Sub Total: <br>
+        </strong>
+        <strong>
+        Impuestos (IVA 15%): <br>
+        </strong>
+        <strong>
+        Total: <br>
+        </strong>
+    </div>
+    <div class="col-xs-2">
+        <strong>
+        {{ pedido.stotal }}<br>
+        {{ pedido.impuesto }}<br>
+        {{ pedido.total }}<br>
+        </strong>
+    </div>
+</div>
+
+<div class="row">
+    <div class = "col-xs-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+            <h4>Datos bancarios</h4>
+            </div>
+            <div class="panel-body">
+             Su nombre
+             Nombre del banco
+             SWIFT: -------
+             Número de cuenta: 12345678
+             IBAN: ------
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-7">
+        <div class="span7">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4> Datos de contacto </h4>
+                    <div class=" panel-body ">
+                     Email: usted@ejemplo.com<br>
+                     Móvil: +92123456789<br>
+                     Twitter: <a href="https://twitter.com/suTwitter">@suTwitter</a>
+                        |Suweb: <a href="http://www.suweb.com/author/usted"> http: //www. suweb.com/author/usted / </a><br>
+                    <h4><small> El pago debe ser por transferencia bancaria </small></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</body>
+</html>
+

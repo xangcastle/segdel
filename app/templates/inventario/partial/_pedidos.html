@@ -1,0 +1,36 @@
+<table id="basic-datatables" class="table table-bordered table-responsive dataTable"
+       role="grid" aria-describedby="basic-datatables_info">
+    <thead>
+        <tr>
+            <th>Pedido</th>
+            <th>Cliente</th>
+            <th>Vendedor</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+            <th>Anulada</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for pedido in pedidos %}
+        <tr role="row">
+            <td>{{ pedido.no_pedido }}</td>
+            <td>{{ pedido.cliente.nombre }}</td>
+            <td>{{ pedido.vendedor }}</td>
+            <td>{{ pedido.total }}</td>
+            <td>{{ pedido.fecha_creacion|date:"Y-m-d h:m:s" }}</td>
+            <td>
+            {% if pedido.anulado %}
+                <input type="checkbox" checked="checked" disabled="disabled">
+            {% else %}
+                <input type="checkbox" disabled="disabled">
+            {% endif %}
+            </td>
+            <td>
+                <a href="javascript:void(0)" onclick="mostar_pedido({{ pedido.id }}); return false;">Ver</a>|
+                <a href="javascript:void(0)" onclick="anular_pedido({{ pedido.id }}); return false;">Anular</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

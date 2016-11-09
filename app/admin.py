@@ -28,6 +28,9 @@ class cliente_admin(admin.ModelAdmin):
     list_display = ('identificacion', 'nombre', 'telefono', 'direccion')
     list_filter = ('identificacion', 'nombre', 'telefono')
 admin.site.register(Cliente, cliente_admin)
+
+admin.site.register(Vendedor)
+
 class factura_admin(admin.ModelAdmin):
     list_display = ('empresa', 'cliente', 'fecha', 'monto')
     list_filter = ('empresa', 'cliente')
