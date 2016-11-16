@@ -137,6 +137,7 @@ class Producto(models.Model):
     medida = models.ForeignKey(Producto_Medida)
     marca = models.ForeignKey(Producto_Marca)
     empresa = models.ForeignKey(Empresa)
+    imagen = models.ImageField(null=True)
 
     class Meta:
         verbose_name = "opcion"

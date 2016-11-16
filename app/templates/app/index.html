@@ -7,7 +7,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Boost admin</title>
+        <title>
+            {% block  title-bloc %}
+            Boost admin
+            {% endblock title-bloc %}
+        </title>
 
         <!-- Bootstrap -->
         <link href="/static/app/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +25,7 @@
         <link href="/static/app/css/color.css" rel="stylesheet">
         <link href="/static/app/css/app.min.1.css" rel="stylesheet">
         <link href="/static/app/css/fullcalendar.min.css" rel="stylesheet">
+        <link href="/static/app/css/select.css" rel="stylesheet">
         {% block css-content %}
         {% endblock css-content %}
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -263,17 +268,14 @@
                             <li class="active">
                                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard </span><span class="fa arrow"></span><span class="label label-rouded pull-right p1-bg note-icon">6</span></a>
                                 <ul class="nav nav-second-level collapse">
-                                    <li><a href="index.html">Dashboard V.1</a></li>
-                                    <li><a href="index-2.html">Dashboard V.2 </a></li>
-                                    <li><a href="index-3.html">Dashboard V.3 </a></li>
-                                    <li><a href="index-4.html">Dashboard V.4 </a></li>
-                                    <li><a href="index-5.html">Dashboard V.5 </a></li> <li><a href="index-6.html">Dashboard V.6 </a></li>
-                            </ul>
-                        </li>
-                         <li class="p1-bg">
-                            <a href="widgets.html"><i class="fa fa-cog"></i> <span class="nav-label">Widgets </span><span class="label label-rouded pull-right p3-bg note-icon">New 40+</span></a>
-
-                        </li>
+                                    <li><a href="index.html">Inventario</a></li>
+                                    <li><a href="index-2.html">Facturción</a></li>
+                                    <li><a href="index-3.html">Cobranza</a></li>
+                                </ul>
+                            </li>
+                            <li class="p1-bg">
+                                <a href="widgets.html"><i class="fa fa-cog"></i> <span class="nav-label">Widgets </span><span class="label label-rouded pull-right p3-bg note-icon">New 40+</span></a>
+                            </li>
                             <li>
                                 <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse">
@@ -282,7 +284,7 @@
                                     <li><a href="mail_compose.html">Compose email</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            {% comment %}<li>
                                 <a href="#"><i class="fa fa-bar-chart"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span><span class="label label-rouded pull-right p3-bg note-icon">6</span></a>
                                 <ul class="nav nav-second-level collapse">
                                     <li><a href="flot_charts.html">Flot charts</a></li>
@@ -294,7 +296,6 @@
 
                                 </ul>
                             </li>
-
                             <li>
                                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Forms</span><span class="fa arrow"></span><span class="label label-rouded pull-right p1-bg note-icon">11</span></a>
                                 <ul class="nav nav-second-level collapse">
@@ -335,7 +336,6 @@
 
                                 </ul>
                             </li>
-
                             <li>
                                 <a href="#"><i class="fa fa-hourglass-o"></i> <span class="nav-label">Icons</span><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse">
@@ -369,7 +369,6 @@
                                     <li><a href="toastr_alert.html">Toastr Alert</a></li>
                                 </ul>
                             </li>
-
                             <li>
                                 <a href="grid_options.html"><i class="fa fa-laptop"></i> <span class="nav-label">Grid options</span></a>
                             </li>
@@ -406,7 +405,6 @@
                                 </ul>
                             </li>
                             <li><a href="calendar.html"><i class="fa fa-calendar"></i>  <span class="nav-label">Calendar </span></a></li>
-
                             <li>
                                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse">
@@ -420,7 +418,7 @@
                                     </li>
                                     <li><a href="#">Second Level Item</a></li>
                                 </ul>
-                            </li>
+                            </li>{% endcomment %}
                         </ul>
 
                     </div>
@@ -782,6 +780,7 @@
         <script src="/static/app/js/moment.min.js"></script>
         <script src="/static/app/js/jquery.simpleWeather.min.js"></script>
         <script src="/static/app/js/fullcalendar.min.js"></script>
+        <script src="/static/app/js/select/select2.js"></script>
 {#        <script src="/static/app/js/index2.js"></script>#}
         {% block scripts-block %}
 

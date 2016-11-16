@@ -16,7 +16,6 @@ class facturacion(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        # context['clientes'] = Fa.objects.all()
         return super(facturacion, self).render_to_response(context)
 
 
@@ -142,12 +141,17 @@ def mostrar_factura_pdf(request):
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
 
+class facturar(TemplateView):
+    template_name = "inventario/facturar.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        return super(facturar, self).render_to_response(context)
 
 def render_listado_producto(request):
     bodega_detalles = Bodega_Detalle.objects.all()
     html = render_to_string('inventario/partial/_productos.html', {'bodega_detalles': bodega_detalles})
     return HttpResponse(html)
-
 
 
 class proformas(TemplateView):

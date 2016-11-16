@@ -3180,7 +3180,7 @@ Tooltips
 .modal-open .modal {
     overflow-x: hidden;
     overflow-y: auto;
-    z-index: 10000;
+    z-index: 1050;
 }
 .has-error, .has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label {
     color: #a94442;

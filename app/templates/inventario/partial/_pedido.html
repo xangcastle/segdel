@@ -3,7 +3,7 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Vendedor:</label>
         <div class="col-sm-8">
-            <select name="vendedor" class="form-control">
+            <select name="vendedor" class="form-control select2">
                 <option selected="selected" disabled="disabled">--seleccione vendedor--</option>
                 {% for vendedor in vendedores %}
                 <option value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
@@ -16,7 +16,7 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Cliente:</label>
         <div class="col-sm-8">
-            <select name="cliente" class="form-control" type="text">
+            <select name="cliente" class="form-control select2" type="text">
                 <option selected="selected" disabled="disabled">--seleccione cliente--</option>
                 {% for cliente in clientes %}
                 <option value="{{ cliente.id }}">{{ cliente.identificacion }}; {{ cliente.nombre }}; {{ cliente.telefono }}</option>

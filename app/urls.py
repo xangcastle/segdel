@@ -39,6 +39,9 @@ urlpatterns = [
 
     url(r'^facturacion/', login_required(facturacion.as_view()),
         name='facturacion'),
+    url(r'^facturar/', login_required(facturar.as_view()),
+        name='facturar'),
+
     url(r'^render_listado_factura/', login_required(render_listado_factura),
         name='render_listado_factura'),
     url(r'^render_nueva_factura/', login_required(render_nueva_factura),

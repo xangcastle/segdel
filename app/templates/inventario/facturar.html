@@ -1,0 +1,11 @@
+{% extends "app/index.html" %}
+{% block title-bloc %}
+    Facturar
+{% endblock title-bloc %}
+{% block cuerpo %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% include "app/inventario/partial/_factura.html" %}
+        </div>
+    </div>
+{% endblock cuerpo %}
