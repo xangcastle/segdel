@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import datetime
+
 from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.models import User
@@ -10,9 +12,15 @@ class Import(models.Model):
     nombre = models.CharField(max_length=165)
     identificacion = models.CharField(max_length=14)
     telefono = models.CharField(max_length=50)
+    celular = models.CharField(max_length=50)
     direccion = models.TextField(max_length=600)
+    contacto = models.CharField(max_length=150)
     nodoc = models.CharField(max_length=15, null=True, verbose_name="numero de documento")
+    descripcion = models.CharField(max_length=500)
     monto = models.FloatField()
+    impuesto = models.FloatField()
+    total = models.FloatField()
+    abono = models.FloatField()
     fecha = models.DateField()
 
     class Meta:
@@ -32,17 +40,33 @@ class Import(models.Model):
     def get_cliente(self):
         o = None
         try:
-            o = Cliente.objects.get(identificacion=self.identificacion)
+            o = Cliente.objects.get(identificacion=self.identificacion, nombre=self.nombre,
+                                    empresa=self.get_empresa())
         except:
             o, create = Cliente.objects.get_or_create(
+                empresa=self.get_empresa(),
                 identificacion=self.identificacion,
-                nombre=self.nombre, telefono=self.telefono,
-                direccion=self.direccion)
+                nombre=self.nombre,
+                telefono=self.telefono,
+                celular=self.celular,
+                direccion=self.direccion,
+                contacto=self.contacto)
         return o
 
     def save(self, *args, **kwargs):
-        Factura(cliente=self.get_cliente(), empresa=self.get_empresa(),
-            monto=self.monto, fecha=self.fecha, nodoc=self.nodoc).save()
+        li = []
+        li.append(kwargs.pop('user', 1))
+        usuario = User.objects.get(id=li[0])
+
+        factura, create = Factura.objects.get_or_create(cliente=self.get_cliente(), empresa=self.get_empresa(),
+                monto=self.monto, impuesto=self.impuesto, total=self.total,
+                fecha=self.fecha, nodoc=self.nodoc, descripcion=self.descripcion)
+
+        if self.abono>0:
+            if usuario:
+                now = datetime.datetime.now()
+                Factura_Abono.objects.create(factura=factura, monto_abono=self.abono,
+                                         fecha_abono=now, usuario=usuario)
 
 
 class Empresa(models.Model):
@@ -94,10 +118,13 @@ class Comentario(models.Model):
 class Cliente(models.Model):
     identificacion = models.CharField(max_length=14)
     nombre = models.CharField(max_length=165)
-    telefono = models.CharField(max_length=50)
-    direccion = models.TextField(max_length=600)
+    telefono = models.CharField(max_length=50, null=True, blank=True)
+    celular =  models.CharField(max_length=50, null=True, blank=True)
+    contacto =  models.CharField(max_length=150, null=True, blank=True)
+    direccion = models.TextField(max_length=600, null=True, blank=True)
     gestiones = models.ManyToManyField(Gestion)
     comentarios = models.ManyToManyField(Comentario)
+    empresa = models.ForeignKey(Empresa, null=False)
 
     def __unicode__(self):
         return "%s-%s" % (self.identificacion, self.nombre)
@@ -126,9 +153,12 @@ class Vendedor(models.Model):
 
 class Factura(models.Model):
     nodoc = models.CharField(max_length=15, null=True, verbose_name="numero de documento")
+    descripcion = models.CharField(max_length=300, null=True, blank=True)
     empresa = models.ForeignKey(Empresa)
     cliente = models.ForeignKey(Cliente)
     monto = models.FloatField()
+    impuesto = models.FloatField()
+    total = models.FloatField()
     fecha = models.DateField()
     fecha_vence=models.DateField(null=True, blank=True)
     pagada = models.BooleanField(default=False)

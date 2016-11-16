@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a26dd6c-92f4-4a28-949c-be83e9209ce9" name="Default" comment="modulo de pedidos&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/inventario/facturar.html" />
+    <list default="true" id="4a26dd6c-92f4-4a28-949c-be83e9209ce9" name="Default" comment="modulo de pedidos&#10;Imagenes de productos migraciones">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qYzH7PC.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qYzH7PC_9BsnSce.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/migrations/0008_cliente_empresa.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/migrations/0009_auto_20161116_2140.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/migrations/0010_auto_20161116_2144.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/inventario/migrations/0011_producto_imagen.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/app/css/style.css" afterPath="$PROJECT_DIR$/app/static/app/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/index.html" afterPath="$PROJECT_DIR$/app/templates/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" afterPath="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/proformas.html" afterPath="$PROJECT_DIR$/app/templates/inventario/proformas.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/urls.py" afterPath="$PROJECT_DIR$/app/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inventario/models.py" afterPath="$PROJECT_DIR$/inventario/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inventario/views.py" afterPath="$PROJECT_DIR$/inventario/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
     </list>
     <ignored path="segdel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,7 +24,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/segdel$manage.coverage" NAME="manage Coverage Results" MODIFIED="1478837487569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/segdel$manage.coverage" NAME="manage Coverage Results" MODIFIED="1479335834884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/segdel$makemigrations.coverage" NAME="makemigrations Coverage Results" MODIFIED="1478301472612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/segdel$Unnamed.coverage" NAME="makemigrations Coverage Results" MODIFIED="1478032237744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/segdel$Migrate.coverage" NAME="Migrate Coverage Results" MODIFIED="1478304122985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -54,26 +53,25 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+            <state relative-caret-position="198">
+              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
               <folding>
                 <element signature="n#block#2;n#!!top" expanded="false" />
                 <element signature="n#block#3;n#!!top" expanded="false" />
                 <element signature="e#16935#27222#0#DjangoTemplate" expanded="false" />
                 <element signature="n#block#4;n#!!top" expanded="false" />
                 <element signature="n#block#5;n#!!top" expanded="false" />
-                <element signature="e#29451#48594#0#DjangoTemplate" expanded="false" />
-                <marker date="1478979664502" expanded="false" signature="17858:19220" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="19253:20286" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="20319:20870" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="20903:21861" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="21894:23659" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="23692:23863" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="23896:24688" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="24721:25181" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="25214:25684" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="25717:26175" ph="..." />
-                <marker date="1478979664502" expanded="false" signature="26346:27205" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="17858:19220" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="19253:20286" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="20319:20870" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="20903:21861" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="21894:23659" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="23692:23863" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="23896:24688" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="24721:25181" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="25214:25684" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="25717:26175" ph="..." />
+                <marker date="1479326087283" expanded="false" signature="26346:27205" ph="..." />
               </folding>
             </state>
           </provider>
@@ -129,16 +127,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_pedido.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="62" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inventario/models.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -167,11 +155,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="facturar.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="facturar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+            <state relative-caret-position="180">
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-121">
+              <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+              <folding>
+                <element signature="e#3004#3218#0" expanded="false" />
+                <element signature="e#3254#3978#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resources.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/import_export/resources.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="456" column="0" selection-start-line="456" selection-start-column="0" selection-end-line="456" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -223,7 +234,6 @@
         <option value="$PROJECT_DIR$/app/templates/inventario/plantilla_factura.html" />
         <option value="$PROJECT_DIR$/app/html_to_pdf.py" />
         <option value="$PROJECT_DIR$/app/admin.py" />
-        <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_pedidos.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/plantilla_pedido.html" />
@@ -235,6 +245,7 @@
         <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/inventario/views.py" />
         <option value="$PROJECT_DIR$/app/templates/inventario/facturar.html" />
+        <option value="$PROJECT_DIR$/app/models.py" />
       </list>
     </option>
   </component>
@@ -772,7 +783,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478700632691</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="modulo de pedidos&#10;Imagenes de productos">
+      <created>1479326054402</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1479326054402</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -782,27 +800,27 @@
     <frame x="0" y="36" width="1366" height="736" extended-state="4" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3693009" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@segdel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60883796" sideWeight="0.49695587" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5030441" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34042552" sideWeight="0.49086758" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.63175124" sideWeight="0.4939117" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26022914" sideWeight="0.47356495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34860885" sideWeight="0.48782343" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3693009" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31260228" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@segdel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60883796" sideWeight="0.49695587" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26022914" sideWeight="0.47356495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2487725" sideWeight="0.49695587" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31388012" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -841,7 +859,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modulo de pedidos&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="modulo de pedidos&#10;" />
+    <MESSAGE value="modulo de pedidos&#10;Imagenes de productos" />
+    <option name="LAST_COMMIT_MESSAGE" value="modulo de pedidos&#10;Imagenes de productos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -869,7 +888,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="69" />
+      <option name="time" value="79" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -997,13 +1016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/import_export/resources.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8010">
-          <caret line="468" column="0" selection-start-line="468" selection-start-column="0" selection-end-line="468" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/partial/_gestion_add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1113,6 +1125,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57294">
           <caret line="3183" column="1" selection-start-line="3183" selection-start-column="1" selection-end-line="3183" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1166,26 +1179,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+        <state relative-caret-position="198">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
           <folding>
             <element signature="n#block#2;n#!!top" expanded="false" />
             <element signature="n#block#3;n#!!top" expanded="false" />
             <element signature="e#16935#27222#0#DjangoTemplate" expanded="false" />
             <element signature="n#block#4;n#!!top" expanded="false" />
             <element signature="n#block#5;n#!!top" expanded="false" />
-            <element signature="e#29451#48594#0#DjangoTemplate" expanded="false" />
-            <marker date="1478979664502" expanded="false" signature="17858:19220" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="19253:20286" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="20319:20870" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="20903:21861" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="21894:23659" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="23692:23863" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="23896:24688" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="24721:25181" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="25214:25684" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="25717:26175" ph="..." />
-            <marker date="1478979664502" expanded="false" signature="26346:27205" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="17858:19220" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="19253:20286" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="20319:20870" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="20903:21861" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="21894:23659" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="23692:23863" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="23896:24688" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="24721:25181" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="25214:25684" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="25717:26175" ph="..." />
+            <marker date="1479326087283" expanded="false" signature="26346:27205" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1239,19 +1251,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
+    <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="99" column="52" selection-start-line="99" selection-start-column="52" selection-end-line="99" selection-end-column="52" />
+        <state relative-caret-position="180">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturar.html">
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/import_export/resources.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+        <state relative-caret-position="131">
+          <caret line="456" column="0" selection-start-line="456" selection-start-column="0" selection-end-line="456" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-121">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+          <folding>
+            <element signature="e#3004#3218#0" expanded="false" />
+            <element signature="e#3254#3978#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
