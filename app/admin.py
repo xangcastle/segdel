@@ -31,7 +31,8 @@ admin.site.register(Cliente, cliente_admin)
 
 admin.site.register(Vendedor)
 
-class factura_admin(admin.ModelAdmin):
+class documento_cobro_admin(admin.ModelAdmin):
     list_display = ('empresa', 'cliente', 'fecha', 'monto')
     list_filter = ('empresa', 'cliente')
-admin.site.register(Factura, factura_admin)
+admin.site.register(Documento_Cobro, documento_cobro_admin)
+

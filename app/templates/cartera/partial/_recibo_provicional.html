@@ -1,0 +1,106 @@
+ <div class="row">
+    <div class="col-sm-12 col-md-6">
+        <div class="row">
+             <div class="form-group">
+                <label class="col-sm-2 col-md-3 control-label">No Recibo:</label>
+                <div class="col-sm-10 col-md-9">
+                    <input name="no_recibo" class="form-control" type="text" placeholder="No Recibo" value="{{ no_recibo }}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="row">
+             <div class="form-group">
+                <label class="col-sm-2 control-label">Monto:</label>
+                <div class="col-sm-10">
+                     <div class="input-group">
+                        <input name="monto" class="form-control" type="number" placeholder="Monto">
+                        <span class="input-group-addon" id="basic-addon1">
+                            Cancelación/Abono
+                            <input type="checkbox" name="cancelacion" >
+                        </span>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="col-sm-12 col-md-6">
+        <div class="row">
+             <div class="form-group">
+                <label class="col-sm-2 control-label">Cliente:</label>
+                <div class="col-sm-10">
+                    <select name="cliente" class="form-control select2" type="text">
+                        <option selected="selected" disabled="disabled">--seleccione cliente--</option>
+                        {% for cliente in clientes %}
+                        <option value="{{ cliente.id }}">{{ cliente.identificacion }}; {{ cliente.nombre }}; {{ cliente.telefono }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="col-sm-12 col-md-6">
+        <div class="row">
+            <div class="form-group">
+        <label class="col-sm-2 control-label">Vendedor:</label>
+        <div class="col-sm-10">
+            <select name="vendedor" class="form-control select2" disabled="disabled">
+                <option disabled="disabled">--seleccione vendedor--</option>
+                {% for vendedor in vendedores %}
+                    {% if vendedor.usuario.id == user.id %}
+                        <option selected="selected" value="{{ vendedor.id }}">{{ vendedor.usuario.get_full_name }}</option>
+                    {% else %}
+                        <option value="{{ vendedor.id }}">{{ vendedor.usuario.get_full_name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+ <div class="row">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Comentario:</label>
+        <div class="col-sm-10">
+            <textarea cols="2" name="comentario" class="form-control" type="text" placeholder="Sus comentarios"></textarea>
+        </div>
+    </div>
+</div>
+ <div class="row">
+    <div class="col-sm-12 col-md-6">
+        <div class="row">
+             <div class="form-group">
+                <label class="col-sm-4 control-label">Forma de Pago:</label>
+                <div class="col-sm-8">
+                    <select id="forma_pago" name="forma_pago" class="form-control select2" type="text" onchange="forma_pago_change(this)">
+                        <option selected="selected" disabled="disabled">--seleccione forma de pago--</option>
+                        {% for forma_pago in formas_pago %}
+                        <option value="{{ forma_pago.id }}">{{ forma_pago.forma_pago }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 hidden" id="div-pos-fecha">
+        <div class="row">
+             <div class="form-group">
+                <label class="col-sm-4 control-label">Fecha cambio CK:</label>
+                <div class="col-sm-8">
+                    <input id="fecha_pos_cambio_ck"  type="text"  class="form-control datetimepicker" placeholder="Carmbiar despues del.." aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" id="peido-accion" value="add" >

@@ -1,9 +1,11 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 
+from django.conf import settings
+from django.conf.urls.static import static
 from inventario.views import *
 from .views import *
 from django.contrib.auth.decorators import login_required
-
+from inventario import urls
 
 urlpatterns = [
     url(r'^cobranza/', login_required(cobranza.as_view()),
@@ -67,4 +69,16 @@ urlpatterns = [
         name='anular_nuevo_pedido'),
     url(r'^mostrar_pedido_pdf/', login_required(mostrar_pedido_pdf),
         name='mostrar_pedido_pdf'),
-]
+
+    url(r'^lrecibo_provicional/', login_required(recibos_provicionales.as_view()),
+        name='lrecibo_provicional'),
+    url(r'^render_listado_recibo/', login_required(render_listado_recibo),
+        name='render_listado_recibo'),
+    url(r'^render_nuevo_recibo/', login_required(render_nuevo_recibo),
+        name='render_nuevo_recibo'),
+    url(r'^add_nuevo_recibo/', login_required(add_nuevo_recibo),
+        name='add_nuevo_recibo'),
+    url(r'^mostrar_recibo_provicional_pdf/', login_required(mostrar_recibo_provicional_pdf),
+        name='mostrar_recibo_provicional_pdf'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

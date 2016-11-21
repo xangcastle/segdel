@@ -1,5 +1,5 @@
 {% extends "app/index.html" %}
-
+{% load humanize %}
 {% comment %}{% block static-navbar %}{% endblock static-navbar %}
 
 {% block aside-bar %}{% endblock aside-bar %}
@@ -30,15 +30,15 @@
                     <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                 </div>
             </div>
-            <div class="panel-body text-center">
-                <table id="basic-datatables" class="table table-bordered dataTable" role="grid" aria-describedby="basic-datatables_info">
+            <div class="panel-body">
+                <table id="basic-datatables" class="table table-bordered table-responsive dataTable" role="grid" aria-describedby="basic-datatables_info">
                     <thead>
                         <tr>
-                            <th>Identificación  <i class="fa fa-address-card fa-fw"></i></th>
+                            <th width="200px">Identificación  <i class="fa fa-address-card fa-fw"></i></th>
                             <th>Nombre <i class="fa fa-user fa-fw"></i></th>
-                            <th>Telefono  <i class="fa fa-phone fa-fw"></i></th>
-                            <th>Saldo Pendiente  <i class="fa fa-money fa-fw"></i></th>
-                            <th>Acción <i class="fa fa-flash fa-fw"></i></th>
+                            <th width="100px">Telefono <i class="fa fa-phone fa-fw"></i></th>
+                            <th width="130px">Saldo <i class="fa fa-money fa-fw"></i></th>
+                            <th width="130px">Acción <i class="fa fa-flash fa-fw"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,10 +47,10 @@
                             <td>{{ cliente.identificacion }}</td>
                             <td>{{ cliente.nombre }}</td>
                             <td>{{ cliente.telefono }}</td>
-                            <td>{{ cliente.saldo_cliente }}</td>
-                            <td>
-                                <a href="#" onclick="mostrarComentarios({{ cliente.id }}); return false;">Comentarios</a>|
-                                <a href="../cobranza_cliente/?id={{ cliente.id }}">Ver mas</a>
+                            <td>{{ cliente.saldo_cliente|floatformat:2|intcomma }}$</td>
+                            <td class="text-center">
+                                <a href="#" onclick="mostrarComentarios({{ cliente.id }}); return false;" class="tooltipstered" title="Agregue su comentario"><i class="fa fa-comment"></i></a> |
+                                <a href="../cobranza_cliente/?id={{ cliente.id }}" class="tooltipstered" title="Detalle de cuenta"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -103,6 +103,7 @@
     <script src="/static/app/js/data-tables/dataTables.bootstrap.js"></script>
     <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
     <script src="/static/app/js/data-tables/tables-data.js"></script>
+    <script src="/static/app/js/tooltip.js"></script>
     <script>
         $(document).ready(function () {
             $("#comentar").on('click',function () {
@@ -120,6 +121,7 @@
                             }
                         });
             });
+            $(".tooltipstered").tooltip();
         });
         function mostrarComentarios(id_cliente) {
             $("#clienteid").val(id_cliente);

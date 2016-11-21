@@ -307,3 +307,121 @@ def mostrar_pedido_pdf(request):
         data.append(obj_json)
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
+
+class recibos_provicionales(TemplateView):
+    template_name = "cartera/recibos_provicionales.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        return super(recibos_provicionales, self).render_to_response(context)
+
+def render_listado_recibo(request):
+    recibos = Recibo_Provicional.objects.all()
+    html = render_to_string('cartera/partial/_recibos_provicionales.html', {'recibos': recibos})
+    return HttpResponse(html)
+
+def render_nuevo_recibo(request):
+    vendedores = Vendedor.objects.filter(activo=True)
+    clientes = Cliente.objects.all()
+    formas_pago = Forma_Pago.objects.filter(activo = True)
+    try:
+        no_recibo = int(Recibo_Provicional.objects.all().aggregate(Max('no_recibo'))['no_recibo__max'])+1
+    except:
+        no_recibo = 1
+    html = render_to_string('cartera/partial/_recibo_provicional.html', {'vendedores': vendedores,
+                                                                         'clientes':clientes,
+                                                                         'formas_pago': formas_pago,
+                                                                         'no_recibo':no_recibo})
+    return HttpResponse(html)
+
+@csrf_exempt
+def add_nuevo_recibo(request):
+    data = []
+    obj_json = {}
+    id_cliente = request.POST.get('cliente')
+    monto = request.POST.get('monto')
+    comentario = request.POST.get('comentario')
+    id_forma_pago = request.POST.get('forma_pago')
+    fecha_pos_cambio_ck = request.POST.get('fecha_pos_cambio_ck')
+    cancelacion = request.POST.get('cancelacion')
+
+    if not cancelacion:
+        cancelacion = False
+    if not id_cliente:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "Cliente invalido"
+    elif not id_forma_pago:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "Forma de pago invalida"
+    elif not monto:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "Monto Invalido"
+    else:
+        try:
+            cliente = Cliente.objects.get(id=id_cliente)
+        except:
+            cliente = None
+
+        try:
+            forma_pago = Forma_Pago.objects.get(id=id_forma_pago)
+        except:
+            forma_pago = None
+
+        if not cliente:
+            obj_json['code'] = 400
+            obj_json['mensaje'] = "Cliente no encontrado"
+        elif not  forma_pago:
+            obj_json['code'] = 400
+            obj_json['mensaje'] = "Forma de pago no encontrada"
+        else:
+            try:
+                no_recibo = int(Recibo_Provicional.objects.all().aggregate(Max('no_recibo'))['no_recibo__max']) + 1
+            except:
+                no_recibo = 1
+
+            recibo = Recibo_Provicional.objects.create(
+                cliente = cliente,
+                no_recibo = no_recibo,
+                monto = monto,
+                forma_pago=forma_pago,
+                cancelacion = cancelacion,
+                usuario_creacion = request.user,
+                comentario = comentario,
+                fecha_cobro_ck = fecha_pos_cambio_ck
+            )
+            recibo.save()
+
+            obj_json['code'] = 200
+            obj_json['mensaje'] = "Recibo registrado exitosamente!"
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
+
+def mostrar_recibo_provicional_pdf(request):
+    data = []
+    obj_json = {}
+    id_recibo = request.GET.get('id_recibo')
+    if not id_recibo:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "Pedido invalido"
+    else:
+        try:
+            recibo = Recibo_Provicional.objects.get(id=id_recibo)
+        except:
+            recibo = None
+
+        if not recibo:
+            obj_json['code'] = 400
+            obj_json['mensaje'] = "Pedido no encontrado"
+        else:
+            return render_to_pdf(
+                'cartera/plantilla_recibo_provicional.html',
+                {
+                    'pagesize': 'A4',
+                    'recibo': recibo,
+                }
+            )
+
+        data.append(obj_json)
+        data = json.dumps(data)
+        return HttpResponse(data, content_type='application/json')

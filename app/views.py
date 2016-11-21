@@ -22,8 +22,8 @@ class index(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        context['total_cartera'] = Factura.objects.all().aggregate(Sum('monto'))['monto__sum'] - \
-        Factura_Abono.objects.all().aggregate(Sum('monto_abono'))['monto_abono__sum']
+        context['total_cartera'] = Documento_Cobro.objects.all().aggregate(Sum('monto'))['monto__sum'] - \
+        Documento_Abono.objects.all().aggregate(Sum('monto_abono'))['monto_abono__sum']
         return super(index, self).render_to_response(context)
 
 
@@ -46,7 +46,7 @@ class cobranza_cliente(TemplateView):
             cliente =  Cliente.objects.get(id=id_cliente)
             context['cliente'] = cliente
             # hace falta agregar que la factura tenga saldo pendiente > 0
-            context['facturas'] = Factura.facturas_pendientes(cliente)
+            context['facturas'] = Documento_Cobro.facturas_pendientes(cliente)
             context['comentarios'] = Cliente.objects.get(id=id_cliente).comentarios.all()
         return super(cobranza_cliente, self).render_to_response(context)
 
@@ -108,7 +108,7 @@ def get_facturas_pendientes(request):
     if request.GET.get('id'):
         id_cliente = int(request.GET.get('id'))
         cliente = Cliente.objects.get(id=id_cliente)
-        facturas = Factura.facturas_pendientes(cliente)
+        facturas = Documento_Cobro.facturas_pendientes(cliente)
     html = render_to_string('app/partial/_facturas_pendientes.html', {'facturas': facturas})
     return HttpResponse(html)
 
@@ -136,7 +136,7 @@ def render_add_abono_factura(request):
                "<strong>ERROR!</strong> Usuario invalido inicie sesion nuevamente.</div>"
     else:
         try:
-            factura = Factura.objects.get(id=int(id_factura))
+            factura = Documento_Cobro.objects.get(id=int(id_factura))
         except Exception as e:
             factura = None
 
@@ -175,14 +175,14 @@ def add_abono_factura(request):
         obj_json['mensaje'] = "ERROR: Usuario invalido"
     else:
         try:
-            factura = Factura.objects.get(id=int(id_doc))
+            factura = Documento_Cobro.objects.get(id=int(id_doc))
         except Exception as e:
             obj_json['code'] = 500
             obj_json['mensaje'] = "ERROR: Documento no encontrado"
             factura = None
 
         if factura:
-            abono = Factura_Abono.objects.create(usuario=usuario, monto_abono=float(monto), factura=factura)
+            abono = Documento_Abono.objects.create(usuario=usuario, monto_abono=float(monto), factura=factura)
             abono.save()
             obj_json['code'] = 200
             obj_json['mensaje'] = "Pago registrado exitosamente!"
@@ -239,7 +239,7 @@ def add_new_cliente_gestion(request):
 
     if id_tipo_gestion:
         try:
-            tipo_gestion = Tipo_Gestion.objects.get(id=id_cliente)
+            tipo_gestion = Tipo_Gestion.objects.get(id=id_tipo_gestion)
         except Exception as e:
             tipo_gestion = None
     else:

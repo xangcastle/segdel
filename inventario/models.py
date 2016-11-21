@@ -1,10 +1,19 @@
 from __future__ import unicode_literals
 
+from string import upper
+
+from app.numero_letras import numero_a_letras
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
 
 from app.models import *
+
+
+def get_media_url(model, filename):
+    clase = model.__class__.__name__
+    code = str(model.id)
+    return '%s/%s/%s' % (clase, code, filename)
 
 
 class Import_Imventario(models.Model):
@@ -75,7 +84,7 @@ class Import_Imventario(models.Model):
         producto = None
         try:
             producto = Producto.objects.get(codigo=self.producto_codigo, serie=self.producto_serie)
-            producto.costo_promedio=(producto.costo_promedio+self.producto_costo)/2
+            producto.costo_promedio = (producto.costo_promedio + self.producto_costo) / 2
             producto.save()
         except:
             producto, create = Producto.objects.get_or_create(
@@ -137,7 +146,7 @@ class Producto(models.Model):
     medida = models.ForeignKey(Producto_Medida)
     marca = models.ForeignKey(Producto_Marca)
     empresa = models.ForeignKey(Empresa)
-    imagen = models.ImageField(null=True)
+    imagen = models.ImageField(upload_to=get_media_url, null=True, blank=True)
 
     class Meta:
         verbose_name = "opcion"
@@ -168,7 +177,8 @@ class Bodega_Detalle(models.Model):
         return "%s %s-%s" % (self.bodega.nombre, self.producto, self.existencia)
 
     def factura_detalles(self):
-        return Factura_Detalle.objects.filter(bodega=self.bodega, producto=self.producto) # hace falta validar que la factura no este anulada
+        return Factura_Detalle.objects.filter(bodega=self.bodega,
+                                              producto=self.producto)  # hace falta validar que la factura no este anulada
 
     def cant_disponible(self):
         if self.factura_detalles():
@@ -176,6 +186,13 @@ class Bodega_Detalle(models.Model):
         else:
             return self.existencia
 
+
+class Forma_Pago(models.Model):
+    forma_pago = models.CharField(max_length=50)
+    activo = models.BooleanField(null=False, default=True)
+
+    def __unicode__(self):
+        return self.forma_pago
 
 
 class Factura(models.Model):
@@ -191,7 +208,7 @@ class Factura(models.Model):
     fecha_anulacion = models.DateTimeField(null=True)
     usuario_anulacion = models.ForeignKey(User, null=True, related_name="factura_usuario_anulacion")
     comentario = models.CharField(max_length=200, null=True)
-
+    fecha_vence = models.DateTimeField(null=True, blank=True)
 
 
 class Factura_Detalle(models.Model):
@@ -201,6 +218,14 @@ class Factura_Detalle(models.Model):
     cantidad = models.FloatField(null=False)
     valor = models.FloatField(null=False)
     entregado = models.BooleanField(default=False, null=False)
+
+
+class Factura_Abono(models.Model):
+    factura = models.ForeignKey(Factura)
+    monto_abono = models.FloatField(null=False)
+    fecha_abono = models.DateField(auto_now_add=True)
+    usuario = models.ForeignKey(User, null=True)
+
 
 class Pedido(models.Model):
     no_pedido = models.CharField(max_length=10)
@@ -216,9 +241,25 @@ class Pedido(models.Model):
     usuario_anulacion = models.ForeignKey(User, null=True, related_name="pedido_usuario_anulacion")
     comentario = models.CharField(max_length=200, null=True)
 
+
 class Pedido_Detalle(models.Model):
     pedido = models.ForeignKey(Pedido, null=False)
     producto = models.ForeignKey(Producto, null=False)
     bodega = models.ForeignKey(Bodega, null=False)
     cantidad = models.FloatField(null=False)
     valor = models.FloatField(null=False)
+
+
+class Recibo_Provicional(models.Model):
+    no_recibo = models.IntegerField(null=False)
+    cliente = models.ForeignKey(Cliente)
+    monto = models.FloatField(null=False)
+    forma_pago = models.ForeignKey(Forma_Pago)
+    cancelacion = models.BooleanField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    usuario_creacion = models.ForeignKey(User, related_name="Recibo_Provicional_User_Creacion")
+    comentario = models.CharField(max_length=600, null=True)
+    fecha_cobro_ck = models.DateTimeField(null=True, blank=True)
+
+    def monto_letras(self):
+        return "%s NETOS" % (upper(numero_a_letras(self.monto)))

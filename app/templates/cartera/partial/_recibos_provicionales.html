@@ -1,0 +1,36 @@
+<table id="basic-datatables" class="table table-bordered table-responsive dataTable"
+       role="grid" aria-describedby="basic-datatables_info">
+    <thead>
+        <tr>
+            <th>Recibo #</th>
+            <th>Cliente</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+            <th>Creado por</th>
+            <th>Cancelacion</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for recibo in recibos %}
+        <tr role="row">
+            <td>{{ recibo.no_recibo }}</td>
+            <td>{{ recibo.cliente }}</td>
+            <td>{{ recibo.monto }}</td>
+            <td>{{ recibo.fecha_creacion|date:"Y-m-d h:m:s" }}</td>
+            <td>{{ recibo.usuario_creacion }}</td>
+            <td>
+            {% if recibo.cancelacion %}
+                <input type="checkbox" checked="checked" disabled="disabled">
+            {% else %}
+                <input type="checkbox" disabled="disabled">
+            {% endif %}
+            </td>
+            <td>
+                <a href="javascript:void(0)" onclick="mostar_recibo({{ recibo.id }}); return false;">Ver</a>|
+                <a href="javascript:void(0)" onclick="anular_recibo({{ recibo.id }}); return false;">Anular</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

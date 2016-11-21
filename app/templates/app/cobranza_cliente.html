@@ -1,3 +1,4 @@
+
 {% extends "app/index.html" %}
 
 {% comment %}{% block static-navbar %}{% endblock static-navbar %}
@@ -56,12 +57,27 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="row">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Telefono:</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" disabled="true" placeholder="Telefono:" type="text" value="{{ cliente.telefono }}">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Telefono:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" disabled="true" placeholder="Telefono:" type="text" value="{{ cliente.telefono }}">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Celular:</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" disabled="true" placeholder="Celular:" type="text" value="{{ cliente.celular }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="row">
@@ -69,6 +85,15 @@
                             <label class="col-sm-2 control-label">Dirección:</label>
                             <div class="col-sm-10">
                                 <input class="form-control" disabled="true" placeholder="Dirección:" type="text" value="{{ cliente.direccion }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Contacto:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" disabled="true" placeholder="Contacto:" type="text" value="{{ cliente.contacto }}">
                             </div>
                         </div>
                     </div>

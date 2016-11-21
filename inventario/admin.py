@@ -17,3 +17,5 @@ class bodega_admin(admin.ModelAdmin):
 admin.site.register(Bodega, bodega_admin)
 
 admin.site.register(Bodega_Detalle)
+
+admin.site.register(Forma_Pago)

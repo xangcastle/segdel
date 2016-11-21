@@ -1,0 +1,187 @@
+{% extends "app/index.html" %}
+{% block title-bloc %}
+    Recibos Provisionales
+{% endblock title-bloc %}
+{% block css-content %}
+    <link href="/static/app/css/sweetalert.css" rel="stylesheet">
+{% endblock css-content %}
+{% block breadcrums %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title">
+            <h1>Cartera<small></small></h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-file-text"></i></a></li>
+                <li class="active">Recibos Provisinales</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock breadcrums %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-card recent-activites">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title">Listado de Recibos</h4>
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <a id="btnNuevoRecibo" style="float: right" class="btn btn-success btn-3d" href="javascript:void(0)"><i class="fa fa-plus fa-fw"></i> Nuevo Recibo</a>
+                <hr/>
+                <div id="content-listado-recibo"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Recibo</h4>
+                <small>Registro de Recibo Provisional</small>
+            </div>
+            <div class="modal-body">
+                <div id="conten-recibo"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="guardarRecibo()"><i class="fa fa-save fa-fw"></i>Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade in" id="modal-recibo-preview" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Recibo</h4>
+            </div>
+            <div class="modal-body">
+                <iframe id="conten-recibo-preview" width="100%" style="height: 400px;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock cuerpo %}
+{% block scripts-block %}
+    <script src="/static/app/js/data-tables/jquery.dataTables.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.tableTools.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.bootstrap.js"></script>
+    <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
+    <script src="/static/app/js/data-tables/tables-data.js"></script>
+    <script src="/static/app/js/sweet-alert/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            mostrarRecibos();
+            $("#btnNuevoRecibo").on('click',function () {
+                nuevoRecibo();
+            });
+
+        });
+        $(document).ajaxStop(function () {
+            $(".select2").select2();
+        });
+        function mostrarRecibos() {
+            $.ajax({
+                url:"../render_listado_recibo/",
+                type:"GET",
+                success:function (result) {
+                    $("#content-listado-recibo").empty().html(result);
+                }
+            });
+        }
+        function nuevoRecibo() {
+            $.ajax({
+                url:"../render_nuevo_recibo/",
+                type:"GET",
+                success: function (result) {
+                    $("#conten-recibo").empty().html(result);
+                    $("#myModal").modal({
+                      backdrop: 'static',
+                      keyboard: false
+                    });
+                }
+            });
+        }
+        function guardarRecibo() {
+            var data =$('#conten-recibo :input').serialize();
+
+            $.ajax({
+                url:"../add_nuevo_recibo/?csrfmiddlewaretoken={{ csrf_token }}",
+                type:"post",
+                data:data,
+                success: function (result) {
+                    var data=result[0];
+                    if(data.code==200){
+                        $("#myModal").modal('hide');
+                        mostrarRecibos();
+                    }else {
+                        alert(data.mensaje)
+                    }
+                }
+            });
+        }
+        function anular_recibo(factura) {
+            swal({
+                title: "Anulación",
+                text: "Esta seguro que desea anular este recibo?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#4286f4",
+                confirmButtonText: "Si, anular",
+                closeOnConfirm: true
+            },
+            function(){
+                $.ajax({
+                    url:"../anular_recibo/",
+                    data: {id_factura:factura, csrfmiddlewaretoken: '{{ csrf_token }}' },
+                    type:"POST",
+                    success:function (result) {
+                        data=result[0];
+                        if(data.code==200){
+                            mostrarFacturas();
+                            swal({
+                                 title: "Exito!",
+                                text: data.mensaje,
+                                type: "success"
+                            });
+                        }else {
+                            swal({
+                                title: "Upss. ha ocurrido un error",
+                                text: data.mensaje,
+                                type: "success"
+                            });
+                        }
+                    }
+                });
+            });
+        }
+        function mostar_recibo(recibo) {
+            var $iframe = $("#conten-recibo-preview");
+            var url="../mostrar_recibo_provicional_pdf/?id_recibo=" + recibo;
+            $iframe.attr('src',url);
+            $("#modal-recibo-preview").modal('show');
+            return false;
+        }
+        function forma_pago_change(forma_pago){
+            forma_pago = $(forma_pago);
+            if(forma_pago.val()=="4"){
+                $("#div-pos-fecha").removeClass("hidden");
+            }else {
+                $("#div-pos-fecha").addClass("hidden");
+            }
+        }
+    </script>
+{% endblock %}

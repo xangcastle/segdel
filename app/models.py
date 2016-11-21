@@ -58,14 +58,14 @@ class Import(models.Model):
         li.append(kwargs.pop('user', 1))
         usuario = User.objects.get(id=li[0])
 
-        factura, create = Factura.objects.get_or_create(cliente=self.get_cliente(), empresa=self.get_empresa(),
+        factura, create = Documento_Cobro.objects.get_or_create(cliente=self.get_cliente(), empresa=self.get_empresa(),
                 monto=self.monto, impuesto=self.impuesto, total=self.total,
                 fecha=self.fecha, nodoc=self.nodoc, descripcion=self.descripcion)
 
         if self.abono>0:
             if usuario:
                 now = datetime.datetime.now()
-                Factura_Abono.objects.create(factura=factura, monto_abono=self.abono,
+                Documento_Abono.objects.create(factura=factura, monto_abono=self.abono,
                                          fecha_abono=now, usuario=usuario)
 
 
@@ -130,17 +130,17 @@ class Cliente(models.Model):
         return "%s-%s" % (self.identificacion, self.nombre)
 
     def facturas(self):
-        return Factura.objects.filter(cliente=self)
+        return Documento_Cobro.objects.filter(cliente=self)
 
     def abonos(self):
-        return Factura_Abono.objects.filter(factura__in=self.facturas())
+        return Documento_Abono.objects.filter(factura__in=self.facturas())
 
     def saldo_cliente(self):
         if self.facturas() and self.abonos():
-            return self.facturas().aggregate(Sum('monto'))['monto__sum'] - \
+            return self.facturas().aggregate(Sum('total'))['total__sum'] - \
             self.abonos().aggregate(Sum('monto_abono'))['monto_abono__sum']
         elif self.facturas():
-            return self.facturas().aggregate(Sum('monto'))['monto__sum']
+            return self.facturas().aggregate(Sum('total'))['total__sum']
         else:
             return 0.0
 
@@ -151,7 +151,7 @@ class Vendedor(models.Model):
     def __unicode__(self):
         return '%s | %s'% (self.usuario.get_full_name(), self.usuario.get_username())
 
-class Factura(models.Model):
+class Documento_Cobro(models.Model):
     nodoc = models.CharField(max_length=15, null=True, verbose_name="numero de documento")
     descripcion = models.CharField(max_length=300, null=True, blank=True)
     empresa = models.ForeignKey(Empresa)
@@ -165,29 +165,29 @@ class Factura(models.Model):
 
     @property
     def abonos(self):
-        return Factura_Abono.objects.all().filter(factura=self)
+        return Documento_Abono.objects.all().filter(factura=self)
 
     @property
     def saldo_factura(self):
         '''
         esta funcion regresa el saldo dela facturara (monto) menos todos los abonos a la factura
         '''
-        if Factura_Abono.objects.all().filter(factura=self):
-            return self.monto - Factura_Abono.objects.all().filter(factura=self).aggregate(Sum('monto_abono'))['monto_abono__sum']
+        if Documento_Abono.objects.all().filter(factura=self):
+            return self.total - Documento_Cobro.objects.all().filter(factura=self).aggregate(Sum('monto_abono'))['monto_abono__sum']
         else:
-            return self.monto
+            return self.total
 
     @staticmethod
     def facturas_pendientes(cliente):
         factresult=[]
-        facturas = Factura.objects.all().filter(cliente=cliente)
+        facturas = Documento_Cobro.objects.all().filter(cliente=cliente)
         for factura in facturas:
             if factura.saldo_factura > 0:
                 factresult.append(factura)
         return factresult
 
-class Factura_Abono(models.Model):
-    factura = models.ForeignKey(Factura)
+class Documento_Abono(models.Model):
+    factura = models.ForeignKey(Documento_Cobro)
     monto_abono = models.FloatField(null = False)
     fecha_abono = models.DateField(auto_now_add=True)
     usuario = models.ForeignKey(User, null = True)

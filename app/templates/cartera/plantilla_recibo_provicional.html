@@ -1,0 +1,86 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="background-color: white">
+<div class="container">
+<div class="row">
+
+
+<div class="row">
+    <div class="col-xs-6">
+<h1>
+    <a href=" ">
+    <img alt="" src="/app/static/app/images/tulogoaquifooter.png" />
+        Logo aquí </a></h1>
+</div>
+<div class="col-xs-6 text-right">
+<h1>Recibo porivicional</h1>
+<h1><small>Recibo #{{ recibo.no_recibo }}</small></h1>
+</div>
+</div>
+
+<hr />
+
+
+<div class="row">
+    <div class="col-xs-12 text-left">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Cliente : <a href="#">{{ recibo.cliente.nombre }}</a></h4>
+            </div>
+            <div class="panel-body">
+                <strong>Identificacion: </strong> {{ recibo.cliente.identificacion }}<br>
+                <strong>Dirección: </strong> {{ recibo.cliente.direccion }}<br>
+                <strong>Telefono: </strong> {{ recibo.cliente.telefono }}<br>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="#">Datos del pago</a>
+            </div>
+            <div class="panel-body">
+                <span><strong>Fecha:    </strong>{{ recibo.fecha_creacion|date:"Y-m-d h:m:s" }}<br></span>
+                <span><strong>Monto:    </strong>{{ recibo.monto }}<br></span>
+                <span><strong>Monto Letras: </strong>{{ recibo.monto_letras }}<br></span>
+                <span><strong>Descripción:  </strong>RPC#{{ recibo.no_recibo }}: {{ recibo.descripcion }}<br></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class = "col-xs-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+            <span>Recibí conforme: {{ recibo.usuario_creacion.get_full_name }}</span>
+            </div>
+            <div class="panel-body">
+                <br>
+                Firma:
+            </div>
+        </div>
+    </div>
+    <div class = "col-xs-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+            Entregue conforme
+            </div>
+            <div class="panel-body">
+                <br>
+                Firma:
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</body>
+</html>
+

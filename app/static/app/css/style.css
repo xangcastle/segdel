@@ -450,7 +450,7 @@ strong,b,label{
    color: #999;  
 }
 .form-control,.placeholder{
-    color: #999;  
+    /*color: #999; */
 }
 /**panels**/
 .panel{
@@ -937,8 +937,8 @@ ul.wysihtml5-toolbar a.btn.wysihtml5-command-active {
 .form-control,.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
     border-radius: 0px;
     box-shadow: none;
-    border: 1px solid rgba(0,0,0,0.1);
-    color: #999;
+    /*border: 1px solid rgba(0,0,0,0.1);
+    color: #999;*/
     background-color: transparent;
 }
 .btn-primary{
@@ -2001,7 +2001,7 @@ body .fc {
     height: 100%;
     border-radius: 0;
     box-shadow: none;
-    border: 1px solid #e9e9e9;
+    /*border: 1px solid #e9e9e9;*/
     transition-duration: .5s;
 }
 .nano>.nano-pane {

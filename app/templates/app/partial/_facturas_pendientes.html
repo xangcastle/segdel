@@ -1,24 +1,20 @@
+{% load humanize %}
 {% for factura in facturas %}
-    <div class="form-horizontal">
-        <div class="form-group">
-            <div class="col-sm-2"><strong>No Doc:</strong> </div>
-            <div class="col-sm-3">{{ factura.nodoc }}</div>
-            <div class="col-sm-3"><strong>Saldo:</strong> </div>
-            <div class="col-sm-4">{{ factura.saldo_factura }}</div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-2"><strong>Emisión:</strong></div>
-            <div class="col-sm-3">{{ factura.fecha }}</div>
-            <div class="col-sm-3"><strong>Vencimiento:</strong></div>
-            <div class="col-sm-4">{{ factura.fecha_vence }}</div>
-        </div>
-        <div class="form-group">
+    <div class="form-horizontal" style="background-color: rgba(14, 170, 166, 0.1)" >
+        <span><strong>No Doc:</strong> {{ factura.nodoc }} <br> <strong>Saldo:</strong> {{ factura.saldo_factura|floatformat:2|intcomma }} $</span>
 
+        <div style="float: right">
+            <div class="btn-group">
+                <button onclick="cargarPagoFactura({{ factura.id }}, false);" class="btn btn-3d btn-success">Abonar</button>
+                <button onclick="cargarPagoFactura({{ factura.id }}, true);"  class="btn btn-3d btn-primary">Pagar</button>
+            </div>
         </div>
-        <div class="btn-group">
-            <button onclick="cargarPagoFactura({{ factura.id }}, false);" class="btn btn-3d btn-success">Abonar</button>
-            <button onclick="cargarPagoFactura({{ factura.id }}, true);"  class="btn btn-3d btn-primary">Pagar</button>
-        </div>
+        <br>
+        <span><strong>Emisión:</strong> {{ factura.fecha }} </span>
+        <br>
+        <span><strong>Vencimiento:</strong> {{ factura.fecha_vence }} </span>
+
+
     </div>
     <div class="hr-line-dashed"></div>
 {% endfor %}
