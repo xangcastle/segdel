@@ -5,7 +5,6 @@ from django.conf.urls.static import static
 from inventario.views import *
 from .views import *
 from django.contrib.auth.decorators import login_required
-from inventario import urls
 
 urlpatterns = [
     url(r'^cobranza/', login_required(cobranza.as_view()),
@@ -81,4 +80,4 @@ urlpatterns = [
     url(r'^mostrar_recibo_provicional_pdf/', login_required(mostrar_recibo_provicional_pdf),
         name='mostrar_recibo_provicional_pdf'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

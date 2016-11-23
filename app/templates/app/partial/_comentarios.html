@@ -1,7 +1,6 @@
- <div class="panel panel-warning">
-    <div class="panel-heading">{{ comentarios|length }} Comentarios</div>
+ {% comment %}<div class="panel panel-warning">
+    <div class="panel-heading">{{ comentarios|length }} Comentarios</div>{% endcomment %}
     <div class="panel-body">
-        <br/>
         {% for comentario in comentarios %}
             <div class="media">
                 <div class="media-left">
@@ -67,6 +66,6 @@
                         </h4>Integer ac nisl et urna gravida malesuada. Vivamus fermentum libero vel felis aliquet interdum.</div>
                 </div>
             </div>
-        </div>{% endcomment %}
-    </div>
+        </div>
+    </div>{% endcomment %}
 </div>

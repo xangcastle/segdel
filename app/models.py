@@ -6,6 +6,12 @@ from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.models import User
 
+
+class base_inventario(models.Model):
+    class Meta:
+        app_label = "inventario"
+
+
 class Import(models.Model):
     razon_social = models.CharField(max_length=255)
     numero_ruc = models.CharField(max_length=14)
@@ -129,18 +135,18 @@ class Cliente(models.Model):
     def __unicode__(self):
         return "%s-%s" % (self.identificacion, self.nombre)
 
-    def facturas(self):
+    def documentos(self):
         return Documento_Cobro.objects.filter(cliente=self)
 
-    def abonos(self):
-        return Documento_Abono.objects.filter(factura__in=self.facturas())
+    def documentos_abonos(self):
+        return Documento_Abono.objects.filter(documento__in=self.documentos())
 
     def saldo_cliente(self):
-        if self.facturas() and self.abonos():
-            return self.facturas().aggregate(Sum('total'))['total__sum'] - \
-            self.abonos().aggregate(Sum('monto_abono'))['monto_abono__sum']
-        elif self.facturas():
-            return self.facturas().aggregate(Sum('total'))['total__sum']
+        if self.documentos() and self.documentos_abonos():
+            return self.documentos().aggregate(Sum('total'))['total__sum'] - \
+            self.documentos_abonos().aggregate(Sum('monto_abono'))['monto_abono__sum']
+        elif self.documentos():
+            return self.documentos().aggregate(Sum('total'))['total__sum']
         else:
             return 0.0
 
@@ -165,15 +171,15 @@ class Documento_Cobro(models.Model):
 
     @property
     def abonos(self):
-        return Documento_Abono.objects.all().filter(factura=self)
+        return Documento_Abono.objects.all().filter(documento=self)
 
     @property
     def saldo_factura(self):
         '''
         esta funcion regresa el saldo dela facturara (monto) menos todos los abonos a la factura
         '''
-        if Documento_Abono.objects.all().filter(factura=self):
-            return self.total - Documento_Cobro.objects.all().filter(factura=self).aggregate(Sum('monto_abono'))['monto_abono__sum']
+        if Documento_Abono.objects.all().filter(documento=self):
+            return self.total - Documento_Abono.objects.all().filter(documento=self).aggregate(Sum('monto_abono'))['monto_abono__sum']
         else:
             return self.total
 
@@ -187,7 +193,7 @@ class Documento_Cobro(models.Model):
         return factresult
 
 class Documento_Abono(models.Model):
-    factura = models.ForeignKey(Documento_Cobro)
+    documento = models.ForeignKey(Documento_Cobro)
     monto_abono = models.FloatField(null = False)
     fecha_abono = models.DateField(auto_now_add=True)
     usuario = models.ForeignKey(User, null = True)
