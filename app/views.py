@@ -175,14 +175,14 @@ def add_abono_factura(request):
         obj_json['mensaje'] = "ERROR: Usuario invalido"
     else:
         try:
-            factura = Documento_Cobro.objects.get(id=int(id_doc))
+            documento = Documento_Cobro.objects.get(id=int(id_doc))
         except Exception as e:
             obj_json['code'] = 500
             obj_json['mensaje'] = "ERROR: Documento no encontrado"
-            factura = None
+            documento = None
 
-        if factura:
-            abono = Documento_Abono.objects.create(usuario=usuario, monto_abono=float(monto), factura=factura)
+        if documento:
+            abono = Documento_Abono.objects.create(usuario=usuario, monto_abono=float(monto), documento=documento)
             abono.save()
             obj_json['code'] = 200
             obj_json['mensaje'] = "Pago registrado exitosamente!"

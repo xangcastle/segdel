@@ -12,20 +12,19 @@
                     <span class="anchorjs-icon"></span>
                 </a>
             </h4>
-                <div style="float: right">
-                    {% if not gestion.usuario_completa %}
-                        <button class="btn btn-primary btn-3d" onclick="cargarEditarGestion({{ gestion.id }})"><i class="fa fa-edit fa-fw"></i>Editar</button>
-                        <button class="btn btn-warning btn-3d" onclick="cargarFinalizarGestion({{ gestion.id }})"><i class="fa fa-edit fa-fw"></i>Finalizar</button>
-                    {% endif %}
-
-                </div>
             <span><strong>Tipo de Gestion:</strong> {{ gestion.tipo_gestion }}</span><br/>
             {% if gestion.programacion %}
             <span><strong>Programación:</strong> {{ gestion.programacion }}</span><br/>
             {% endif %}
             <strong>comentario:</strong>
             <p>{{ gestion.descripcion }}</p>
+            <div style="float: right">
+                    {% if not gestion.usuario_completa %}
+                        <button class="btn btn-primary btn-3d" onclick="cargarEditarGestion({{ gestion.id }})"><i class="fa fa-edit fa-fw"></i>Editar</button>
+                        <button class="btn btn-warning btn-3d" onclick="cargarFinalizarGestion({{ gestion.id }})"><i class="fa fa-edit fa-fw"></i>Finalizar</button>
+                    {% endif %}
 
+                </div>
             {% if gestion.usuario_completa %}
                 <hr/>
             <h4 id="media-heading" class="media-heading">Finalizado por: <a href="">{{ gestion.usuario_completa }}</a>

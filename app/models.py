@@ -6,6 +6,8 @@ from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.models import User
 
+User.add_to_class('foto', models.ImageField(upload_to="", null=True))
+
 
 class base_inventario(models.Model):
     class Meta:
