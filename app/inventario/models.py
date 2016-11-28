@@ -1,22 +1,22 @@
-from __future__ import unicode_literals
-
-from string import upper
-
-from app.numero_letras import numero_a_letras
-from django.contrib.auth.models import User
-from django.db import models
-from django.db.models import Sum
-
 from app.models import *
+from django.db import models
+
+# region INVENTARIO
+from django.db.models.aggregates import Sum
 
 
-def get_media_url(model, filename):
-    clase = model.__class__.__name__
-    code = str(model.id)
-    return '%s/%s/%s' % (clase, code, filename)
+class base_inventario(models.Model):
+    class Meta:
+        app_label = "inventario"
+        abstract = True
+
+    def get_media_url(self, filename):
+        clase = self.__class__.__name__
+        code = str(self.id)
+        return '%s/%s/%s' % (clase, code, filename)
 
 
-class Import_Imventario(models.Model):
+class Import_Imventario(base_inventario):
     razon_social = models.CharField(max_length=255)
     numero_ruc = models.CharField(max_length=14)
     producto_codigo = models.CharField(max_length=10)
@@ -115,28 +115,28 @@ class Import_Imventario(models.Model):
         self.get_producto()
 
 
-class Producto_Marca(models.Model):
+class Producto_Marca(base_inventario):
     marca = models.CharField(max_length=100)
 
     def __unicode__(self):
         return "%s" % (self.marca)
 
 
-class Producto_Categoria(models.Model):
+class Producto_Categoria(base_inventario):
     categoria = models.CharField(max_length=100)
 
     def __unicode__(self):
         return "%s" % (self.categoria)
 
 
-class Producto_Medida(models.Model):
+class Producto_Medida(base_inventario):
     medida = models.CharField(max_length=100)
 
     def __unicode__(self):
         return "%s" % (self.medida)
 
 
-class Producto(models.Model):
+class Producto(base_inventario):
     codigo = models.CharField(max_length=10)
     serie = models.CharField(max_length=50)  # REGISTRO DE PRODUCTOS POR SERIE
     nombre = models.CharField(max_length=200)
@@ -146,7 +146,7 @@ class Producto(models.Model):
     medida = models.ForeignKey(Producto_Medida)
     marca = models.ForeignKey(Producto_Marca)
     empresa = models.ForeignKey(Empresa)
-    imagen = models.ImageField(upload_to=get_media_url, null=True, blank=True)
+    imagen = models.ImageField(upload_to=base_inventario.get_media_url, null=True, blank=True)
 
     class Meta:
         verbose_name = "opcion"
@@ -156,7 +156,7 @@ class Producto(models.Model):
         return "%s %s" % (self.codigo, self.nombre)
 
 
-class Bodega(models.Model):
+class Bodega(base_inventario):
     nombre = models.CharField(max_length=100, null=False)
     encargado = models.ForeignKey(User, null=True)
 
@@ -164,7 +164,7 @@ class Bodega(models.Model):
         return "%s" % (self.nombre)
 
 
-class Bodega_Detalle(models.Model):
+class Bodega_Detalle(base_inventario):
     bodega = models.ForeignKey(Bodega, null=False)
     producto = models.ForeignKey(Producto, null=False)
     existencia = models.FloatField(default=0.0, null=False)
@@ -187,7 +187,7 @@ class Bodega_Detalle(models.Model):
             return self.existencia
 
 
-class Forma_Pago(models.Model):
+class Forma_Pago(base_inventario):
     forma_pago = models.CharField(max_length=50)
     activo = models.BooleanField(null=False, default=True)
 
@@ -195,7 +195,7 @@ class Forma_Pago(models.Model):
         return self.forma_pago
 
 
-class Factura(models.Model):
+class Factura(base_inventario):
     no_fac = models.CharField(max_length=10)
     serie = models.CharField(max_length=2, default="A")
     cliente = models.ForeignKey(Cliente, null=False, related_name="inventario_factura_cliente")
@@ -211,7 +211,7 @@ class Factura(models.Model):
     fecha_vence = models.DateTimeField(null=True, blank=True)
 
 
-class Factura_Detalle(models.Model):
+class Factura_Detalle(base_inventario):
     factura = models.ForeignKey(Factura, null=False)
     producto = models.ForeignKey(Producto, null=False)
     bodega = models.ForeignKey(Bodega, null=False)
@@ -220,14 +220,14 @@ class Factura_Detalle(models.Model):
     entregado = models.BooleanField(default=False, null=False)
 
 
-class Factura_Abono(models.Model):
+class Factura_Abono(base_inventario):
     factura = models.ForeignKey(Factura)
     monto_abono = models.FloatField(null=False)
     fecha_abono = models.DateField(auto_now_add=True)
     usuario = models.ForeignKey(User, null=True)
 
 
-class Pedido(models.Model):
+class Pedido(base_inventario):
     no_pedido = models.CharField(max_length=10)
     cliente = models.ForeignKey(Cliente, null=False)
     vendedor = models.ForeignKey(Vendedor, null=False, related_name="pedido_usuario_vendedor")
@@ -242,7 +242,7 @@ class Pedido(models.Model):
     comentario = models.CharField(max_length=200, null=True)
 
 
-class Pedido_Detalle(models.Model):
+class Pedido_Detalle(base_inventario):
     pedido = models.ForeignKey(Pedido, null=False)
     producto = models.ForeignKey(Producto, null=False)
     bodega = models.ForeignKey(Bodega, null=False)
@@ -250,7 +250,7 @@ class Pedido_Detalle(models.Model):
     valor = models.FloatField(null=False)
 
 
-class Recibo_Provicional(models.Model):
+class Recibo_Provicional(base_inventario):
     no_recibo = models.IntegerField(null=False)
     cliente = models.ForeignKey(Cliente)
     monto = models.FloatField(null=False)
@@ -263,3 +263,5 @@ class Recibo_Provicional(models.Model):
 
     def monto_letras(self):
         return "%s NETOS" % (upper(numero_a_letras(self.monto)))
+
+# endregion

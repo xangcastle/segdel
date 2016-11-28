@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
 
 import datetime
-
+from string import upper
+from app.numero_letras import numero_a_letras
 from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.models import User
@@ -9,11 +10,7 @@ from django.contrib.auth.models import User
 User.add_to_class('foto', models.ImageField(upload_to="", null=True))
 
 
-class base_inventario(models.Model):
-    class Meta:
-        app_label = "inventario"
-
-
+# region OTROS
 class Import(models.Model):
     razon_social = models.CharField(max_length=255)
     numero_ruc = models.CharField(max_length=14)
@@ -67,14 +64,16 @@ class Import(models.Model):
         usuario = User.objects.get(id=li[0])
 
         factura, create = Documento_Cobro.objects.get_or_create(cliente=self.get_cliente(), empresa=self.get_empresa(),
-                monto=self.monto, impuesto=self.impuesto, total=self.total,
-                fecha=self.fecha, nodoc=self.nodoc, descripcion=self.descripcion)
+                                                                monto=self.monto, impuesto=self.impuesto,
+                                                                total=self.total,
+                                                                fecha=self.fecha, nodoc=self.nodoc,
+                                                                descripcion=self.descripcion)
 
-        if self.abono>0:
+        if self.abono > 0:
             if usuario:
                 now = datetime.datetime.now()
                 Documento_Abono.objects.create(factura=factura, monto_abono=self.abono,
-                                         fecha_abono=now, usuario=usuario)
+                                               fecha_abono=now, usuario=usuario)
 
 
 class Empresa(models.Model):
@@ -113,9 +112,9 @@ class Gestion(models.Model):
     descripcion_resultado = models.CharField(max_length=400, null=True)
     programacion = models.DateField(null=True, blank=True)
 
-
     def __unicode__(self):
         return "%s - %s" % (self.tipo_gestion.nombre, self.descripcion)
+
 
 class Comentario(models.Model):
     descripcion = models.CharField(max_length=400)
@@ -127,8 +126,8 @@ class Cliente(models.Model):
     identificacion = models.CharField(max_length=14)
     nombre = models.CharField(max_length=165)
     telefono = models.CharField(max_length=50, null=True, blank=True)
-    celular =  models.CharField(max_length=50, null=True, blank=True)
-    contacto =  models.CharField(max_length=150, null=True, blank=True)
+    celular = models.CharField(max_length=50, null=True, blank=True)
+    contacto = models.CharField(max_length=150, null=True, blank=True)
     direccion = models.TextField(max_length=600, null=True, blank=True)
     gestiones = models.ManyToManyField(Gestion)
     comentarios = models.ManyToManyField(Comentario)
@@ -146,18 +145,20 @@ class Cliente(models.Model):
     def saldo_cliente(self):
         if self.documentos() and self.documentos_abonos():
             return self.documentos().aggregate(Sum('total'))['total__sum'] - \
-            self.documentos_abonos().aggregate(Sum('monto_abono'))['monto_abono__sum']
+                   self.documentos_abonos().aggregate(Sum('monto_abono'))['monto_abono__sum']
         elif self.documentos():
             return self.documentos().aggregate(Sum('total'))['total__sum']
         else:
             return 0.0
+
 
 class Vendedor(models.Model):
     usuario = models.ForeignKey(User, null=False)
     activo = models.BooleanField(default=True, null=False)
 
     def __unicode__(self):
-        return '%s | %s'% (self.usuario.get_full_name(), self.usuario.get_username())
+        return '%s | %s' % (self.usuario.get_full_name(), self.usuario.get_username())
+
 
 class Documento_Cobro(models.Model):
     nodoc = models.CharField(max_length=15, null=True, verbose_name="numero de documento")
@@ -168,7 +169,7 @@ class Documento_Cobro(models.Model):
     impuesto = models.FloatField()
     total = models.FloatField()
     fecha = models.DateField()
-    fecha_vence=models.DateField(null=True, blank=True)
+    fecha_vence = models.DateField(null=True, blank=True)
     pagada = models.BooleanField(default=False)
 
     @property
@@ -181,21 +182,28 @@ class Documento_Cobro(models.Model):
         esta funcion regresa el saldo dela facturara (monto) menos todos los abonos a la factura
         '''
         if Documento_Abono.objects.all().filter(documento=self):
-            return self.total - Documento_Abono.objects.all().filter(documento=self).aggregate(Sum('monto_abono'))['monto_abono__sum']
+            return self.total - Documento_Abono.objects.all().filter(documento=self).aggregate(Sum('monto_abono'))[
+                'monto_abono__sum']
         else:
             return self.total
 
     @staticmethod
     def facturas_pendientes(cliente):
-        factresult=[]
+        factresult = []
         facturas = Documento_Cobro.objects.all().filter(cliente=cliente)
         for factura in facturas:
             if factura.saldo_factura > 0:
                 factresult.append(factura)
         return factresult
 
+
 class Documento_Abono(models.Model):
     documento = models.ForeignKey(Documento_Cobro)
-    monto_abono = models.FloatField(null = False)
+    monto_abono = models.FloatField(null=False)
     fecha_abono = models.DateField(auto_now_add=True)
-    usuario = models.ForeignKey(User, null = True)
+    usuario = models.ForeignKey(User, null=True)
+
+
+# endregion
+
+

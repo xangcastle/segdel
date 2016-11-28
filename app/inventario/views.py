@@ -1,5 +1,6 @@
 import json
 
+from app.models import *
 from django.db.models import Max
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -8,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
 from app.html_to_pdf import render_to_pdf
-from inventario.models import *
+from app.models import *
 
 
 class facturacion(TemplateView):
