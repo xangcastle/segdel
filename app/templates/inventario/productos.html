@@ -1,0 +1,192 @@
+
+{% extends "app/index.html" %}
+
+{% comment %}{% block static-navbar %}{% endblock static-navbar %}
+
+{% block aside-bar %}{% endblock aside-bar %}
+{% endcomment %}
+{% block css-content %}
+    <link href="/static/app/css/sweetalert.css" rel="stylesheet">
+    <style>
+    .search {
+        position: absolute;
+        background-color: rgba(255,255,255,0.95);
+        height: inherit;
+        left: inherit;
+        top: inherit;
+        right: inherit;
+        z-index: inherit;
+    }
+    </style>
+{% endblock css-content %}
+{% block breadcrums %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title" style="margin-bottom: 0px;">
+                <h1>Inventario<small></small></h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-product-hunt"></i></a></li>
+                    <li class="active">Catalogo de productos</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+{% endblock breadcrums %}
+
+{% block cuerpo %}
+    <div class="row">
+        <div class="col-sm-12" >
+            <div class="panel panel-white border-top-blue">
+                  <div class="panel-heading">
+                    <h3>Productos</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div id="productos">
+                          <div class="row">
+                              <div class="col-sm-12 col-md-4">
+                                  <input class="search form-control" placeholder="Search" />
+                              </div>
+                              <div class="col-sm-6 col-md-4">
+                                  <div class="btn-group">
+                                      <button class="sort btn btn-success" data-sort="nombre">
+                                         <i class="fa fa-sort"></i> Nombre
+                                      </button>
+                                      <button class="sort btn btn-success" data-sort="marca">
+                                         <i class="fa fa-sort"></i> marca
+                                      </button>
+                                  </div>
+
+                              </div>
+                          </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <ul id="profile-page-about-details" class="list collection z-depth-1 row">
+
+                                    </ul>
+                                    <ul class="pagination"></ul>
+                                </div>
+                            </div>
+
+
+                      </div>
+                  </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="modal fade in" id="modal_pago" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Pago a factura</h4>
+                    <small>Detalle de la factura</small>
+                </div>
+                <div class="modal-body">
+                    <div id="content-pago-facutua"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="btn-aplicar-pago" type="button" class="btn btn-primary">Aplicar pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade in" id="modal_gestion" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Gestion</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="content-detalle-gestion"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button id="btn-guardar-gestion" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Comentarios</h4>
+                <small>Registre su comentario en la parte inferior</small>
+            </div>
+            <div class="modal-body">
+                <div class="nano has-scrollbar" style="height:240px">
+                    <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
+                        <div id="conten-comentarios"></div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <textarea id="post-comment" name="post-comment" rows="2" placeholder="Su comentario aquí.." class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button id="comentar" class="btn btn-effect-ripple btn-primary">Enviar comentario</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock cuerpo %}
+{% block scripts-block %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.3.0/list.min.js"></script>
+    <script src="/static/app/js/list/list.pagination.min.js" ></script>
+    <script src="/static/app/js/jquery.elevatezoom-3.0.8.min.js" ></script>
+    <script>
+    $(document).ready(function () {
+       cargarProductos();
+    });
+    function cargarProductos() {
+        $.ajax({
+            url:"../get_productos/",
+            type:"get",
+            success: function (result) {
+                var ul=$("#profile-page-about-details").empty();
+                $.each(result, function (key,value) {
+
+                    ul.append('<li class="collection-item col-md-4" style="list-style: none;height: 150px; border: 1px solid #e0e0e0;">' +
+                                        '<div class="row">' +
+                                            '<div class="col-xs-6 grey-text darken-1">' +
+                                                '<strong style="color: #86cfef;">Nombre: </strong><br><span class="nombre">'+value.nombre+'</span><br>' +
+                                                '<strong style="color: #86cfef;">marca: </strong><br><span class="marca">'+value.marca+'</span><br>' +
+                                                '<strong style="color: #86cfef;">Precio: <br><span class="precio" style="color: #62cb31;">'+value.precio+' US$</span></strong> <br>' +
+                                            '</div>' +
+                                            '<div class="col-xs-6 grey-text text-darken-4 right-align">' +
+                                                '<img class="imagezoom" height="130px" width="100%" src="'+ value.imagen +'" data-zoom-image="'+ value.imagen +'" />' +
+                                            '</div>' +
+                                        '</div>' +
+                                      '</li>')
+                });
+                var options = {
+                                valueNames: [ 'nombre','precio','marca','categoria','imagen']
+                            };
+                var values = result;
+                var userList = new List('productos', options);
+
+                $(".imagezoom").elevateZoom({
+                    scrollZoom : true,
+                    cursor: "crosshair"});
+
+            }
+        });
+    }
+    </script>
+{% endblock %}

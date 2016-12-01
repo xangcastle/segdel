@@ -38,6 +38,12 @@ urlpatterns = [
     url(r'^finish_cliente_gestion/', finish_cliente_gestion,
         name='finish_cliente_gestion'),
 
+    url(r'^productos/', login_required(catalogo_productos.as_view()),
+        name='catalogo_productos'),
+    url(r'^get_productos/', login_required(get_productos),
+        name='get_productos'),
+
+
     url(r'^facturacion/', login_required(facturacion.as_view()),
         name='facturacion'),
     url(r'^facturar/', login_required(facturar.as_view()),

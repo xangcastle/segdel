@@ -1,15 +1,51 @@
 import json
 
-from app.models import *
+from app.dbmanager import *
+from django.core import serializers
 from django.db.models import Max
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
 from app.html_to_pdf import render_to_pdf
 from app.models import *
+
+
+class catalogo_productos(TemplateView):
+    template_name = "inventario/productos.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+
+        return super(catalogo_productos, self).render_to_response(context)
+
+
+@csrf_exempt
+def get_productos(request):
+    data = []
+    # productos = Producto.objects.raw('SELECT DISTINCT codigo, nombre, precio, imagen, categoria_id, '
+    #                                 'marca_id, empresa_id, medida_id FROM inventario_producto')
+    productos = local_sql_exec('SELECT DISTINCT codigo, nombre, precio, imagen, categoria, marca ' +
+                               'FROM inventario_producto INNER  JOIN inventario_producto_categoria ' +
+                               'on inventario_producto.categoria_id=inventario_producto_categoria.id ' +
+                               'INNER JOIN inventario_producto_marca ' +
+                               'on inventario_producto.marca_id=inventario_producto_marca.id')
+    if productos:
+        for p in productos:
+            pro = {'id': p.codigo,
+                   'nombre': p.nombre,
+                   'precio': p.precio,
+                   'categoria': p.categoria,
+                   'marca': p.marca,
+                   'imagen': "/media/" + p.imagen if p.imagen != "" else "/media/foto-no-disponible.jpg",}
+            data.append(pro)
+        # data = serializers.serialize('json', productos)
+        # struct = json.loads(data)
+        data = json.dumps(data)
+    else:
+        data = None
+    return HttpResponse(data, content_type='application/json')
 
 
 class facturacion(TemplateView):
@@ -142,12 +178,14 @@ def mostrar_factura_pdf(request):
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
 
+
 class facturar(TemplateView):
     template_name = "inventario/facturar.html"
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
         return super(facturar, self).render_to_response(context)
+
 
 def render_listado_producto(request):
     bodega_detalles = Bodega_Detalle.objects.all()
@@ -168,11 +206,13 @@ def render_listado_pedido(request):
     html = render_to_string('inventario/partial/_pedidos.html', {'pedidos': pedidos})
     return HttpResponse(html)
 
+
 def render_nuevo_pedido(request):
     vendedores = Vendedor.objects.filter(activo=True)
     clientes = Cliente.objects.all()
     html = render_to_string('inventario/partial/_pedido.html', {'vendedores': vendedores, 'clientes': clientes})
     return HttpResponse(html)
+
 
 @csrf_exempt
 def add_nuevo_pedido(request):
@@ -278,6 +318,7 @@ def anular_nuevo_pedido(request):
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
 
+
 def mostrar_pedido_pdf(request):
     data = []
     obj_json = {}
@@ -309,6 +350,7 @@ def mostrar_pedido_pdf(request):
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
 
+
 class recibos_provicionales(TemplateView):
     template_name = "cartera/recibos_provicionales.html"
 
@@ -316,24 +358,27 @@ class recibos_provicionales(TemplateView):
         context = self.get_context_data()
         return super(recibos_provicionales, self).render_to_response(context)
 
+
 def render_listado_recibo(request):
     recibos = Recibo_Provicional.objects.all()
     html = render_to_string('cartera/partial/_recibos_provicionales.html', {'recibos': recibos})
     return HttpResponse(html)
 
+
 def render_nuevo_recibo(request):
     vendedores = Vendedor.objects.filter(activo=True)
     clientes = Cliente.objects.all()
-    formas_pago = Forma_Pago.objects.filter(activo = True)
+    formas_pago = Forma_Pago.objects.filter(activo=True)
     try:
-        no_recibo = int(Recibo_Provicional.objects.all().aggregate(Max('no_recibo'))['no_recibo__max'])+1
+        no_recibo = int(Recibo_Provicional.objects.all().aggregate(Max('no_recibo'))['no_recibo__max']) + 1
     except:
         no_recibo = 1
     html = render_to_string('cartera/partial/_recibo_provicional.html', {'vendedores': vendedores,
-                                                                         'clientes':clientes,
+                                                                         'clientes': clientes,
                                                                          'formas_pago': formas_pago,
-                                                                         'no_recibo':no_recibo})
+                                                                         'no_recibo': no_recibo})
     return HttpResponse(html)
+
 
 @csrf_exempt
 def add_nuevo_recibo(request):
@@ -371,7 +416,7 @@ def add_nuevo_recibo(request):
         if not cliente:
             obj_json['code'] = 400
             obj_json['mensaje'] = "Cliente no encontrado"
-        elif not  forma_pago:
+        elif not forma_pago:
             obj_json['code'] = 400
             obj_json['mensaje'] = "Forma de pago no encontrada"
         else:
@@ -381,14 +426,14 @@ def add_nuevo_recibo(request):
                 no_recibo = 1
 
             recibo = Recibo_Provicional.objects.create(
-                cliente = cliente,
-                no_recibo = no_recibo,
-                monto = monto,
+                cliente=cliente,
+                no_recibo=no_recibo,
+                monto=monto,
                 forma_pago=forma_pago,
-                cancelacion = cancelacion,
-                usuario_creacion = request.user,
-                comentario = comentario,
-                fecha_cobro_ck = fecha_pos_cambio_ck
+                cancelacion=cancelacion,
+                usuario_creacion=request.user,
+                comentario=comentario,
+                fecha_cobro_ck=fecha_pos_cambio_ck
             )
             recibo.save()
 
@@ -397,6 +442,7 @@ def add_nuevo_recibo(request):
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
+
 
 def mostrar_recibo_provicional_pdf(request):
     data = []

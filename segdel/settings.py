@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'app.inventario',
+    'app.contabilidad',
     'import_export',
     'django.contrib.humanize',
 ]
