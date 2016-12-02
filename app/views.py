@@ -26,8 +26,8 @@ class index(TemplateView):
         documentos = Documento_Cobro.objects.all()
         documentos_abono = Documento_Abono.objects.all()
         if documentos:
-            context['total_cartera'] = documentos.aggregate(Sum('monto'))['monto__sum'] - \
-                                       documentos_abono.aggregate(Sum('monto_abono'))['monto_abono__sum']
+            context['total_cartera'] = Documento_Cobro.objects.all().aggregate(Sum('monto'))['monto__sum'] - \
+                                       Documento_Abono.objects.all().aggregate(Sum('monto_abono'))['monto_abono__sum']
         return super(index, self).render_to_response(context)
 
 

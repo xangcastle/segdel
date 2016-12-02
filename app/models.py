@@ -226,6 +226,11 @@ class Moneda(base_contabilidad):
     nombre = models.CharField(max_length=50)
     simbolo = models.CharField(max_length=4)
     activo = models.BooleanField(default=True)
+    principal = models.BooleanField(default=False)
+
+    #def save(self, *args, **kwargs):
+    #    if self.principal:
+    #        Moneda.objects.all().update(principal=False)
 
 
 class Tipo_Cambio(base_contabilidad):

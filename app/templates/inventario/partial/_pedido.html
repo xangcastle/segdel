@@ -3,7 +3,7 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Vendedor:</label>
         <div class="col-sm-8">
-            <select name="vendedor" class="form-control select2" disabled="disabled">
+            <select name="vendedor_select" class="form-control select2" disabled="disabled">
                 <option selected="selected" disabled="disabled">--seleccione vendedor--</option>
                 {% for vendedor in vendedores %}
                     {% if vendedor.usuario == actual_vendedor %}
@@ -13,6 +13,7 @@
                     {% endif %}
                 {% endfor %}
             </select>
+            <input name="vendedor" type="hidden" value="{{ actual_vendedor.id }}">
         </div>
     </div>
 </div>

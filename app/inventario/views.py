@@ -64,7 +64,14 @@ def render_listado_factura(request):
 
 
 def render_nueva_factura(request):
-    html = render_to_string('inventario/partial/_factura.html')
+    vendedores = Vendedor.objects.filter(activo=True)
+    clientes = Cliente.objects.all()
+    vendedor = request.user
+    html = render_to_string('inventario/partial/_factura.html',
+                            {'vendedores': vendedores,
+                             'clientes': clientes,
+                             'actual_vendedor': vendedor})
+
     return HttpResponse(html)
 
 
@@ -72,10 +79,14 @@ def render_nueva_factura(request):
 def add_nueva_factura(request):
     data = []
     obj_json = {}
-    cliente = request.POST.get('cliente')
-    id_vendedor = request.POST.get('vendedor')
+    id_cliente = request.POST.get('cliente')
     detalles = request.POST.getlist('id')
     cantidades = request.POST.getlist('cantidad')
+
+    try:
+        cliente = Cliente.objects.get(id=id_cliente)
+    except:
+        cliente = None
 
     vendedor = request.user  # User.objects.get(id=id_vendedor) HAY QUE HACER QUE EL VENDEDOR SE SELECCIONE DE UNA LISTA
     try:
@@ -83,13 +94,16 @@ def add_nueva_factura(request):
     except:
         no_fac = 1
 
+    moneda = Moneda.objects.get(principal=True)
+
     factura = Factura.objects.create(
         no_fac=no_fac,
         cliente=cliente,
         stotal=0,
         impuesto=0,
         total=0,
-        usuario_creacion=vendedor
+        usuario_creacion=vendedor,
+        moneda=moneda,
     )
     factura.save()
     stotal = 0

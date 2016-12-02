@@ -3,7 +3,17 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Vendedor:</label>
         <div class="col-sm-8">
-            <input name="vendedor" class="form-control" placeholder="Vendedor" type="text" value="{{ User.id }}" >
+            <select name="vendedor_select" class="form-control select2" disabled="disabled">
+                <option selected="selected" disabled="disabled">--seleccione vendedor--</option>
+                {% for vendedor in vendedores %}
+                    {% if vendedor.usuario == actual_vendedor %}
+                        <option selected="selected" value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
+                    {% else %}
+                        <option value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input name="vendedor" type="hidden" value="{{ actual_vendedor.id }}">
         </div>
     </div>
 </div>
@@ -13,7 +23,12 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Cliente:</label>
         <div class="col-sm-8">
-            <input name="cliente" class="form-control" placeholder="Nombre del cliente" type="text">
+            <select name="cliente" class="form-control select2" type="text">
+                <option selected="selected" disabled="disabled">--seleccione cliente--</option>
+                {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.identificacion }}; {{ cliente.nombre }}; {{ cliente.telefono }}</option>
+                {% endfor %}
+            </select>
         </div>
     </div>
 </div>

@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a26dd6c-92f4-4a28-949c-be83e9209ce9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out.pdf" afterPath="$PROJECT_DIR$/out.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/inventario/admin.py" afterPath="$PROJECT_DIR$/app/inventario/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/inventario/views.py" afterPath="$PROJECT_DIR$/app/inventario/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/facturacion.html" afterPath="$PROJECT_DIR$/app/templates/inventario/facturacion.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/partial/_factura.html" afterPath="$PROJECT_DIR$/app/templates/inventario/partial/_factura.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" afterPath="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" afterPath="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
     </list>
     <ignored path="segdel.iws" />
@@ -49,8 +57,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
+            <state relative-caret-position="183">
+              <caret line="232" column="5" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#3199#3385#0" expanded="false" />
@@ -58,62 +66,17 @@
                 <element signature="e#3615#3829#0" expanded="false" />
                 <element signature="e#3865#4588#0" expanded="false" />
                 <element signature="e#4627#4759#0" expanded="false" />
-                <element signature="e#7948#8018#0" expanded="false" />
-                <element signature="e#12079#12182#0" expanded="false" />
-                <element signature="e#12232#12343#0" expanded="false" />
-                <element signature="e#12390#12495#0" expanded="false" />
-                <element signature="e#12535#13536#0" expanded="false" />
-                <element signature="e#13574#13792#0" expanded="false" />
-                <element signature="e#14594#14756#0" expanded="false" />
-                <element signature="e#14795#15632#0" expanded="false" />
-                <element signature="e#15679#15983#0" expanded="false" />
-                <element signature="e#16028#16215#0" expanded="false" />
-                <element signature="e#17032#17271#0" expanded="false" />
-                <element signature="e#17321#17913#0" expanded="false" />
+                <element signature="e#12255#12358#0" expanded="false" />
+                <element signature="e#12408#12519#0" expanded="false" />
+                <element signature="e#12566#12671#0" expanded="false" />
+                <element signature="e#12711#13712#0" expanded="false" />
+                <element signature="e#13750#13968#0" expanded="false" />
+                <element signature="e#14770#14932#0" expanded="false" />
+                <element signature="e#15855#16159#0" expanded="false" />
+                <element signature="e#16204#16391#0" expanded="false" />
+                <element signature="e#17208#17447#0" expanded="false" />
+                <element signature="e#17497#18089#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cobranza.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/app/cobranza.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1638">
-              <caret line="122" column="11" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
-              <folding>
-                <element signature="n#div#0;n#div#2;n#!!top" expanded="false" />
-                <element signature="n#script#5;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/inventario/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_pedido.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -121,86 +84,49 @@
       <file leaf-file-name="facturacion.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturacion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="189" column="9" selection-start-line="183" selection-start-column="8" selection-end-line="189" selection-end-column="9" />
+            <state relative-caret-position="149">
+              <caret line="224" column="55" selection-start-line="224" selection-start-column="55" selection-end-line="224" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
+      <file leaf-file-name="_productos.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_productos.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="217" column="45" selection-start-line="217" selection-start-column="30" selection-end-line="217" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#2532#2621#0" expanded="false" />
-                <element signature="e#5005#5916#0" expanded="false" />
-                <element signature="e#5111#5182#0" expanded="false" />
-                <element signature="e#5953#6148#0" expanded="false" />
-                <element signature="e#6193#6373#0" expanded="false" />
-                <element signature="e#6411#6608#0" expanded="false" />
-                <element signature="e#6651#6797#0" expanded="false" />
-                <element signature="e#7260#9808#0" expanded="false" />
-                <element signature="e#9849#10535#0" expanded="false" />
-                <element signature="e#10575#11467#0" expanded="false" />
-                <element signature="e#11778#11947#0" expanded="false" />
-                <element signature="e#12756#14775#0" expanded="false" />
-                <element signature="e#14827#15612#0" expanded="false" />
-                <marker date="1480694981607" expanded="true" signature="823:1167" ph="SELECT DISTI... inventario_producto" />
-                <marker date="1480694981607" expanded="true" signature="823:1212" ph="SELECT DISTI... inventario_producto" />
-                <marker date="1480694981607" expanded="true" signature="823:1300" ph="SELECT DISTI... inventario_producto" />
-                <marker date="1480694981607" expanded="true" signature="823:1453" ph="SELECT DISTI... inventario_producto" />
-                <marker date="1480694981607" expanded="true" signature="915:1093" ph="select sum(e... inventario_bodega_detalle" />
-                <marker date="1480694981607" expanded="true" signature="1027:1092" ph="select p.id inventario_producto" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plantilla_estado_cuenta.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/cartera/plantilla_estado_cuenta.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1782">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            <state relative-caret-position="180">
+              <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views.py">
+        <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="194">
+              <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding>
-                <element signature="e#1144#1384#0" expanded="false" />
-                <element signature="e#1429#2061#0" expanded="false" />
-                <element signature="e#2106#2375#0" expanded="false" />
-                <element signature="e#2419#3813#0" expanded="false" />
-                <element signature="e#3858#4171#0" expanded="false" />
-                <element signature="e#4217#5465#0" expanded="false" />
-                <element signature="e#5504#6800#0" expanded="false" />
-                <element signature="e#7778#8053#0" expanded="false" />
-                <element signature="e#8092#8276#0" expanded="false" />
-                <element signature="e#8316#8667#0" expanded="false" />
-                <element signature="e#8709#9205#0" expanded="false" />
-                <element signature="e#9249#11082#0" expanded="false" />
-                <element signature="e#11123#13303#0" expanded="false" />
-                <element signature="e#13346#14945#0" expanded="false" />
-                <element signature="e#15005#15360#0" expanded="false" />
+                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#4676#5376#0" expanded="false" />
+                <element signature="e#5417#6328#0" expanded="false" />
+                <element signature="e#5523#5594#0" expanded="false" />
+                <element signature="e#6365#6560#0" expanded="false" />
+                <element signature="e#6605#6785#0" expanded="false" />
+                <element signature="e#6823#7020#0" expanded="false" />
+                <element signature="e#7063#7209#0" expanded="false" />
+                <element signature="e#10261#10947#0" expanded="false" />
+                <element signature="e#10987#11879#0" expanded="false" />
+                <element signature="e#12190#12359#0" expanded="false" />
+                <element signature="e#13168#15187#0" expanded="false" />
+                <element signature="e#15239#16024#0" expanded="false" />
+                <marker date="1480697808209" expanded="true" signature="823:1167" ph="SELECT DISTI... inventario_producto" />
+                <marker date="1480697808209" expanded="true" signature="823:1212" ph="SELECT DISTI... inventario_producto" />
+                <marker date="1480697808209" expanded="true" signature="823:1300" ph="SELECT DISTI... inventario_producto" />
+                <marker date="1480697808209" expanded="true" signature="823:1453" ph="SELECT DISTI... inventario_producto" />
+                <marker date="1480697808209" expanded="true" signature="915:1093" ph="select sum(e... inventario_bodega_detalle" />
+                <marker date="1480697808209" expanded="true" signature="1027:1092" ph="select p.id inventario_producto" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="23" column="32" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="32" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -228,17 +154,14 @@
         <option value="$PROJECT_DIR$/app/static/app/css/menu-light.css" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_facturas.html" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/149bf13f-40ad-459e-aaeb-0b29881e5375/console.sql" />
-        <option value="$PROJECT_DIR$/app/templates/inventario/partial/_factura.html" />
         <option value="$PROJECT_DIR$/app/static/app/bootstrap/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/app/templates/inventario/plantilla_factura.html" />
         <option value="$PROJECT_DIR$/app/html_to_pdf.py" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_pedidos.html" />
-        <option value="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/plantilla_pedido.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/facturar.html" />
         <option value="$PROJECT_DIR$/app/templates/app/partial/_facturas_pendientes.html" />
         <option value="$PROJECT_DIR$/recuperacion/models.py" />
-        <option value="$PROJECT_DIR$/app/templates/inventario/facturacion.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/proformas.html" />
         <option value="$PROJECT_DIR$/inventario/urls.py" />
         <option value="$PROJECT_DIR$/inventario/admin.py" />
@@ -265,15 +188,18 @@
         <option value="$PROJECT_DIR$/app/static/app/js/list/list.pagination.min.js" />
         <option value="$PROJECT_DIR$/app/templates/app/index.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/productos.html" />
-        <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/app/templates/cartera/plantilla_estado_cuenta.html" />
         <option value="$PROJECT_DIR$/app/templates/app/cobranza.html" />
         <option value="$PROJECT_DIR$/app/admin.py" />
-        <option value="$PROJECT_DIR$/app/inventario/admin.py" />
-        <option value="$PROJECT_DIR$/app/inventario/views.py" />
-        <option value="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
         <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
+        <option value="$PROJECT_DIR$/app/templates/inventario/partial/_factura.html" />
+        <option value="$PROJECT_DIR$/app/inventario/views.py" />
+        <option value="$PROJECT_DIR$/app/inventario/admin.py" />
+        <option value="$PROJECT_DIR$/app/models.py" />
+        <option value="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" />
+        <option value="$PROJECT_DIR$/app/templates/inventario/facturacion.html" />
       </list>
     </option>
   </component>
@@ -478,36 +404,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="segdel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="segdel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partial" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -921,20 +817,20 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2767584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@segdel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44026187" sideWeight="0.49695587" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5030441" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34042552" sideWeight="0.49086758" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63011456" sideWeight="0.4939117" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26022914" sideWeight="0.47356495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34860885" sideWeight="0.48782343" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34860885" sideWeight="0.48782343" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46317512" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44353518" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@segdel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44026187" sideWeight="0.49695587" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2487725" sideWeight="0.49695587" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -946,8 +842,8 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="manage.py@segdel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44026187" sideWeight="0.49695587" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5030441" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34042552" sideWeight="0.49086758" order="13" side_tool="false" content_ui="tabs" />
@@ -955,7 +851,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26022914" sideWeight="0.47356495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34860885" sideWeight="0.48782343" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2487725" sideWeight="0.49695587" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2767584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2767584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1009,6 +905,21 @@
           <line>338</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/app/inventario/views.py</url>
+          <line>237</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/app/models.py</url>
+          <line>231</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/app/inventario/views.py</url>
+          <line>81</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -1017,31 +928,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="110" />
+      <option name="time" value="117" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/templates/app/partial/_comentarios.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/partial/_gestiones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inventario/admin.py" />
-    <entry file="file://$PROJECT_DIR$/inventario/apps.py" />
-    <entry file="file://$PROJECT_DIR$/inventario/models.py" />
-    <entry file="file://$PROJECT_DIR$/inventario/tests.py" />
-    <entry file="file://$PROJECT_DIR$/inventario/urls.py" />
-    <entry file="file://$PROJECT_DIR$/inventario/views.py" />
     <entry file="file://$PROJECT_DIR$/app/inventario/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1182,14 +1073,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/views/decorators/csrf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5958">
@@ -1248,11 +1131,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/core/handlers/base.py">
+    <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="306">
+          <caret line="30" column="61" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="61" />
+          <folding>
+            <element signature="e#1176#1416#0" expanded="false" />
+            <element signature="e#1461#2093#0" expanded="false" />
+            <element signature="e#2138#2407#0" expanded="false" />
+            <element signature="e#2451#3845#0" expanded="false" />
+            <element signature="e#3890#4203#0" expanded="false" />
+            <element signature="e#4249#5497#0" expanded="false" />
+            <element signature="e#5536#6832#0" expanded="false" />
+            <element signature="e#6874#7773#0" expanded="false" />
+            <element signature="e#7810#8085#0" expanded="false" />
+            <element signature="e#8124#8308#0" expanded="false" />
+            <element signature="e#8348#8699#0" expanded="false" />
+            <element signature="e#8741#9237#0" expanded="false" />
+            <element signature="e#9281#11114#0" expanded="false" />
+            <element signature="e#11155#13335#0" expanded="false" />
+            <element signature="e#13378#14977#0" expanded="false" />
+            <element signature="e#15037#15392#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1261,6 +1161,29 @@
         <state relative-caret-position="-1782">
           <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_factura.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="27" column="42" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="42" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#select#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="30" selection-end-column="10" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#select#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#1;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1275,63 +1198,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="217" column="45" selection-start-line="217" selection-start-column="30" selection-end-line="217" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#2532#2621#0" expanded="false" />
-            <element signature="e#5005#5916#0" expanded="false" />
-            <element signature="e#5111#5182#0" expanded="false" />
-            <element signature="e#5953#6148#0" expanded="false" />
-            <element signature="e#6193#6373#0" expanded="false" />
-            <element signature="e#6411#6608#0" expanded="false" />
-            <element signature="e#6651#6797#0" expanded="false" />
-            <element signature="e#7260#9808#0" expanded="false" />
-            <element signature="e#9849#10535#0" expanded="false" />
-            <element signature="e#10575#11467#0" expanded="false" />
-            <element signature="e#11778#11947#0" expanded="false" />
-            <element signature="e#12756#14775#0" expanded="false" />
-            <element signature="e#14827#15612#0" expanded="false" />
-            <marker date="1480694981607" expanded="true" signature="823:1167" ph="SELECT DISTI... inventario_producto" />
-            <marker date="1480694981607" expanded="true" signature="823:1212" ph="SELECT DISTI... inventario_producto" />
-            <marker date="1480694981607" expanded="true" signature="823:1300" ph="SELECT DISTI... inventario_producto" />
-            <marker date="1480694981607" expanded="true" signature="823:1453" ph="SELECT DISTI... inventario_producto" />
-            <marker date="1480694981607" expanded="true" signature="915:1093" ph="select sum(e... inventario_bodega_detalle" />
-            <marker date="1480694981607" expanded="true" signature="1027:1092" ph="select p.id inventario_producto" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturacion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="189" column="9" selection-start-line="183" selection-start-column="8" selection-end-line="189" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="522">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/contrib/admin/options.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="1006" column="0" selection-start-line="1006" selection-start-column="0" selection-end-line="1006" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/contrib/auth/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/views/decorators/csrf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/inventario/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/utils/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/views/decorators/cache.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/contrib/admin/sites.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/core/handlers/exception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
+        <state relative-caret-position="183">
+          <caret line="232" column="5" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#3199#3385#0" expanded="false" />
@@ -1339,50 +1289,60 @@
             <element signature="e#3615#3829#0" expanded="false" />
             <element signature="e#3865#4588#0" expanded="false" />
             <element signature="e#4627#4759#0" expanded="false" />
-            <element signature="e#7948#8018#0" expanded="false" />
-            <element signature="e#12079#12182#0" expanded="false" />
-            <element signature="e#12232#12343#0" expanded="false" />
-            <element signature="e#12390#12495#0" expanded="false" />
-            <element signature="e#12535#13536#0" expanded="false" />
-            <element signature="e#13574#13792#0" expanded="false" />
-            <element signature="e#14594#14756#0" expanded="false" />
-            <element signature="e#14795#15632#0" expanded="false" />
-            <element signature="e#15679#15983#0" expanded="false" />
-            <element signature="e#16028#16215#0" expanded="false" />
-            <element signature="e#17032#17271#0" expanded="false" />
-            <element signature="e#17321#17913#0" expanded="false" />
+            <element signature="e#12255#12358#0" expanded="false" />
+            <element signature="e#12408#12519#0" expanded="false" />
+            <element signature="e#12566#12671#0" expanded="false" />
+            <element signature="e#12711#13712#0" expanded="false" />
+            <element signature="e#13750#13968#0" expanded="false" />
+            <element signature="e#14770#14932#0" expanded="false" />
+            <element signature="e#15855#16159#0" expanded="false" />
+            <element signature="e#16204#16391#0" expanded="false" />
+            <element signature="e#17208#17447#0" expanded="false" />
+            <element signature="e#17497#18089#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/inventario/admin.py">
+    <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_productos.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
+    <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturacion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="149">
+          <caret line="224" column="55" selection-start-line="224" selection-start-column="55" selection-end-line="224" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <element signature="e#1144#1384#0" expanded="false" />
-            <element signature="e#1429#2061#0" expanded="false" />
-            <element signature="e#2106#2375#0" expanded="false" />
-            <element signature="e#2419#3813#0" expanded="false" />
-            <element signature="e#3858#4171#0" expanded="false" />
-            <element signature="e#4217#5465#0" expanded="false" />
-            <element signature="e#5504#6800#0" expanded="false" />
-            <element signature="e#7778#8053#0" expanded="false" />
-            <element signature="e#8092#8276#0" expanded="false" />
-            <element signature="e#8316#8667#0" expanded="false" />
-            <element signature="e#8709#9205#0" expanded="false" />
-            <element signature="e#9249#11082#0" expanded="false" />
-            <element signature="e#11123#13303#0" expanded="false" />
-            <element signature="e#13346#14945#0" expanded="false" />
-            <element signature="e#15005#15360#0" expanded="false" />
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#4676#5376#0" expanded="false" />
+            <element signature="e#5417#6328#0" expanded="false" />
+            <element signature="e#5523#5594#0" expanded="false" />
+            <element signature="e#6365#6560#0" expanded="false" />
+            <element signature="e#6605#6785#0" expanded="false" />
+            <element signature="e#6823#7020#0" expanded="false" />
+            <element signature="e#7063#7209#0" expanded="false" />
+            <element signature="e#10261#10947#0" expanded="false" />
+            <element signature="e#10987#11879#0" expanded="false" />
+            <element signature="e#12190#12359#0" expanded="false" />
+            <element signature="e#13168#15187#0" expanded="false" />
+            <element signature="e#15239#16024#0" expanded="false" />
+            <marker date="1480697808209" expanded="true" signature="823:1167" ph="SELECT DISTI... inventario_producto" />
+            <marker date="1480697808209" expanded="true" signature="823:1212" ph="SELECT DISTI... inventario_producto" />
+            <marker date="1480697808209" expanded="true" signature="823:1300" ph="SELECT DISTI... inventario_producto" />
+            <marker date="1480697808209" expanded="true" signature="823:1453" ph="SELECT DISTI... inventario_producto" />
+            <marker date="1480697808209" expanded="true" signature="915:1093" ph="select sum(e... inventario_bodega_detalle" />
+            <marker date="1480697808209" expanded="true" signature="1027:1092" ph="select p.id inventario_producto" />
           </folding>
         </state>
       </provider>

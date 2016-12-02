@@ -11,3 +11,6 @@ admin.site.register(Producto, producto_admin)
 
 class vendedor_admin(admin.ModelAdmin):
     admin.site.register(Vendedor)
+
+class moneda_admin(admin.ModelAdmin):
+    admin.site.register(Moneda)
