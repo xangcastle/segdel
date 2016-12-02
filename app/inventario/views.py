@@ -24,20 +24,21 @@ class catalogo_productos(TemplateView):
 @csrf_exempt
 def get_productos(request):
     data = []
-    # productos = Producto.objects.raw('SELECT DISTINCT codigo, nombre, precio, imagen, categoria_id, '
-    #                                 'marca_id, empresa_id, medida_id FROM inventario_producto')
-    productos = local_sql_exec('SELECT DISTINCT codigo, nombre, precio, imagen, categoria, marca ' +
-                               'FROM inventario_producto INNER  JOIN inventario_producto_categoria ' +
-                               'on inventario_producto.categoria_id=inventario_producto_categoria.id ' +
+    #productos = Producto.objects.values('codigo', 'nombre', 'precio', 'imagen', 'categoria', 'marca').distinct()
+    productos = local_sql_exec('SELECT DISTINCT codigo, nombre, precio, imagen, marca, ' +
+                               '(select sum(existencia) from inventario_bodega_detalle where producto_id in ' +
+                               '(select p.id from inventario_producto p where  p.codigo =p1.codigo)) as cantidad ' +
+                               'FROM inventario_producto p1 INNER  JOIN inventario_producto_categoria ' +
+                               'on p1.categoria_id=inventario_producto_categoria.id ' +
                                'INNER JOIN inventario_producto_marca ' +
-                               'on inventario_producto.marca_id=inventario_producto_marca.id')
+                               'on p1.marca_id=inventario_producto_marca.id')
     if productos:
         for p in productos:
-            pro = {'id': p.codigo,
+            pro = {'codigo': p.codigo,
                    'nombre': p.nombre,
                    'precio': p.precio,
-                   'categoria': p.categoria,
                    'marca': p.marca,
+                   'existencia':p.cantidad,
                    'imagen': "/media/" + p.imagen if p.imagen != "" else "/media/foto-no-disponible.jpg",}
             data.append(pro)
         # data = serializers.serialize('json', productos)

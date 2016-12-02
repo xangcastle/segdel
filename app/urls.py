@@ -21,6 +21,10 @@ urlpatterns = [
         name='render_add_abono_factura'),
     url(r'^add_abono_factura/', add_abono_factura,
         name='add_abono_factura'),
+    url(r'^mostrar_estado_cuenta/', mostrar_estado_cuenta,
+        name='mostrar_estado_cuenta'),
+
+
     url(r'^render_gestiones/', render_gestiones,
         name='render_gestiones'),
     url(r'^get_tipo_gestion_resultado/', get_tipo_gestion_resultado,

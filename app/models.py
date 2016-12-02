@@ -16,6 +16,7 @@ def get_media_url(self, filename):
     code = str(self.id)
     return '%s/%s/%s' % (clase, code, filename)
 
+
 # region OTROS
 class Import(models.Model):
     razon_social = models.CharField(max_length=255)
@@ -68,8 +69,10 @@ class Import(models.Model):
         li = []
         li.append(kwargs.pop('user', 1))
         usuario = User.objects.get(id=li[0])
+        if not self.impuesto:
+            self.impuesto=0.0
 
-        factura, create = Documento_Cobro.objects.get_or_create(cliente=self.get_cliente(), empresa=self.get_empresa(),
+        documento, create = Documento_Cobro.objects.get_or_create(cliente=self.get_cliente(), empresa=self.get_empresa(),
                                                                 monto=self.monto, impuesto=self.impuesto,
                                                                 total=self.total,
                                                                 fecha=self.fecha, nodoc=self.nodoc,
@@ -78,7 +81,7 @@ class Import(models.Model):
         if self.abono > 0:
             if usuario:
                 now = datetime.datetime.now()
-                Documento_Abono.objects.create(factura=factura, monto_abono=self.abono,
+                Documento_Abono.objects.create(documento=documento, monto_abono=self.abono,
                                                fecha_abono=now, usuario=usuario)
 
 
@@ -211,7 +214,7 @@ class Documento_Abono(models.Model):
 
 
 # endregion
-#region CONTABILIDAD
+# region CONTABILIDAD
 
 class base_contabilidad(models.Model):
     class Meta:
@@ -230,7 +233,8 @@ class Tipo_Cambio(base_contabilidad):
     cambio = models.FloatField(null=False)
     fecha = models.DateField(null=False)
 
-#endregion
+
+# endregion
 # region INVENTARIO
 
 class base_inventario(models.Model):
@@ -398,12 +402,10 @@ class Bodega(base_inventario):
         app_label = "inventario"
 
 
-
 class Bodega_Detalle(base_inventario):
     bodega = models.ForeignKey(Bodega, null=False)
     producto = models.ForeignKey(Producto, null=False)
     existencia = models.FloatField(default=0.0, null=False)
-
 
     def __unicode__(self):
         return "%s %s-%s" % (self.bodega.nombre, self.producto, self.existencia)
@@ -497,7 +499,4 @@ class Recibo_Provicional(base_inventario):
     def monto_letras(self):
         return "%s NETOS" % (upper(numero_a_letras(self.monto)))
 
-
 # endregion
-
-

@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from app.html_to_pdf import render_to_pdf
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -22,8 +23,10 @@ class index(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        context['total_cartera'] = Documento_Cobro.objects.all().aggregate(Sum('monto'))['monto__sum'] - \
-        Documento_Abono.objects.all().aggregate(Sum('monto_abono'))['monto_abono__sum']
+        documentos = Documento_Abono.objects.all()
+        if documentos:
+            context['total_cartera'] = documentos.aggregate(Sum('monto'))['monto__sum'] - \
+                                       documentos.aggregate(Sum('monto_abono'))['monto_abono__sum']
         return super(index, self).render_to_response(context)
 
 
@@ -190,6 +193,37 @@ def add_abono_factura(request):
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
+
+def mostrar_estado_cuenta(request):
+    data = []
+    obj_json = {}
+    id_cliente = request.GET.get('id_cliente')
+    if not id_cliente:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "Cliente invalido"
+    else:
+        try:
+            cliente = Cliente.objects.get(id=id_cliente)
+        except:
+            cliente = None
+
+        if not cliente:
+            obj_json['code'] = 400
+            obj_json['mensaje'] = "Cliente no encontrado"
+        else:
+            documentos = Documento_Cobro.objects.filter(cliente=cliente)
+            return render_to_pdf(
+                'cartera/plantilla_estado_cuenta.html',
+                {
+                    'pagesize': 'A4',
+                    'cliente': cliente,
+                    'documentos': documentos,
+                }
+            )
+
+        data.append(obj_json)
+        data = json.dumps(data)
+        return HttpResponse(data, content_type='application/json')
 
 def render_gestiones(request):
     if request.GET.get('id_cliente'):

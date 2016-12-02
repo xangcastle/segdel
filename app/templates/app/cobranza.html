@@ -50,7 +50,8 @@
                             <td>{{ cliente.saldo_cliente|floatformat:2|intcomma }}$</td>
                             <td class="text-center">
                                 <a href="#" onclick="mostrarComentarios({{ cliente.id }}); return false;" class="tooltipstered" title="Agregue su comentario"><i class="fa fa-comment"></i></a> |
-                                <a href="../cobranza_cliente/?id={{ cliente.id }}" class="tooltipstered" title="Detalle de cuenta"><i class="fa fa-eye"></i></a>
+                                <a href="../cobranza_cliente/?id={{ cliente.id }}" class="tooltipstered" title="Detalle de cuenta"><i class="fa fa-eye"></i></a> |
+                                <a href="#" onclick="mostrar_estado_cuenta({{ cliente.id }}); return false;" class="tooltipstered" title="Ver estado de cuenta"><i class="fa fa-book"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -96,12 +97,29 @@
     </div>
     <input id="clienteid" type="hidden">
 </div>
+
+<div class="modal fade in" id="modal-estado-cuenta-preview" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Factura</h4>
+            </div>
+            <div class="modal-body">
+                <iframe id="conten-estado-cuenta-preview" width="100%" style="height: 400px;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock cuerpo %}
 {% block scripts-block %}
     <script src="/static/app/js/data-tables/jquery.dataTables.js"></script>
     <script src="/static/app/js/data-tables/dataTables.tableTools.js"></script>
     <script src="/static/app/js/data-tables/dataTables.bootstrap.js"></script>
     <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
+    <script src="/static/app/js/data-tables/tables-data.js"></script>
     <script>
         $(document).ready(function () {
             $("#comentar").on('click',function () {
@@ -131,6 +149,13 @@
                     $("#myModal").modal('show')
                 }
             });
+        }
+        function mostrar_estado_cuenta(cliente) {
+            var $iframe = $("#conten-estado-cuenta-preview");
+            var url="../mostrar_estado_cuenta/?id_cliente=" + cliente;
+            $iframe.attr('src',url);
+            $("#modal-estado-cuenta-preview").modal('show');
+            return false;
         }
     </script>
 {% endblock %}

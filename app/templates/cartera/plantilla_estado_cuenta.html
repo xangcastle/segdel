@@ -1,0 +1,126 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="background-color: white">
+<div class="container">
+<div class="row">
+
+
+<div class="row">
+    <div class="col-xs-6">
+<h1>
+    <a href=" ">
+    <img alt="" src="/app/static/app/images/tulogoaquifooter.png" />
+        Logo aquí </a></h1>
+</div>
+<div class="col-xs-6 text-right">
+<h1>ESTADO DE CUENTA</h1>
+</div>
+</div>
+
+<hr />
+
+
+<div class="row">
+    <div class="col-xs-5 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Cliente : <a href="#">{{ cliente }}</a></h4>
+            </div>
+            <div class="panel-body">Dirección
+                detalles
+                más detalles
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+            <h4>Documento</h4>
+            </th>
+            <th>
+            <h4>Descripción</h4>
+            </th>
+            <th>
+            <h4>Fecha Emision</h4>
+            </th>
+            <th>
+            <h4>Monto</h4>
+            </th>
+            <th>
+            <h4>Saldo</h4>
+            </th>
+            <th>
+            <h4>Estado</h4>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for documento in documentos %}
+    <tr>
+        <td><a href="#">{{ documento.nodoc }}</a></td>
+        <td>{{ documento.descripcion }}</td>
+        <td class=" text-right ">{{ documento.fecha }}</td>
+        <td class=" text-right ">{{ documento.total }}</td>
+        <td class=" text-right ">{{ documento.saldo_factura }}</td>
+        <td class=" text-right ">VECIDO/AL CORRIENTE</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+
+<div class="row text-right">
+    <div class="col-xs-3 col-xs-offset-7">
+        <strong>
+        Saldo Total: <br>
+        </strong>
+    </div>
+    <div class="col-xs-2">
+        <strong>
+        {{ cliente.saldo_cliente }}<br>
+        </strong>
+    </div>
+</div>
+
+<div class="row">
+    <div class = "col-xs-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+            <h4>Datos bancarios</h4>
+            </div>
+            <div class="panel-body">
+             Su nombre
+             Nombre del banco
+             SWIFT: -------
+             Número de cuenta: 12345678
+             IBAN: ------
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-7">
+        <div class="span7">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4> Datos de contacto </h4>
+                    <div class=" panel-body ">
+                     Email: usted@ejemplo.com
+                     Móvil: +92123456789
+                     Twitter: <a href="https://twitter.com/suTwitter">@suTwitter</a> |Suweb: <a href="http://www.suweb.com/author/usted"> http: //www. suweb.com/author/usted / </a>
+                    <h4><small> El pago debe ser por transferencia bancaria </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</body>
+</html>
+
