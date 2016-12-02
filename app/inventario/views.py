@@ -211,7 +211,11 @@ def render_listado_pedido(request):
 def render_nuevo_pedido(request):
     vendedores = Vendedor.objects.filter(activo=True)
     clientes = Cliente.objects.all()
-    html = render_to_string('inventario/partial/_pedido.html', {'vendedores': vendedores, 'clientes': clientes})
+    vendedor = request.user
+    html = render_to_string('inventario/partial/_pedido.html',
+                            {'vendedores': vendedores,
+                             'clientes': clientes,
+                             'actual_vendedor':vendedor})
     return HttpResponse(html)
 
 

@@ -8,3 +8,6 @@ class producto_admin(admin.ModelAdmin):
     list_display = ('codigo','nombre', 'precio', 'serie')
     list_filter = ('codigo', 'nombre', 'serie')
 admin.site.register(Producto, producto_admin)
+
+class vendedor_admin(admin.ModelAdmin):
+    admin.site.register(Vendedor)

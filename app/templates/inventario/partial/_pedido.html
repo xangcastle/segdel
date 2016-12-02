@@ -3,10 +3,14 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Vendedor:</label>
         <div class="col-sm-8">
-            <select name="vendedor" class="form-control select2">
+            <select name="vendedor" class="form-control select2" disabled="disabled">
                 <option selected="selected" disabled="disabled">--seleccione vendedor--</option>
                 {% for vendedor in vendedores %}
-                <option value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
+                    {% if vendedor.usuario == actual_vendedor %}
+                        <option selected="selected" value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
+                    {% else %}
+                        <option value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
         </div>
