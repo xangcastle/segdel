@@ -23,10 +23,11 @@ class index(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        documentos = Documento_Abono.objects.all()
+        documentos = Documento_Cobro.objects.all()
+        documentos_abono = Documento_Abono.objects.all()
         if documentos:
             context['total_cartera'] = documentos.aggregate(Sum('monto'))['monto__sum'] - \
-                                       documentos.aggregate(Sum('monto_abono'))['monto_abono__sum']
+                                       documentos_abono.aggregate(Sum('monto_abono'))['monto_abono__sum']
         return super(index, self).render_to_response(context)
 
 

@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a26dd6c-92f4-4a28-949c-be83e9209ce9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out.pdf" afterPath="$PROJECT_DIR$/out.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin.py" afterPath="$PROJECT_DIR$/app/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/inventario/admin.py" afterPath="$PROJECT_DIR$/app/inventario/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/inventario/views.py" afterPath="$PROJECT_DIR$/app/inventario/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" afterPath="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
     </list>
     <ignored path="segdel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,8 +49,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="163" column="14" selection-start-line="163" selection-start-column="6" selection-end-line="163" selection-end-column="14" />
+            <state relative-caret-position="150">
+              <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#3199#3385#0" expanded="false" />
@@ -102,7 +98,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_pedido.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_pedido.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
@@ -173,27 +169,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+            <state relative-caret-position="222">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
-                <element signature="e#1081#1321#0" expanded="false" />
-                <element signature="e#1366#1998#0" expanded="false" />
-                <element signature="e#2043#2312#0" expanded="false" />
-                <element signature="e#2356#3750#0" expanded="false" />
-                <element signature="e#3795#4108#0" expanded="false" />
-                <element signature="e#4154#5402#0" expanded="false" />
-                <element signature="e#5441#6737#0" expanded="false" />
-                <element signature="e#7715#7990#0" expanded="false" />
-                <element signature="e#8029#8213#0" expanded="false" />
-                <element signature="e#8253#8604#0" expanded="false" />
-                <element signature="e#8646#9142#0" expanded="false" />
-                <element signature="e#9186#11019#0" expanded="false" />
-                <element signature="e#11060#13240#0" expanded="false" />
-                <element signature="e#13283#14882#0" expanded="false" />
-                <element signature="e#14942#15297#0" expanded="false" />
+                <element signature="e#1144#1384#0" expanded="false" />
+                <element signature="e#1429#2061#0" expanded="false" />
+                <element signature="e#2106#2375#0" expanded="false" />
+                <element signature="e#2419#3813#0" expanded="false" />
+                <element signature="e#3858#4171#0" expanded="false" />
+                <element signature="e#4217#5465#0" expanded="false" />
+                <element signature="e#5504#6800#0" expanded="false" />
+                <element signature="e#7778#8053#0" expanded="false" />
+                <element signature="e#8092#8276#0" expanded="false" />
+                <element signature="e#8316#8667#0" expanded="false" />
+                <element signature="e#8709#9205#0" expanded="false" />
+                <element signature="e#9249#11082#0" expanded="false" />
+                <element signature="e#11123#13303#0" expanded="false" />
+                <element signature="e#13346#14945#0" expanded="false" />
+                <element signature="e#15005#15360#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -271,13 +267,13 @@
         <option value="$PROJECT_DIR$/app/templates/inventario/productos.html" />
         <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/app/urls.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/templates/cartera/plantilla_estado_cuenta.html" />
         <option value="$PROJECT_DIR$/app/templates/app/cobranza.html" />
         <option value="$PROJECT_DIR$/app/admin.py" />
         <option value="$PROJECT_DIR$/app/inventario/admin.py" />
         <option value="$PROJECT_DIR$/app/inventario/views.py" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
+        <option value="$PROJECT_DIR$/app/views.py" />
       </list>
     </option>
   </component>
@@ -931,9 +927,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63011456" sideWeight="0.4939117" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26022914" sideWeight="0.47356495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34860885" sideWeight="0.48782343" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34860885" sideWeight="0.48782343" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46317512" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46317512" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1005,7 +1001,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/app/views.py</url>
-          <line>265</line>
+          <line>266</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -1244,14 +1240,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturacion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="189" column="9" selection-start-line="183" selection-start-column="8" selection-end-line="189" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1265,30 +1253,6 @@
         <state relative-caret-position="100">
           <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
-          <folding>
-            <element signature="e#1081#1321#0" expanded="false" />
-            <element signature="e#1366#1998#0" expanded="false" />
-            <element signature="e#2043#2312#0" expanded="false" />
-            <element signature="e#2356#3750#0" expanded="false" />
-            <element signature="e#3795#4108#0" expanded="false" />
-            <element signature="e#4154#5402#0" expanded="false" />
-            <element signature="e#5441#6737#0" expanded="false" />
-            <element signature="e#7715#7990#0" expanded="false" />
-            <element signature="e#8029#8213#0" expanded="false" />
-            <element signature="e#8253#8604#0" expanded="false" />
-            <element signature="e#8646#9142#0" expanded="false" />
-            <element signature="e#9186#11019#0" expanded="false" />
-            <element signature="e#11060#13240#0" expanded="false" />
-            <element signature="e#13283#14882#0" expanded="false" />
-            <element signature="e#14942#15297#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1308,49 +1272,6 @@
             <element signature="n#div#0;n#div#2;n#!!top" expanded="false" />
             <element signature="n#script#5;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="163" column="14" selection-start-line="163" selection-start-column="6" selection-end-line="163" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#3199#3385#0" expanded="false" />
-            <element signature="e#3431#3574#0" expanded="false" />
-            <element signature="e#3615#3829#0" expanded="false" />
-            <element signature="e#3865#4588#0" expanded="false" />
-            <element signature="e#4627#4759#0" expanded="false" />
-            <element signature="e#7948#8018#0" expanded="false" />
-            <element signature="e#12079#12182#0" expanded="false" />
-            <element signature="e#12232#12343#0" expanded="false" />
-            <element signature="e#12390#12495#0" expanded="false" />
-            <element signature="e#12535#13536#0" expanded="false" />
-            <element signature="e#13574#13792#0" expanded="false" />
-            <element signature="e#14594#14756#0" expanded="false" />
-            <element signature="e#14795#15632#0" expanded="false" />
-            <element signature="e#15679#15983#0" expanded="false" />
-            <element signature="e#16028#16215#0" expanded="false" />
-            <element signature="e#17032#17271#0" expanded="false" />
-            <element signature="e#17321#17913#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/inventario/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1388,6 +1309,81 @@
         <state relative-caret-position="90">
           <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturacion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="189" column="9" selection-start-line="183" selection-start-column="8" selection-end-line="189" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#3199#3385#0" expanded="false" />
+            <element signature="e#3431#3574#0" expanded="false" />
+            <element signature="e#3615#3829#0" expanded="false" />
+            <element signature="e#3865#4588#0" expanded="false" />
+            <element signature="e#4627#4759#0" expanded="false" />
+            <element signature="e#7948#8018#0" expanded="false" />
+            <element signature="e#12079#12182#0" expanded="false" />
+            <element signature="e#12232#12343#0" expanded="false" />
+            <element signature="e#12390#12495#0" expanded="false" />
+            <element signature="e#12535#13536#0" expanded="false" />
+            <element signature="e#13574#13792#0" expanded="false" />
+            <element signature="e#14594#14756#0" expanded="false" />
+            <element signature="e#14795#15632#0" expanded="false" />
+            <element signature="e#15679#15983#0" expanded="false" />
+            <element signature="e#16028#16215#0" expanded="false" />
+            <element signature="e#17032#17271#0" expanded="false" />
+            <element signature="e#17321#17913#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/inventario/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#1144#1384#0" expanded="false" />
+            <element signature="e#1429#2061#0" expanded="false" />
+            <element signature="e#2106#2375#0" expanded="false" />
+            <element signature="e#2419#3813#0" expanded="false" />
+            <element signature="e#3858#4171#0" expanded="false" />
+            <element signature="e#4217#5465#0" expanded="false" />
+            <element signature="e#5504#6800#0" expanded="false" />
+            <element signature="e#7778#8053#0" expanded="false" />
+            <element signature="e#8092#8276#0" expanded="false" />
+            <element signature="e#8316#8667#0" expanded="false" />
+            <element signature="e#8709#9205#0" expanded="false" />
+            <element signature="e#9249#11082#0" expanded="false" />
+            <element signature="e#11123#13303#0" expanded="false" />
+            <element signature="e#13346#14945#0" expanded="false" />
+            <element signature="e#15005#15360#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
