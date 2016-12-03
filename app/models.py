@@ -450,6 +450,21 @@ class Factura(base_inventario):
     fecha_vence = models.DateTimeField(null=True, blank=True)
     moneda = models.ForeignKey(Moneda)
 
+    @property
+    def abonos(self):
+        return Factura_Abono.objects.all().filter(factura=self)
+
+    @property
+    def saldo_factura(self):
+        '''
+        esta funcion regresa el saldo dela facturara (monto) menos todos los abonos a la factura
+        '''
+        if Factura_Abono.objects.all().filter(factura=self):
+            return self.total - Factura_Abono.objects.all().filter(factura=self).aggregate(Sum('monto_abono'))[
+                'monto_abono__sum']
+        else:
+            return self.total
+
 
 class Factura_Detalle(base_inventario):
     factura = models.ForeignKey(Factura, null=False)
@@ -500,6 +515,7 @@ class Recibo_Provicional(base_inventario):
     usuario_creacion = models.ForeignKey(User, related_name="Recibo_Provicional_User_Creacion")
     comentario = models.CharField(max_length=600, null=True)
     fecha_cobro_ck = models.DateTimeField(null=True, blank=True)
+    referencia = models.CharField(max_length=20, null=True, blank=True)
 
     def monto_letras(self):
         return "%s NETOS" % (upper(numero_a_letras(self.monto)))

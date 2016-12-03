@@ -262,11 +262,7 @@
         })
         $('body').addClass("mini-navbar");
     });
-    function loadDatePicker() {
-        $(".datetimepicker").datetimepicker({
-            format: 'YYYY-MM-DD'
-        });
-    }
+
     function cargarComentarios() {
         $.ajax({
             url:"../get_comentario_cliente/?id={{ cliente.id }}",

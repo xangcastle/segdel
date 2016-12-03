@@ -11,7 +11,7 @@ from django.views.generic import TemplateView
 from app.html_to_pdf import render_to_pdf
 from app.models import *
 
-
+#region PRODUCTOS
 class catalogo_productos(TemplateView):
     template_name = "inventario/productos.html"
 
@@ -48,7 +48,9 @@ def get_productos(request):
         data = None
     return HttpResponse(data, content_type='application/json')
 
+#endregion
 
+#region FACTURACION
 class facturacion(TemplateView):
     template_name = "inventario/facturacion.html"
 
@@ -62,6 +64,23 @@ def render_listado_factura(request):
     html = render_to_string('inventario/partial/_facturas.html', {'facturas': facturas})
     return HttpResponse(html)
 
+@csrf_exempt
+def render_listado_factura_select(request):
+    id_cliente = request.POST.get('id_cliente')
+    if not id_cliente:
+        return
+    else:
+        try:
+            cliente = Cliente.objects.get(id=id_cliente)
+        except:
+            cliente = None
+
+        if not cliente:
+            return
+        else:
+            facturas = Factura.objects.filter(cliente=cliente, anulada=False)
+            html = render_to_string('cartera/partial/_facturas_select.html', {'facturas': facturas})
+            return HttpResponse(html)
 
 def render_nueva_factura(request):
     vendedores = Vendedor.objects.filter(activo=True)
@@ -201,13 +220,15 @@ class facturar(TemplateView):
         context = self.get_context_data()
         return super(facturar, self).render_to_response(context)
 
+#endregion
+
 
 def render_listado_producto(request):
     bodega_detalles = Bodega_Detalle.objects.all()
     html = render_to_string('inventario/partial/_productos.html', {'bodega_detalles': bodega_detalles})
     return HttpResponse(html)
 
-
+#region PEDIDOS
 class proformas(TemplateView):
     template_name = "inventario/proformas.html"
 
@@ -368,8 +389,9 @@ def mostrar_pedido_pdf(request):
         data.append(obj_json)
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
+#endregion
 
-
+#region RECIBOS PROVICIONALES
 class recibos_provicionales(TemplateView):
     template_name = "cartera/recibos_provicionales.html"
 
@@ -408,10 +430,22 @@ def add_nuevo_recibo(request):
     comentario = request.POST.get('comentario')
     id_forma_pago = request.POST.get('forma_pago')
     fecha_pos_cambio_ck = request.POST.get('fecha_pos_cambio_ck')
+    referencia = request.POST.get('referencia')
+    facturas =request.POST.getlist('factura')
+
     cancelacion = request.POST.get('cancelacion')
 
     if not cancelacion:
         cancelacion = False
+
+    if cancelacion == 'on':
+        cancelacion= True
+    else:
+        cancelacion=False
+
+    if not referencia:
+        referencia=""
+
     if not id_cliente:
         obj_json['code'] = 400
         obj_json['mensaje'] = "Cliente invalido"
@@ -454,6 +488,7 @@ def add_nuevo_recibo(request):
                 comentario=comentario,
                 fecha_cobro_ck=fecha_pos_cambio_ck
             )
+            recibo.referencia=referencia
             recibo.save()
 
             obj_json['code'] = 200
@@ -491,3 +526,5 @@ def mostrar_recibo_provicional_pdf(request):
         data.append(obj_json)
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
+
+#endregion

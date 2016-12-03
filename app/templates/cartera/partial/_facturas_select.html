@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-sm-12">
+        <table id="basic-datatables" class="table table-bordered table-responsive dataTable"
+       role="grid" aria-describedby="basic-datatables_info">
+    <thead>
+        <tr>
+            <th>Factrua</th>
+            <th>Cliente</th>
+            <th>Saldo</th>
+            <th>Fecha</th>
+            <th>Selec</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for factura in facturas %}
+        <tr role="row">
+            <td>{{ factura.no_fac }}</td>
+            <td>{{ factura.cliente }}</td>
+            <td>{{ factura.saldo_factura }}</td>
+            <td>{{ factura.fecha_creacion|date:"Y-m-d h:m:s" }}</td>
+            <td>
+                <input id="selec_factura" name="selec_factura" type="checkbox" onclick="factura_select(this)" >
+                <input type="hidden" name="factura" value="{{ factura.id }}">
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>

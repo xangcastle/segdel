@@ -29,7 +29,7 @@ class cliente_admin(admin.ModelAdmin):
     list_filter = ('identificacion', 'nombre', 'telefono')
 admin.site.register(Cliente, cliente_admin)
 
-
+admin.site.register(Forma_Pago)
 
 class documento_cobro_admin(admin.ModelAdmin):
     list_display = ('empresa', 'cliente', 'fecha', 'monto')

@@ -15,10 +15,10 @@
                 <label class="col-sm-2 control-label">Monto:</label>
                 <div class="col-sm-10">
                      <div class="input-group">
-                        <input name="monto" class="form-control" type="number" placeholder="Monto">
+                        <input id="monto-recibo" name="monto" class="form-control" type="number" placeholder="Monto" onblur="input_monto_change(this)">
                         <span class="input-group-addon" id="basic-addon1">
                             Cancelación/Abono
-                            <input type="checkbox" name="cancelacion" >
+                            <input type="checkbox" name="cancelacion" id="cancelacion-recibo" >
                         </span>
                      </div>
                 </div>
@@ -34,7 +34,7 @@
              <div class="form-group">
                 <label class="col-sm-2 control-label">Cliente:</label>
                 <div class="col-sm-10">
-                    <select name="cliente" class="form-control select2" type="text">
+                    <select name="cliente" class="form-control select2" type="text" onchange="mostrar_facturas(this)">
                         <option selected="selected" disabled="disabled">--seleccione cliente--</option>
                         {% for cliente in clientes %}
                         <option value="{{ cliente.id }}">{{ cliente.identificacion }}; {{ cliente.nombre }}; {{ cliente.telefono }}</option>
@@ -64,41 +64,40 @@
         </div>
     </div>
 </div>
-
 <div class="hr-line-dashed"></div>
+<div id="content-listado-facturas-cliente"></div>
+
  <div class="row">
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Comentario:</label>
-        <div class="col-sm-10">
-            <textarea cols="2" name="comentario" class="form-control" type="text" placeholder="Sus comentarios"></textarea>
+     <div class="col-sm-12">
+        <div class="form-group">
+            <label for="comentario-recibo">Comentario:</label>
+            <textarea cols="2" id="comentario-recibo" name="comentario" class="form-control" type="text" placeholder="Sus comentarios"></textarea>
         </div>
     </div>
 </div>
  <div class="row">
-    <div class="col-sm-12 col-md-6">
-        <div class="row">
-             <div class="form-group">
-                <label class="col-sm-4 control-label">Forma de Pago:</label>
-                <div class="col-sm-8">
-                    <select id="forma_pago" name="forma_pago" class="form-control select2" type="text" onchange="forma_pago_change(this)">
-                        <option selected="selected" disabled="disabled">--seleccione forma de pago--</option>
-                        {% for forma_pago in formas_pago %}
-                        <option value="{{ forma_pago.id }}">{{ forma_pago.forma_pago }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-        </div>
+    <div class="col-sm-12 col-md-4">
+         <div class="form-group">
+             <label for="forma_pago">Forma de Pago:</label>
+             <select id="forma_pago" name="forma_pago" class="form-control select2" type="text" onchange="forma_pago_change(this)">
+                    <option selected="selected" disabled="disabled">--seleccione forma de pago--</option>
+                    {% for forma_pago in formas_pago %}
+                    <option value="{{ forma_pago.id }}">{{ forma_pago.forma_pago }}</option>
+                    {% endfor %}
+                </select>
+         </div>
     </div>
-    <div class="col-sm-12 col-md-6 hidden" id="div-pos-fecha">
-        <div class="row">
-             <div class="form-group">
-                <label class="col-sm-4 control-label">Fecha cambio CK:</label>
-                <div class="col-sm-8">
-                    <input id="fecha_pos_cambio_ck"  type="text"  class="form-control datetimepicker" placeholder="Carmbiar despues del.." aria-describedby="basic-addon1">
-                </div>
-            </div>
-        </div>
+    <div class="col-sm-12 col-md-4 hidden" id="div-pos-fecha">
+         <div class="form-group">
+            <label for="fecha_pos_cambio_ck">Fecha cambio CK:</label>
+             <input id="fecha_pos_cambio_ck" name="fecha_pos_cambio_ck"  type="text"  class="form-control datetimepicker" placeholder="Carmbiar despues del.." aria-describedby="basic-addon1">
+         </div>
+    </div>
+    <div class="col-sm-12 col-md-4 hidden" id="div-doc-banco">
+         <div class="form-group">
+            <label for="referencia">CK/REF:</label>
+            <input name="referencia" id="referencia" type="text"  class="form-control" placeholder="Referencia..." aria-describedby="basic-addon1">
+         </div>
     </div>
 </div>
 

@@ -45,10 +45,15 @@
                 <a href="#">Datos del pago</a>
             </div>
             <div class="panel-body">
-                <span><strong>Fecha:    </strong>{{ recibo.fecha_creacion|date:"Y-m-d h:m:s" }}<br></span>
-                <span><strong>Monto:    </strong>{{ recibo.monto }}<br></span>
+                <span><strong>Fecha: </strong>{{ recibo.fecha_creacion|date:"Y-m-d h:m:s" }}<br></span>
+                <span><strong>Monto: </strong>{{ recibo.monto }}<br></span>
                 <span><strong>Monto Letras: </strong>{{ recibo.monto_letras }}<br></span>
-                <span><strong>Descripción:  </strong>RPC#{{ recibo.no_recibo }}: {{ recibo.descripcion }}<br></span>
+                <span><strong>Forma de Pago: </strong>{{ recibo.forma_pago }} {{ recibo.referencia }}
+                    {% if recibo.fecha_cobro_ck %}
+                       - NO COBRAR ANTES DEL: {{ recibo.fecha_cobro_ck|date:"Y-m-d" }}
+                    {% endif %}
+                    <br></span>
+                <span><strong>Descripción: </strong>RPC#{{ recibo.no_recibo }}: {{ recibo.comentario }}<br></span>
             </div>
         </div>
     </div>

@@ -798,6 +798,13 @@
         <script src="/static/app/js/fullcalendar.min.js"></script>
         <script src="/static/app/js/select/select2.js"></script>
 {#        <script src="/static/app/js/index2.js"></script>#}
+        <script>
+            function loadDatePicker() {
+                $(".datetimepicker").datetimepicker({
+                    format: 'YYYY-MM-DD'
+                });
+            }
+        </script>
         {% block scripts-block %}
 
         {% endblock scripts-block %}

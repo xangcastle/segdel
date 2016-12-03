@@ -81,7 +81,7 @@
     <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
     <script src="/static/app/js/data-tables/tables-data.js"></script>
     <script src="/static/app/js/sweet-alert/sweetalert.min.js"></script>
-
+    <script src="/static/app/js/bootstrap-datetimepicker.js"></script>
     <script>
         $(document).ready(function () {
             mostrarRecibos();
@@ -112,6 +112,7 @@
                       backdrop: 'static',
                       keyboard: false
                     });
+                    loadDatePicker();
                 }
             });
         }
@@ -177,11 +178,79 @@
         }
         function forma_pago_change(forma_pago){
             forma_pago = $(forma_pago);
-            if(forma_pago.val()=="4"){
+            if(forma_pago.val()=="3"||forma_pago.val()=="4"||forma_pago.val()=="5"){
+                $("#div-doc-banco").removeClass("hidden");
+            }else {
+                $("#div-doc-banco").addClass("hidden");
+            }
+            if(forma_pago.val()=="5"){
                 $("#div-pos-fecha").removeClass("hidden");
+                $("#div-pos-fecha").focus();
             }else {
                 $("#div-pos-fecha").addClass("hidden");
             }
+
+
+        }
+        function mostrar_facturas(cliente) {
+            var $data ={id_cliente:$(cliente).val()};
+            $.ajax({
+                url: "../render_listado_factura_select/?csrfmiddlewaretoken={{ csrf_token }}",
+                type: "POST",
+                data: $data,
+                success:function (result) {
+                    $("#content-listado-facturas-cliente").empty().html(result);
+                }
+            });
+        }
+        function factura_select(control) {
+            var monto =0.0;
+            var $control = $(control);
+            var $table = $control.closest('table');
+            var comentario ="CANCELACION DE ";
+
+            $table.find('input[type="checkbox"]:checked').each(function () {
+                var fila=this.closest('tr');
+                var itemmonto = parseFloat($(fila).find("td").eq(2).html());
+                monto+=itemmonto;
+                comentario += " FACTURA " + $(fila).find("td").eq(0).html() + ", "
+            });
+            $("#monto-recibo").val(monto);
+            comentario += " CON UN MONTO DE: " + monto;
+            var contador_factura = $table.find('input[type="checkbox"]:checked').size();
+            if (contador_factura==0)
+                    comentario="";
+            if($table.find('input[type="checkbox"]:checked').size()==$table.find('input[type="checkbox"]').size()){
+                $("#cancelacion-recibo").prop('checked', true);
+            }else {
+                $("#cancelacion-recibo").prop('checked', false);
+            }
+            $("#comentario-recibo").val(comentario);
+        }
+        function input_monto_change(control) {
+            var monto = parseFloat($(control).val());
+            var table = $($("#content-listado-facturas-cliente").find('table'));
+            var comentario ="";
+            table.find('tbody tr').each(function () {
+                if(monto>0){
+                    var itemmonto = parseFloat($(this).find('td').eq(2).html());
+                    if(monto>=itemmonto){
+                        monto-=itemmonto;
+                        $(this).find('td').eq(4).find('input[type="checkbox"]').prop('checked', true);
+                        comentario+="CANCELACION DE FACTURA " + $(this).find("td").eq(0).html() + ", ";
+                    }else {
+                        monto=0;
+                        comentario+="ABONO DE " + (Math.round(monto * 100)/100).toFixed(2) + " A FACTURA " + $(this).find("td").eq(0).html() + ", ";
+                    }
+                }
+            });
+            if(monto>0){
+                comentario+="ADELANTO DE " + (Math.round(monto * 100)/100).toFixed(2) + "";
+                $("#cancelacion-recibo").prop('checked', true);
+            }else {
+                $("#cancelacion-recibo").prop('checked', false);
+            }
+            $("#comentario-recibo").val(comentario);
         }
     </script>
 {% endblock %}

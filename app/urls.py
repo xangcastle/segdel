@@ -55,6 +55,8 @@ urlpatterns = [
 
     url(r'^render_listado_factura/', login_required(render_listado_factura),
         name='render_listado_factura'),
+    url(r'^render_listado_factura_select/', login_required(render_listado_factura_select),
+        name='render_listado_factura_select'),
     url(r'^render_nueva_factura/', login_required(render_nueva_factura),
         name='render_nueva_factura'),
     url(r'^add_nueva_factura/', login_required(add_nueva_factura),
