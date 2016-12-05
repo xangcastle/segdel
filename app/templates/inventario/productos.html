@@ -162,12 +162,12 @@
                 var ul=$("#profile-page-about-details").empty();
                 $.each(result, function (key,value) {
 
-                    ul.append('<li class="collection-item col-md-4" style="list-style: none;height: 150px; border: 1px solid #e0e0e0;">' +
+                    ul.append('<li class="collection-item col-md-4" style="list-style: none;height: 200px; border: 1px solid #e0e0e0;">' +
                                         '<div class="row">' +
                                             '<div class="col-xs-6 grey-text darken-1">' +
-                                                '<strong style="color: #86cfef;">Nombre: </strong><br><span class="nombre">'+value.codigo+'-'+value.nombre+'</span><br>' +
-                                                '<strong style="color: #86cfef;">marca: </strong><br><span class="marca">'+value.marca+'</span><br>' +
-                                                '<strong style="color: #86cfef;">Existencia:</strong><br><span class="precio" style="color: #ffa200;">'+value.existencia+' Unidades</span><br>' +
+                                                '<strong style="color: #86cfef;">Nombre: </strong><br><small class="nombre">'+value.codigo+'-'+value.nombre+'</small><br>' +
+                                                '<strong style="color: #86cfef;">Marca: </strong><br><small class="marca">'+value.marca+'</small><br>' +
+                                                '<strong style="color: #86cfef;">Existencia:</strong><br><small class="existencia" style="color: #ffa200;">'+value.existencia+' Unidades</small><br>' +
                                                 '<strong style="color: #86cfef;">Precio: <br><span class="precio" style="color: #62cb31;">'+value.precio+' US$</span></strong> <br>' +
                                             '</div>' +
                                             '<div class="col-xs-6 grey-text text-darken-4 right-align">' +

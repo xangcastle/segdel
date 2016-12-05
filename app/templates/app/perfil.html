@@ -1,0 +1,105 @@
+{% extends "app/index.html" %}
+{% block breadcrums %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title" style="margin-bottom: 0px;">
+                <h1>Inventario<small></small></h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-product-hunt"></i></a></li>
+                    <li class="active">Catalogo de productos</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+{% endblock breadcrums %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12" >
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="panel panel-white border-top-blue" id="datos-cliente">
+              <div class="panel-heading">
+                <h3>Mis datos</h3>
+              </div>
+              <div class="panel-body">
+                  <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="imagen">Imagen</label>
+                                <input type="file" id="imagen" name="imagen" onchange="changeImage(event)">
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <img id="imagen-view" src="{{ usuario.profile.imagen_url }}" alt="Sin Imagen" style="max-width: 200px; max-height: 200px">
+                        </div>
+                    </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="nombre"><strong>Nombre:</strong></label>
+                            <input type="text" id="nombre" name="name" class="form-control" value="{{ usuario.first_name }}">
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="apellido"><strong>Apellido:</strong></label>
+                                <input type="text" id="apellido" name="lastname" class="form-control" value="{{ usuario.last_name }}">
+                            </div>
+                        </div>
+                    </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="email"><strong>Correo Electronico:</strong></label>
+                            <input type="email" id="email" name="email" class="form-control" value="{{ usuario.email }}">
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-xs-12 text-right">
+                          <button id="guardar" class="btn btn-primary" type="submit"><i class="fa fa-save fa-fw"></i>Guardar</button>
+                      </div>
+                  </div>
+              </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock cuerpo %}
+
+{% block scripts-block %}
+<script>
+    /*$(document).ready(function () {
+        var data =$('#datos-cliente :input').serialize();
+        $("#guardar").on('click',(function () {
+            $.ajax({
+                url:"../save_profile/?csrfmiddlewaretoken={{ csrf_token }}",
+                type:"POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data:data,
+                success: function (result) {
+                    alert(result);
+                }
+            });
+        }));
+    });*/
+    function changeImage(event) {
+        var selectedFile = event.target.files[0];
+        var reader = new FileReader();
+
+        var imgtag = document.getElementById("imagen-view");
+        imgtag.title = selectedFile.name;
+
+        reader.onload = function(event) {
+            imgtag.src = event.target.result;
+        };
+
+        reader.readAsDataURL(selectedFile);
+    }
+</script>
+{% endblock scripts-block %}

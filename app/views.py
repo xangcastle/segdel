@@ -31,6 +31,77 @@ class index(TemplateView):
         return super(index, self).render_to_response(context)
 
 
+class perfil(TemplateView):
+    template_name = "app/perfil.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        context['usuario'] = User.objects.get(id=request.user.id)
+        return super(perfil, self).render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+        data = []
+        obj_json = {}
+        context = self.get_context_data()
+        firstname = request.POST.get('name')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        imagen = request.FILES.get('imagen')
+
+        user = User.objects.get(id=request.user.id);
+        if not user:
+            obj_json['code'] = "400"
+            obj_json['mensaje'] = "ERROR: usuario invalido";
+        else:
+
+            user.first_name = firstname
+            user.last_name = lastname
+            user.email = email
+
+            perf, create = Profile.objects.get_or_create(user=user)
+            if perf:
+                if imagen:
+                    perf.foto = imagen
+                    perf.save()
+
+            user.save()
+
+            obj_json['code'] = "200"
+            obj_json['mensaje'] = "Perfil actualizado exitosamente!"
+            context['usuario'] = user
+            return super(perfil, self).render_to_response(context)
+
+@csrf_exempt
+def save_profile(request):
+    data = []
+    obj_json = {}
+    firstname = request.POST.get('name')
+    lastname = request.POST.get('lastname')
+    email = request.POST.get('email')
+    imagen = request.FILES.get('imagen')
+
+    user = User.objects.get(id=request.user.id);
+    if not user:
+        obj_json['code'] = "400"
+        obj_json['mensaje'] = "ERROR: usuario invalido";
+    else:
+
+        user.first_name = firstname
+        user.last_name = lastname
+        user.email = email
+
+        perfil, create = Profile.objects.get_or_create(user=user)
+        if perfil:
+            if imagen:
+                perfil.foto = imagen
+            perfil.save()
+
+        user.save()
+
+        obj_json['code'] = "200"
+        obj_json['mensaje'] = "Perfil actualizado exitosamente!"
+
+
 class cobranza(TemplateView):
     template_name = "app/cobranza.html"
 
@@ -47,7 +118,7 @@ class cobranza_cliente(TemplateView):
         context = self.get_context_data()
         if request.GET.get('id'):
             id_cliente = int(request.GET.get('id'))
-            cliente =  Cliente.objects.get(id=id_cliente)
+            cliente = Cliente.objects.get(id=id_cliente)
             context['cliente'] = cliente
             # hace falta agregar que la factura tenga saldo pendiente > 0
             context['facturas'] = Documento_Cobro.facturas_pendientes(cliente)
@@ -195,6 +266,7 @@ def add_abono_factura(request):
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
 
+
 def mostrar_estado_cuenta(request):
     data = []
     obj_json = {}
@@ -226,6 +298,7 @@ def mostrar_estado_cuenta(request):
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
 
+
 def render_gestiones(request):
     if request.GET.get('id_cliente'):
         id_cliente = int(request.GET.get('id_cliente'))
@@ -233,18 +306,21 @@ def render_gestiones(request):
     html = render_to_string('app/partial/_gestiones.html', {'gestiones': gestiones})
     return HttpResponse(html)
 
+
 def render_add_gestion(request):
     tipo_gestiones = Tipo_Gestion.objects.filter(activo=True)
     html = render_to_string('app/partial/_gestion_add.html', {'tipo_gestiones': tipo_gestiones})
     return HttpResponse(html)
+
 
 def render_edit_gestion(request):
     if request.GET.get('id_gestion'):
         id_gestion = int(request.GET.get('id_gestion'))
         gestion = Gestion.objects.get(id=id_gestion)
     tipo_gestiones = Tipo_Gestion.objects.filter(activo=True)
-    html = render_to_string('app/partial/_gestion_edit.html', {'gestion':gestion, 'tipo_gestiones': tipo_gestiones})
+    html = render_to_string('app/partial/_gestion_edit.html', {'gestion': gestion, 'tipo_gestiones': tipo_gestiones})
     return HttpResponse(html)
+
 
 def render_finish_gestion(request):
     if request.GET.get('id_gestion'):
@@ -252,9 +328,10 @@ def render_finish_gestion(request):
         gestion = Gestion.objects.get(id=id_gestion)
     tipo_gestiones = Tipo_Gestion.objects.filter(activo=True)
     resultados = gestion.tipo_gestion.resultados.all()
-    html = render_to_string('app/partial/_gestion_finish.html', {'gestion':gestion, 'tipo_gestiones': tipo_gestiones,
-                                                               'resultados':resultados})
+    html = render_to_string('app/partial/_gestion_finish.html', {'gestion': gestion, 'tipo_gestiones': tipo_gestiones,
+                                                                 'resultados': resultados})
     return HttpResponse(html)
+
 
 def add_new_cliente_gestion(request):
     data = []
@@ -317,6 +394,7 @@ def add_new_cliente_gestion(request):
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
 
+
 def edit_cliente_gestion(request):
     data = []
     obj_json = {}
@@ -374,10 +452,10 @@ def edit_cliente_gestion(request):
             obj_json['code'] = 400
             obj_json['mensaje'] = "ERROR: Gestion no encontrada"
         else:
-            gestion.tipo_gestion=tipo_gestion
-            gestion.usuario_creacion=usuario
-            gestion.descripcion=descripcion
-            gestion.programacion=programacion
+            gestion.tipo_gestion = tipo_gestion
+            gestion.usuario_creacion = usuario
+            gestion.descripcion = descripcion
+            gestion.programacion = programacion
             gestion.fecha_creacion = datetime.now()
             gestion.save()
 
@@ -387,6 +465,7 @@ def edit_cliente_gestion(request):
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
+
 
 def finish_cliente_gestion(request):
     data = []
@@ -411,7 +490,6 @@ def finish_cliente_gestion(request):
     else:
         resultado = None
 
-
     if not id_resultado:
         obj_json['code'] = 400
         obj_json['mensaje'] = "ERROR: Resultado gestion invalida"
@@ -428,9 +506,9 @@ def finish_cliente_gestion(request):
             obj_json['code'] = 400
             obj_json['mensaje'] = "ERROR: Gestion no encontrada"
         else:
-            gestion.usuario_completa=usuario
-            gestion.descripcion_resultado=descripcion
-            gestion.resultado=resultado
+            gestion.usuario_completa = usuario
+            gestion.descripcion_resultado = descripcion
+            gestion.resultado = resultado
             gestion.fecha_completa = datetime.now()
             gestion.save()
 
@@ -440,6 +518,7 @@ def finish_cliente_gestion(request):
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
+
 
 @csrf_exempt
 def get_tipo_gestion_resultado(request):

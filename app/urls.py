@@ -7,6 +7,11 @@ from .views import *
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
+    url(r'^perfil/', login_required(perfil.as_view()),
+        name='perfil'),
+    url(r'^save_profile/', login_required(save_profile),
+        name='save_profile'),
+
     url(r'^cobranza/', login_required(cobranza.as_view()),
         name='cobranza'),
     url(r'^cobranza_cliente/', login_required(cobranza_cliente.as_view()),
@@ -91,5 +96,7 @@ urlpatterns = [
         name='add_nuevo_recibo'),
     url(r'^mostrar_recibo_provicional_pdf/', login_required(mostrar_recibo_provicional_pdf),
         name='mostrar_recibo_provicional_pdf'),
+
+
 
 ]

@@ -8,7 +8,7 @@ from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.models import User
 
-User.add_to_class('foto', models.ImageField(upload_to="", null=True))
+
 
 
 def get_media_url(self, filename):
@@ -16,6 +16,15 @@ def get_media_url(self, filename):
     code = str(self.id)
     return '%s/%s/%s' % (clase, code, filename)
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    foto = models.ImageField(upload_to=get_media_url, null=True)
+
+    def imagen_url(self):
+        if self.foto:
+            return self.foto.url
+        else:
+            return "/media/foto-no-disponible.jpg"
 
 # region OTROS
 class Import(models.Model):
