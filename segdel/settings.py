@@ -82,7 +82,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    'segdel': {
+           'ENGINE': "django_pyodbc",
+           'HOST': "192.168.1.133,1433",
+           'USER': "sa",
+           'PASSWORD': "N3wd3v3l0p",
+           'NAME': "CONTABILIDAD",
+           'OPTIONS': {
+               'host_is_server': True
+           },
+    },
 }
 
 

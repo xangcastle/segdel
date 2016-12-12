@@ -27,6 +27,14 @@ admin.site.register(Gestion)
 class cliente_admin(admin.ModelAdmin):
     list_display = ('identificacion', 'nombre', 'telefono', 'direccion')
     list_filter = ('identificacion', 'nombre', 'telefono')
+
+    def get_actions(self, request):
+        actions = super(cliente_admin, self).get_actions(request)
+        if request.user.username[0].upper() != 'J':
+            if 'delete_selected' in actions:
+                del actions['delete_selected']
+        return actions
+
 admin.site.register(Cliente, cliente_admin)
 
 admin.site.register(Forma_Pago)

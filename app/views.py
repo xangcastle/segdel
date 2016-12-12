@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from app.dbmanager import sql_exec
 from app.html_to_pdf import render_to_pdf
 from django.core import serializers
 from django.http import HttpResponse
@@ -127,6 +128,7 @@ class cobranza_cliente(TemplateView):
 
 
 def get_cliente_comentarios(request):
+    sql_exec('sql-segdel',  'SELECT * FROM CTB_BANCOS')
     if request.GET.get('id'):
         id_cliente = int(request.GET.get('id'))
         comentarios = Cliente.objects.get(id=id_cliente).comentarios.all()
