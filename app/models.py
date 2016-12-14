@@ -260,7 +260,7 @@ class base_inventario(models.Model):
 class Import_Imventario(base_inventario):
     razon_social = models.CharField(max_length=255)
     numero_ruc = models.CharField(max_length=14)
-    producto_codigo = models.CharField(max_length=10)
+    producto_codigo = models.CharField(max_length=50)
     producto_serie = models.CharField(max_length=50)
     producto_nombre = models.CharField(max_length=200)
     producto_existencia = models.FloatField(null=False, default=0)
