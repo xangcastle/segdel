@@ -80,15 +80,19 @@ WSGI_APPLICATION = 'segdel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'inblensa',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     },
-    'segdel': {
+    'inblensa': {
            'ENGINE': "django_pyodbc",
-           'HOST': "192.168.1.133,1433",
+           'HOST': "inblensa.ddns.net",
            'USER': "sa",
-           'PASSWORD': "N3wd3v3l0p",
-           'NAME': "CONTABILIDAD",
+           'PASSWORD': "Miloes1985",
+           'NAME': "COI",
            'OPTIONS': {
                'host_is_server': True
            },
