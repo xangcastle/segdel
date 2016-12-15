@@ -9,12 +9,11 @@ from django.db.models import Sum
 from django.contrib.auth.models import User
 
 
-
-
 def get_media_url(self, filename):
     clase = self.__class__.__name__
     code = str(self.id)
     return '%s/%s/%s' % (clase, code, filename)
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -25,6 +24,7 @@ class Profile(models.Model):
             return self.foto.url
         else:
             return "/media/foto-no-disponible.jpg"
+
 
 # region OTROS
 class Import(models.Model):
@@ -81,13 +81,13 @@ class Import(models.Model):
         cliente = self.get_cliente()
         empresa = self.get_empresa()
         if not self.impuesto:
-            self.impuesto=0.0
+            self.impuesto = 0.0
         if self.nodoc:
             documento, create = Documento_Cobro.objects.get_or_create(cliente=cliente, empresa=empresa,
-                                                                    monto=self.monto, impuesto=self.impuesto,
-                                                                    total=self.total,
-                                                                    fecha=self.fecha, nodoc=self.nodoc,
-                                                                    descripcion=self.descripcion)
+                                                                      monto=self.monto, impuesto=self.impuesto,
+                                                                      total=self.total,
+                                                                      fecha=self.fecha, nodoc=self.nodoc,
+                                                                      descripcion=self.descripcion)
 
             if self.abono > 0:
                 if usuario:
@@ -239,7 +239,7 @@ class Moneda(base_contabilidad):
     activo = models.BooleanField(default=True)
     principal = models.BooleanField(default=False)
 
-    #def save(self, *args, **kwargs):
+    # def save(self, *args, **kwargs):
     #    if self.principal:
     #        Moneda.objects.all().update(principal=False)
 
@@ -327,7 +327,7 @@ class Import_Imventario(base_inventario):
         producto = None
         try:
             producto = Producto.objects.get(codigo=self.producto_codigo, serie=self.producto_serie)
-            producto.costo_promedio = (producto.costo_promedio + self.producto_costo) / 2
+            # producto.costo_promedio = (producto.costo_promedio + self.producto_costo) / 2
             producto.save()
         except:
             producto, create = Producto.objects.get_or_create(
@@ -349,8 +349,8 @@ class Import_Imventario(base_inventario):
             detalle.existencia += self.producto_existencia
             detalle.save()
         except:
-            detalle, create = Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto,
-                                                                   existencia=self.producto_existencia)
+            Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto,
+                                                 existencia=self.producto_existencia)
 
         return producto
 
