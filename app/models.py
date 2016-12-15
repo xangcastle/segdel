@@ -324,33 +324,26 @@ class Import_Imventario(base_inventario):
         return o
 
     def get_producto(self):
-        producto = None
-        try:
-            producto = Producto.objects.get(codigo=self.producto_codigo, serie=self.producto_serie)
-            # producto.costo_promedio = (producto.costo_promedio + self.producto_costo) / 2
-            producto.save()
-        except:
-            producto, create = Producto.objects.get_or_create(
-                codigo=self.producto_codigo,
-                serie=self.producto_serie,
-                nombre=self.producto_nombre,
-                categoria=self.get_categoria(),
-                empresa=self.get_empresa(),
-                medida=self.get_medida(),
-                marca=self.get_marca(),
-                costo_promedio=self.producto_costo,
-                precio=self.producto_precio)
+        producto, create = Producto.objects.get_or_create(
+            codigo=self.producto_codigo,
+            serie=self.producto_serie)
+
+        producto.nombre = self.producto_nombre
+        producto.categoria = self.get_categoria()
+        producto.empresa = self.get_empresa()
+        producto.medida = self.get_medida()
+        producto.marca = self.get_marca()
+        producto.costo_promedio = self.producto_costo
+        producto.precio = self.producto_precio
+        # producto.costo_promedio = (producto.costo_promedio + self.producto_costo) / 2
+        producto.save()
 
         # REGISTRO DE LA EXISTENCIA
         bodega = self.get_bodega()
-        detalle = None
-        try:
-            detalle = Bodega_Detalle.objects.get(bodega=bodega, producto=producto)
-            detalle.existencia += self.producto_existencia
-            detalle.save()
-        except:
-            Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto,
-                                                 existencia=self.producto_existencia)
+        detalle = Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto)
+        # detalle.existencia += self.producto_existencia
+        detalle.existencia = self.producto_existencia
+        detalle.save()
 
         return producto
 
