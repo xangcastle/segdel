@@ -24,7 +24,7 @@ class gestion_admin(admin.ModelAdmin):
 admin.site.register(Gestion)
 
 
-class cliente_admin(admin.ModelAdmin):
+class cliente_admin(ImportExportModelAdmin):
     list_display = ('identificacion', 'nombre', 'telefono', 'direccion')
     list_filter = ('identificacion', 'nombre', 'telefono')
 
@@ -43,4 +43,3 @@ class documento_cobro_admin(admin.ModelAdmin):
     list_display = ('empresa', 'cliente', 'fecha', 'monto')
     list_filter = ('empresa', 'cliente')
 admin.site.register(Documento_Cobro, documento_cobro_admin)
-

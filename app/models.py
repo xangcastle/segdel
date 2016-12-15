@@ -143,7 +143,7 @@ class Comentario(models.Model):
 
 
 class Cliente(models.Model):
-    identificacion = models.CharField(max_length=14)
+    identificacion = models.CharField(max_length=65)
     nombre = models.CharField(max_length=165)
     telefono = models.CharField(max_length=50, null=True, blank=True)
     celular = models.CharField(max_length=50, null=True, blank=True)
@@ -275,7 +275,7 @@ class Import_Imventario(base_inventario):
 
     class Meta:
         verbose_name = "opcion"
-        verbose_name_plural = "importacion de datos"
+        verbose_name_plural = "importacion de productos"
 
     def get_empresa(self):
         o = None
@@ -380,7 +380,7 @@ class Producto_Medida(base_inventario):
 
 
 class Producto(base_inventario):
-    codigo = models.CharField(max_length=10)
+    codigo = models.CharField(max_length=50)
     serie = models.CharField(max_length=50, null=True, blank=True)  # REGISTRO DE PRODUCTOS POR SERIE
     nombre = models.CharField(max_length=200)
     costo_promedio = models.FloatField(default=0, null=False)
