@@ -534,3 +534,18 @@ def get_tipo_gestion_resultado(request):
     resultado = tipo_gestion.resultados.all()
     data = serializers.serialize("json", resultado)
     return HttpResponse(data, content_type='application/json')
+
+@csrf_exempt
+def execute_import_cliente(request):
+    data = []
+    obj_json = {}
+
+    items = Import.objects.all()
+    for item in items:
+        item.save()
+
+    obj_json['code'] = 200
+    obj_json['mensaje'] = "Importacion exitosa!"
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')

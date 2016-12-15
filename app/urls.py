@@ -97,6 +97,9 @@ urlpatterns = [
     url(r'^mostrar_recibo_provicional_pdf/', login_required(mostrar_recibo_provicional_pdf),
         name='mostrar_recibo_provicional_pdf'),
 
-
+    url(r'^execute_import_inventario/', execute_import_inventario,
+        name='execute_import_inventario'),
+    url(r'^execute_import_cliente/', execute_import_cliente,
+        name='execute_import_cliente'),
 
 ]

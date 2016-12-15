@@ -527,4 +527,18 @@ def mostrar_recibo_provicional_pdf(request):
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
 
+@csrf_exempt
+def execute_import_inventario(request):
+    data = []
+    obj_json = {}
+
+    items = Import_Imventario.objects.all()
+    for item in items:
+        item.save()
+
+    obj_json['code'] = 200
+    obj_json['mensaje'] = "Importacion exitosa!"
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
 #endregion

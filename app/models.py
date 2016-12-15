@@ -31,9 +31,9 @@ class Import(models.Model):
     razon_social = models.CharField(max_length=255)
     numero_ruc = models.CharField(max_length=20)
     nombre = models.CharField(max_length=165)
-    identificacion = models.CharField(max_length=14)
+    identificacion = models.CharField(max_length=65)
     telefono = models.CharField(max_length=50)
-    celular = models.CharField(max_length=50)
+    celular = models.CharField(max_length=50, null=True, blank=True)
     direccion = models.TextField(max_length=600)
     contacto = models.CharField(max_length=150)
     email = models.CharField(max_length=100, null=True, blank=True)
@@ -95,6 +95,7 @@ class Import(models.Model):
                     now = datetime.datetime.now()
                     Documento_Abono.objects.create(documento=documento, monto_abono=self.abono,
                                                    fecha_abono=now, usuario=usuario)
+        self.delete()
 
 
 class Empresa(models.Model):
@@ -341,7 +342,7 @@ class Import_Imventario(base_inventario):
 
         # REGISTRO DE LA EXISTENCIA
         bodega = self.get_bodega()
-        detalle = Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto)
+        detalle , create = Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto)
         # detalle.existencia += self.producto_existencia
         detalle.existencia = self.producto_existencia
         detalle.save()
