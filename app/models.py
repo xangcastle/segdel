@@ -36,13 +36,13 @@ class Import(models.Model):
     celular = models.CharField(max_length=50)
     direccion = models.TextField(max_length=600)
     contacto = models.CharField(max_length=150)
-    nodoc = models.CharField(max_length=15, null=True, verbose_name="numero de documento")
-    descripcion = models.CharField(max_length=500)
-    monto = models.FloatField()
-    impuesto = models.FloatField()
-    total = models.FloatField()
-    abono = models.FloatField()
-    fecha = models.DateField()
+    nodoc = models.CharField(max_length=15, null=True, blank=True, verbose_name="numero de documento")
+    descripcion = models.CharField(max_length=500, null=True, blank=True)
+    monto = models.FloatField(null=True, blank=True)
+    impuesto = models.FloatField(null=True, blank=True)
+    total = models.FloatField(null=True, blank=True)
+    abono = models.FloatField(null=True, blank=True)
+    fecha = models.DateField(null=True, blank=True)
 
     class Meta:
         verbose_name = "opcion"
@@ -78,20 +78,22 @@ class Import(models.Model):
         li = []
         li.append(kwargs.pop('user', 1))
         usuario = User.objects.get(id=li[0])
+        cliente = self.get_cliente()
+        empresa = self.get_empresa()
         if not self.impuesto:
             self.impuesto=0.0
+        if self.nodoc:
+            documento, create = Documento_Cobro.objects.get_or_create(cliente=cliente, empresa=empresa,
+                                                                    monto=self.monto, impuesto=self.impuesto,
+                                                                    total=self.total,
+                                                                    fecha=self.fecha, nodoc=self.nodoc,
+                                                                    descripcion=self.descripcion)
 
-        documento, create = Documento_Cobro.objects.get_or_create(cliente=self.get_cliente(), empresa=self.get_empresa(),
-                                                                monto=self.monto, impuesto=self.impuesto,
-                                                                total=self.total,
-                                                                fecha=self.fecha, nodoc=self.nodoc,
-                                                                descripcion=self.descripcion)
-
-        if self.abono > 0:
-            if usuario:
-                now = datetime.datetime.now()
-                Documento_Abono.objects.create(documento=documento, monto_abono=self.abono,
-                                               fecha_abono=now, usuario=usuario)
+            if self.abono > 0:
+                if usuario:
+                    now = datetime.datetime.now()
+                    Documento_Abono.objects.create(documento=documento, monto_abono=self.abono,
+                                                   fecha_abono=now, usuario=usuario)
 
 
 class Empresa(models.Model):

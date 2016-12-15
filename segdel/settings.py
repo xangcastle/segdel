@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'inblensa',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'HOST': 'demos.deltacopiers.com',
         'PORT': '5432',
     },
     'inblensa': {
