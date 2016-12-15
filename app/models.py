@@ -349,6 +349,7 @@ class Import_Imventario(base_inventario):
 
     def save(self, *args, **kwargs):
         self.get_producto()
+        self.delete()
 
 
 class Producto_Marca(base_inventario):
