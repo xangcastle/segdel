@@ -141,7 +141,7 @@ class Comentario(models.Model):
 
 
 class Cliente(models.Model):
-    identificacion = models.CharField(max_length=14)
+    identificacion = models.CharField(max_length=65)
     nombre = models.CharField(max_length=165)
     telefono = models.CharField(max_length=50, null=True, blank=True)
     celular = models.CharField(max_length=50, null=True, blank=True)
