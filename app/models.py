@@ -273,7 +273,7 @@ class Import_Imventario(base_inventario):
 
     class Meta:
         verbose_name = "opcion"
-        verbose_name_plural = "importacion de datos"
+        verbose_name_plural = "importacion de productos"
 
     def get_empresa(self):
         o = None
