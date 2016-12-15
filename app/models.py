@@ -29,13 +29,14 @@ class Profile(models.Model):
 # region OTROS
 class Import(models.Model):
     razon_social = models.CharField(max_length=255)
-    numero_ruc = models.CharField(max_length=14)
+    numero_ruc = models.CharField(max_length=20)
     nombre = models.CharField(max_length=165)
     identificacion = models.CharField(max_length=14)
     telefono = models.CharField(max_length=50)
     celular = models.CharField(max_length=50)
     direccion = models.TextField(max_length=600)
     contacto = models.CharField(max_length=150)
+    email = models.CharField(max_length=100, null=True, blank=True)
     nodoc = models.CharField(max_length=15, null=True, blank=True, verbose_name="numero de documento")
     descripcion = models.CharField(max_length=500, null=True, blank=True)
     monto = models.FloatField(null=True, blank=True)
