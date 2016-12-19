@@ -11,7 +11,8 @@ from django.views.generic import TemplateView
 from app.html_to_pdf import render_to_pdf
 from app.models import *
 
-#region PRODUCTOS
+
+# region PRODUCTOS
 class catalogo_productos(TemplateView):
     template_name = "inventario/productos.html"
 
@@ -24,7 +25,7 @@ class catalogo_productos(TemplateView):
 @csrf_exempt
 def get_productos(request):
     data = []
-    #productos = Producto.objects.values('codigo', 'nombre', 'precio', 'imagen', 'categoria', 'marca').distinct()
+    # productos = Producto.objects.values('codigo', 'nombre', 'precio', 'imagen', 'categoria', 'marca').distinct()
     productos = local_sql_exec('SELECT DISTINCT codigo, nombre, precio, imagen, marca, ' +
                                '(select sum(existencia) from inventario_bodega_detalle where producto_id in ' +
                                '(select p.id from inventario_producto p where  p.codigo =p1.codigo)) as cantidad ' +
@@ -38,7 +39,7 @@ def get_productos(request):
                    'nombre': p.nombre,
                    'precio': p.precio,
                    'marca': p.marca,
-                   'existencia':p.cantidad,
+                   'existencia': p.cantidad,
                    'imagen': "/media/" + p.imagen if p.imagen != "" else "/media/foto-no-disponible.jpg",}
             data.append(pro)
         # data = serializers.serialize('json', productos)
@@ -48,9 +49,76 @@ def get_productos(request):
         data = None
     return HttpResponse(data, content_type='application/json')
 
-#endregion
 
-#region FACTURACION
+@csrf_exempt
+def get_productos_autocomplete(request):
+
+    query = request.POST.get('query')
+    data = []
+    if query:
+        # productos = Producto.objects.values('codigo', 'nombre', 'precio', 'imagen', 'categoria', 'marca').distinct()
+        productos = local_sql_exec('SELECT DISTINCT p1.id, codigo, nombre, precio, imagen, marca, ' +
+                                   '(select sum(existencia) from inventario_bodega_detalle where producto_id in ' +
+                                   '(select p.id from inventario_producto p where  p.codigo =p1.codigo)) as cantidad, ' +
+                                   'ibd.id as id_detalle ' +
+                                   'FROM inventario_producto p1 INNER  JOIN inventario_producto_categoria ' +
+                                   'on p1.categoria_id=inventario_producto_categoria.id ' +
+                                   'INNER JOIN inventario_producto_marca ' +
+                                   'on p1.marca_id=inventario_producto_marca.id ' +
+                                   'INNER JOIN inventario_bodega_detalle ibd on p1.id = ibd.producto_id  '
+                                   'WHERE codigo ILIKE \'%' + query + '%\' OR nombre ILIKE \'%' + query + '%\' ' +
+                                   'AND (select sum(existencia) from inventario_bodega_detalle where producto_id in ' +
+                                   '(select p.id from inventario_producto p where  p.codigo =p1.codigo)) >0 '
+                                   'OR marca ILIKE \'%' + query + '%\' LIMIT 20')
+        if productos:
+            for p in productos:
+                pro = {'value': p.id,
+                       'text': p.nombre + "; " + p.marca + "; " + str(p.precio),
+                       'imagen': "/media/" + p.imagen if p.imagen != "" else "/media/foto-no-disponible.jpg",
+                       'id_detalle': p.id_detalle,
+                       'nombre': p.nombre,
+                       'marca': p.marca,
+                       'precio': p.precio,
+                       'existencia': p.cantidad}
+                data.append(pro)
+            data = json.dumps(data)
+        else:
+            productos = local_sql_exec('SELECT DISTINCT p1.id, codigo, nombre, precio, imagen, marca, serie, ' +
+                                       '(select sum(existencia) from inventario_bodega_detalle where producto_id in ' +
+                                       '(select p.id from inventario_producto p where  p.codigo =p1.codigo)) as cantidad, ' +
+                                       'ibd.id as id_detalle ' +
+                                       'FROM inventario_producto p1 INNER  JOIN inventario_producto_categoria ' +
+                                       'on p1.categoria_id=inventario_producto_categoria.id ' +
+                                       'INNER JOIN inventario_producto_marca ' +
+                                       'on p1.marca_id=inventario_producto_marca.id ' +
+                                       'INNER JOIN inventario_bodega_detalle ibd on p1.id = ibd.producto_id  '
+                                       'WHERE codigo ILIKE \'%' + query + '%\' OR nombre ILIKE \'%' + query + '%\' ' +
+                                       'OR serie ILIKE \'%' + query + '%\'' +
+                                       'AND (select sum(existencia) from inventario_bodega_detalle where producto_id in ' +
+                                       '(select p.id from inventario_producto p where  p.codigo =p1.codigo)) >0 '
+                                       'OR marca ILIKE \'%' + query + '%\' LIMIT 20')
+            if productos:
+                for p in productos:
+                    pro = {'value': p.id,
+                           'text': p.nombre + "; " + p.marca + "; " + str(p.precio),
+                           'imagen': "/media/" + p.imagen if p.imagen != "" else "/media/foto-no-disponible.jpg",
+                           'id_detalle': p.id_detalle,
+                           'nombre': p.nombre,
+                           'marca': p.marca,
+                           'precio': p.precio,
+                           'existencia': p.cantidad}
+                    data.append(pro)
+                data = json.dumps(data)
+            else:
+                data = None
+    else:
+        data = None
+    return HttpResponse(data, content_type='application/json')
+
+
+# endregion
+
+# region FACTURACION
 class facturacion(TemplateView):
     template_name = "inventario/facturacion.html"
 
@@ -63,6 +131,7 @@ def render_listado_factura(request):
     facturas = Factura.objects.all()
     html = render_to_string('inventario/partial/_facturas.html', {'facturas': facturas})
     return HttpResponse(html)
+
 
 @csrf_exempt
 def render_listado_factura_select(request):
@@ -81,6 +150,7 @@ def render_listado_factura_select(request):
             facturas = Factura.objects.filter(cliente=cliente, anulada=False)
             html = render_to_string('cartera/partial/_facturas_select.html', {'facturas': facturas})
             return HttpResponse(html)
+
 
 def render_nueva_factura(request):
     vendedores = Vendedor.objects.filter(activo=True)
@@ -220,7 +290,8 @@ class facturar(TemplateView):
         context = self.get_context_data()
         return super(facturar, self).render_to_response(context)
 
-#endregion
+
+# endregion
 
 
 def render_listado_producto(request):
@@ -228,7 +299,8 @@ def render_listado_producto(request):
     html = render_to_string('inventario/partial/_productos.html', {'bodega_detalles': bodega_detalles})
     return HttpResponse(html)
 
-#region PEDIDOS
+
+# region PEDIDOS
 class proformas(TemplateView):
     template_name = "inventario/proformas.html"
 
@@ -250,7 +322,7 @@ def render_nuevo_pedido(request):
     html = render_to_string('inventario/partial/_pedido.html',
                             {'vendedores': vendedores,
                              'clientes': clientes,
-                             'actual_vendedor':vendedor})
+                             'actual_vendedor': vendedor})
     return HttpResponse(html)
 
 
@@ -389,9 +461,11 @@ def mostrar_pedido_pdf(request):
         data.append(obj_json)
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
-#endregion
 
-#region RECIBOS PROVICIONALES
+
+# endregion
+
+# region RECIBOS PROVICIONALES
 class recibos_provicionales(TemplateView):
     template_name = "cartera/recibos_provicionales.html"
 
@@ -431,7 +505,7 @@ def add_nuevo_recibo(request):
     id_forma_pago = request.POST.get('forma_pago')
     fecha_pos_cambio_ck = request.POST.get('fecha_pos_cambio_ck')
     referencia = request.POST.get('referencia')
-    facturas =request.POST.getlist('factura')
+    facturas = request.POST.getlist('factura')
 
     cancelacion = request.POST.get('cancelacion')
 
@@ -439,12 +513,12 @@ def add_nuevo_recibo(request):
         cancelacion = False
 
     if cancelacion == 'on':
-        cancelacion= True
+        cancelacion = True
     else:
-        cancelacion=False
+        cancelacion = False
 
     if not referencia:
-        referencia=""
+        referencia = ""
 
     if not id_cliente:
         obj_json['code'] = 400
@@ -488,7 +562,7 @@ def add_nuevo_recibo(request):
                 comentario=comentario,
                 fecha_cobro_ck=fecha_pos_cambio_ck
             )
-            recibo.referencia=referencia
+            recibo.referencia = referencia
             recibo.save()
 
             obj_json['code'] = 200
@@ -527,6 +601,7 @@ def mostrar_recibo_provicional_pdf(request):
         data = json.dumps(data)
         return HttpResponse(data, content_type='application/json')
 
+
 @csrf_exempt
 def execute_import_inventario(request):
     data = []
@@ -541,4 +616,5 @@ def execute_import_inventario(request):
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
-#endregion
+
+# endregion

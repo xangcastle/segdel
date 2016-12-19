@@ -51,6 +51,9 @@ urlpatterns = [
         name='catalogo_productos'),
     url(r'^get_productos/', login_required(get_productos),
         name='get_productos'),
+    url(r'^get_productos_autocomplete/', get_productos_autocomplete,
+        name='get_productos_autocomplete'),
+
 
 
     url(r'^facturacion/', login_required(facturacion.as_view()),

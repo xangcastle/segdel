@@ -3,7 +3,7 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Vendedor:</label>
         <div class="col-sm-8">
-            <select name="vendedor_select" class="form-control select2" disabled="disabled">
+            <select name="vendedor_select" data-live-search="true" class="form-control select2" disabled="disabled">
                 <option selected="selected" disabled="disabled">--seleccione vendedor--</option>
                 {% for vendedor in vendedores %}
                     {% if vendedor.usuario == actual_vendedor %}
@@ -21,7 +21,7 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Cliente:</label>
         <div class="col-sm-8">
-            <select name="cliente" class="form-control select2" type="text">
+            <select name="cliente" data-live-search="true" class="form-control select2" type="text">
                 <option selected="selected" disabled="disabled">--seleccione cliente--</option>
                 {% for cliente in clientes %}
                 <option value="{{ cliente.id }}">{{ cliente.identificacion }}; {{ cliente.nombre }}; {{ cliente.telefono }}</option>
@@ -44,7 +44,9 @@
 <div class="hr-line-dashed"></div>
  <div class="row">
     <div class="col-sm-12">
-        <button id="addProducto" onclick="showaddProducto()"><i class="fa fa-plus fa-fw"></i> Agregar Producto</button>
+        <input type="text" data-live-search="true" class="form-control" id="searchProducto">
+        </input>
+{#        <button id="addProducto" onclick="showaddProducto()"><i class="fa fa-plus fa-fw"></i> Agregar Producto</button>#}
         <table id="table_pedido_detalle" class="table table-bordered tablesaw-swipe table-responsive" >
             <thead>
             <tr>
