@@ -328,11 +328,11 @@ class Import_Imventario(base_inventario):
     def get_producto(self):
         producto, create = Producto.objects.get_or_create(
             codigo=self.producto_codigo,
-            serie=self.producto_serie)
+            serie=self.producto_serie,
+            empresa=self.get_empresa())
 
         producto.nombre = self.producto_nombre
         producto.categoria = self.get_categoria()
-        producto.empresa = self.get_empresa()
         producto.medida = self.get_medida()
         producto.marca = self.get_marca()
         producto.costo_promedio = self.producto_costo
@@ -381,9 +381,9 @@ class Producto(base_inventario):
     nombre = models.CharField(max_length=200)
     costo_promedio = models.FloatField(default=0, null=False)
     precio = models.FloatField(default=0, null=False)
-    categoria = models.ForeignKey(Producto_Categoria)
-    medida = models.ForeignKey(Producto_Medida)
-    marca = models.ForeignKey(Producto_Marca)
+    categoria = models.ForeignKey(Producto_Categoria, null=True, blank=True)
+    medida = models.ForeignKey(Producto_Medida, null=True, blank=True)
+    marca = models.ForeignKey(Producto_Marca, null=True, blank=True)
     empresa = models.ForeignKey(Empresa)
     imagen = models.ImageField(upload_to=get_media_url, null=True, blank=True)
     activo = models.BooleanField(default=True, null=False)
