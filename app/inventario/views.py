@@ -25,14 +25,26 @@ class catalogo_productos(TemplateView):
 @csrf_exempt
 def get_productos(request):
     data = []
+    filtro = request.GET.get('q')
+    if not filtro:
     # productos = Producto.objects.values('codigo', 'nombre', 'precio', 'imagen', 'categoria', 'marca').distinct()
-    productos = local_sql_exec('SELECT DISTINCT codigo, nombre, precio, imagen, marca, ' +
+        productos = local_sql_exec('SELECT DISTINCT codigo, nombre, precio, imagen, marca, ' +
                                '(select sum(existencia) from inventario_bodega_detalle where producto_id in ' +
                                '(select p.id from inventario_producto p where  p.codigo =p1.codigo)) as cantidad ' +
                                'FROM inventario_producto p1 INNER  JOIN inventario_producto_categoria ' +
                                'on p1.categoria_id=inventario_producto_categoria.id ' +
                                'INNER JOIN inventario_producto_marca ' +
-                               'on p1.marca_id=inventario_producto_marca.id')
+                               'on p1.marca_id=inventario_producto_marca.id LIMIT 100')
+    else:
+        productos = local_sql_exec('SELECT DISTINCT codigo, nombre, precio, imagen, marca, ' +
+                                   '(select sum(existencia) from inventario_bodega_detalle where producto_id in ' +
+                                   '(select p.id from inventario_producto p where  p.codigo =p1.codigo)) as cantidad ' +
+                                   'FROM inventario_producto p1 INNER  JOIN inventario_producto_categoria ' +
+                                   'on p1.categoria_id=inventario_producto_categoria.id ' +
+                                   'INNER JOIN inventario_producto_marca ' +
+                                   'on p1.marca_id=inventario_producto_marca.id ' +
+                                   'WHERE codigo ILIKE \'%' + filtro + '%\' OR nombre ILIKE \'%' + filtro + '%\' '
+                                   'OR marca ILIKE \'%' + filtro + '%\' LIMIT 100')
     if productos:
         for p in productos:
             pro = {'codigo': p.codigo,

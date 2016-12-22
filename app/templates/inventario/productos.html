@@ -44,7 +44,7 @@
                       <div id="productos">
                           <div class="row">
                               <div class="col-sm-12 col-md-4">
-                                  <input class="search form-control" placeholder="Search" />
+                                  <input id="busqueda" class="search form-control" placeholder="Search" />
                               </div>
                               <div class="col-sm-6 col-md-4">
                                   <div class="btn-group">
@@ -66,8 +66,6 @@
                                     <ul class="pagination"></ul>
                                 </div>
                             </div>
-
-
                       </div>
                   </div>
             </div>
@@ -150,13 +148,19 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.3.0/list.min.js"></script>
     <script src="/static/app/js/list/list.pagination.min.js" ></script>
     <script src="/static/app/js/jquery.elevatezoom-3.0.8.min.js" ></script>
+    <script src="/static/app/js/underscore-min.js" ></script>
     <script>
     $(document).ready(function () {
-       cargarProductos();
+        cargarProductos();
+        $("#busqueda").keyup(_.debounce(cargarProductos , 500));
+        //$("#busqueda").on('change',function (e) {
+        //    cargarProductos();
+        //})
     });
     function cargarProductos() {
+        var query=$("#busqueda").val();
         $.ajax({
-            url:"../get_productos/",
+            url:"../get_productos/?q="+query,
             type:"get",
             success: function (result) {
                 var ul=$("#profile-page-about-details").empty();
@@ -184,8 +188,9 @@
 
                 $(".imagezoom").elevateZoom({
                     scrollZoom : true,
-                    cursor: "crosshair"});
-
+                    cursor: "crosshair",
+                    page: 30,
+                    plugins: [ ListPagination({}) ] });
             }
         });
     }
