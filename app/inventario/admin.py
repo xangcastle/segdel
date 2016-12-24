@@ -14,8 +14,9 @@ class import_producto(ImportExportModelAdmin):
 admin.site.register(Import_Imventario, import_producto)
 
 class producto_admin(admin.ModelAdmin):
-    list_display = ('codigo','nombre', 'precio', 'serie')
-    list_filter = ('codigo', 'nombre', 'serie')
+    list_display = ('codigo','nombre', 'precio', 'marca', 'categoria')
+    list_filter = ('categoria', 'marca')
+    search_fields = ('codigo', 'nombre', 'marca__marca')
 admin.site.register(Producto, producto_admin)
 
 class vendedor_admin(admin.ModelAdmin):

@@ -24,11 +24,12 @@ class index(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        documentos = Documento_Cobro.objects.all()
-        documentos_abono = Documento_Abono.objects.all()
-        if documentos:
-            context['total_cartera'] = Documento_Cobro.objects.all().aggregate(Sum('monto'))['monto__sum'] - \
-                                       Documento_Abono.objects.all().aggregate(Sum('monto_abono'))['monto_abono__sum']
+        recibos = Recibo_Provicional.objects.all()
+        ventas = Pedido.objects.all()
+        if recibos:
+            context['total_recuperado'] = recibos.aggregate(Sum('monto'))['monto__sum']
+        if ventas:
+            context['total_vendido'] = ventas.aggregate(Sum('total'))['total__sum']
         return super(index, self).render_to_response(context)
 
 

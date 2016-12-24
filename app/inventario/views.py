@@ -571,8 +571,8 @@ def add_nuevo_recibo(request):
                 forma_pago=forma_pago,
                 cancelacion=cancelacion,
                 usuario_creacion=request.user,
-                comentario=comentario,
-                fecha_cobro_ck=fecha_pos_cambio_ck
+                comentario=comentario
+                #fecha_cobro_ck=fecha_pos_cambio_ck
             )
             recibo.referencia = referencia
             recibo.save()

@@ -390,7 +390,7 @@ class Producto(base_inventario):
 
     class Meta:
         app_label = "inventario"
-        verbose_name = "opcion"
+        verbose_name = "producto"
         verbose_name_plural = "Productos del Invetnario"
 
     def __unicode__(self):
