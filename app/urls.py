@@ -107,5 +107,9 @@ urlpatterns = [
 
     url(r'^inventario_general/', inventario_general,
         name='inventario_general'),
+    url(r'^pedidos/', inventario_general,
+        name='pedidos'),
+    url(r'^recuperacion/', inventario_general,
+        name='recuperacion'),
 
 ]
