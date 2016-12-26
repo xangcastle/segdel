@@ -567,7 +567,7 @@ def recuperacion(request):
     data.append(("Fecha", "Cliente", "Forma de Pago", "Comentario",
         "Referencia", "Monto"))
     for p in ps:
-        data.append((format_fecha(p.fecha_creacion), p.cliente, p.forma_pago, p.comentario, p.referencia, p.monto))
+        data.append((format_fecha(p.fecha_creacion), p.cliente.nombre, p.forma_pago.forma_pago, p.comentario, p.referencia, p.monto))
     return render_to_excel("Recuperacion al Dia.xls", data)
 
 
@@ -576,5 +576,5 @@ def pedidos(request):
     queryset = Pedido.objects.all()
     data.append(("Fecha", "Cliente", "Comentario", "Total"))
     for p in queryset:
-        data.append((format_fecha(p.fecha_creacion), p.cliente, p.total, p.comentario))
+        data.append((format_fecha(p.fecha_creacion), p.cliente.nombre, p.total, p.comentario))
     return render_to_excel("Pedidos al Dia.xls", data)
