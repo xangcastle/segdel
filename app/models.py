@@ -9,6 +9,10 @@ from django.db.models import Sum
 from django.contrib.auth.models import User
 
 
+def format_fecha(fecha):
+    return "%s-%s-%s" % (fecha.year, fecha.month, fecha.day)
+
+
 def get_media_url(self, filename):
     clase = self.__class__.__name__
     code = str(self.id)
