@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from app.dbmanager import sql_exec
-from app.html_to_pdf import render_to_pdf
+from app.html_to_pdf import render_to_pdf, render_to_excel
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -550,3 +550,12 @@ def execute_import_cliente(request):
     data.append(obj_json)
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
+
+
+def inventario_general(request):
+    data = []
+    ps = Producto.objects.all()
+    data.append(("Codigo", "Nombre", "Marca", "Precio"))
+    for p in ps:
+        data.append((p.codigo, p.nombre, p.marca.marca, p.precio))
+    return render_to_excel("Inventario General.xls", data)

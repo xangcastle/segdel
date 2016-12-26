@@ -105,4 +105,7 @@ urlpatterns = [
     url(r'^execute_import_cliente/', execute_import_cliente,
         name='execute_import_cliente'),
 
+    url(r'^inventario_general/', inventario_general,
+        name='inventario_general'),
+
 ]
