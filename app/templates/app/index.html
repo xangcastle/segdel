@@ -470,9 +470,10 @@
                              <a href="/app/lrecibo_provicional/">
                                <div class="widget-box clearfix">
                                    <div>
+                                       <a href="javascript:void(0)" onclick="reset_cartera_cobro()"><i class="fa fa-refresh fa-fw"></i> Reiniciar</a>
                                        <h2><i class="fa fa-usd pull-right p4-color"></i></h2>
                                        <h4>Cartera y Cobro</h4>
-                                       <h2>{{ total_recuperado }}</h2>
+                                       <h2 id="total_cartera_cobro">{{ total_recuperado }}</h2>
                                    </div>
                                </div>
                              </a>
@@ -481,14 +482,17 @@
                              <a href="/app/proformas/">
                                <div class="widget-box clearfix">
                                    <div>
+                                       <a  href="javascript:void(0)" onclick="reset_inventario_facturacion()"><i class="fa fa-refresh fa-fw"></i> Reiniciar</a>
                                        <h2><i class="fa fa-shopping-cart pull-right p2-color"></i></h2>
                                        <h4>Inventario y Facturacion</h4>
-                                       <h2>{{ total_vendido }}</h2>
+                                       <h2 id="total_inventario_facturacion">{{ total_vendido }}</h2>
+
                                    </div>
                                </div>
                              </a>
                          </div>
-             </div>{% comment %}
+                     </div>
+                         {% comment %}
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="panel panel-card recent-activites">
@@ -808,6 +812,24 @@
             function loadDatePicker() {
                 $(".datetimepicker").datetimepicker({
                     format: 'YYYY-MM-DD'
+                });
+            }
+            function reset_cartera_cobro() {
+                $.ajax({
+                    url:"../app/reset_recibos/",
+                    type:"GET",
+                    success:function (data) {
+                        $("#total_cartera_cobro").html("0.0")
+                    }
+                });
+            }
+            function reset_inventario_facturacion() {
+                $.ajax({
+                    url:"../app/reset_ventas/",
+                    type:"GET",
+                    success:function (data) {
+                        $("#total_inventario_facturacion").html("0.0")
+                    }
                 });
             }
         </script>

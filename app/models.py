@@ -506,6 +506,7 @@ class Pedido(base_inventario):
     fecha_anulacion = models.DateTimeField(null=True)
     usuario_anulacion = models.ForeignKey(User, null=True, related_name="pedido_usuario_anulacion")
     comentario = models.CharField(max_length=200, null=True)
+    cerrado = models.BooleanField(default=False)
 
 
 class Pedido_Detalle(base_inventario):
@@ -527,6 +528,7 @@ class Recibo_Provicional(base_inventario):
     comentario = models.CharField(max_length=600, null=True)
     fecha_cobro_ck = models.DateTimeField(null=True, blank=True)
     referencia = models.CharField(max_length=20, null=True, blank=True)
+    cerrado = models.BooleanField(default=False)
 
     def monto_letras(self):
         return "%s NETOS" % (upper(numero_a_letras(self.monto)))

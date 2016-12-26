@@ -24,14 +24,38 @@ class index(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        recibos = Recibo_Provicional.objects.all()
-        ventas = Pedido.objects.all()
+        recibos = Recibo_Provicional.objects.filter(cerrado=False, usuario_creacion=request.user)
+        ventas = Pedido.objects.filter(cerrado=False, usuario_creacion=request.user)
         if recibos:
             context['total_recuperado'] = recibos.aggregate(Sum('monto'))['monto__sum']
+        else:
+            context['total_recuperado'] = 0.0
         if ventas:
             context['total_vendido'] = ventas.aggregate(Sum('total'))['total__sum']
+        else:
+            context['total_vendido'] = 0.0
         return super(index, self).render_to_response(context)
 
+def reset_recibos(request):
+    data = []
+    obj_json = {}
+    Recibo_Provicional.objects.filter(cerrado=False, usuario_creacion=request.user).update(cerrado=True)
+    obj_json['code'] = "200"
+    obj_json['mensaje'] = "OK"
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
+
+
+def reset_ventas(request):
+    data = []
+    obj_json = {}
+    Pedido.objects.filter(cerrado=False, usuario_creacion=request.user).update(cerrado=True)
+    obj_json['code'] = "200"
+    obj_json['mensaje'] = "OK"
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
 
 class perfil(TemplateView):
     template_name = "app/perfil.html"

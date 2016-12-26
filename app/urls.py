@@ -112,4 +112,8 @@ urlpatterns = [
     url(r'^recuperacion/', recuperacion,
         name='recuperacion'),
 
+    url(r'^reset_recibos/', login_required(reset_recibos),
+        name='reset_recibos'),
+    url(r'^reset_ventas/', login_required(reset_ventas),
+        name='reset_ventas'),
 ]

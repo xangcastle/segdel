@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a26dd6c-92f4-4a28-949c-be83e9209ce9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/app/js/underscore-min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/inventario/views.py" afterPath="$PROJECT_DIR$/app/inventario/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/inventario/productos.html" afterPath="$PROJECT_DIR$/app/templates/inventario/productos.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/index.html" afterPath="$PROJECT_DIR$/app/templates/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/urls.py" afterPath="$PROJECT_DIR$/app/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/segdel/urls.py" afterPath="$PROJECT_DIR$/segdel/urls.py" />
     </list>
     <ignored path="segdel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,42 +50,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="187">
               <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
-                <element signature="e#7454#7655#0" expanded="false" />
-                <element signature="e#7699#7850#0" expanded="false" />
-                <element signature="e#7914#8393#0" expanded="false" />
-                <element signature="e#8435#8809#0" expanded="false" />
-                <element signature="e#8861#10537#0" expanded="false" />
-                <element signature="e#10579#11279#0" expanded="false" />
-                <element signature="e#11320#12231#0" expanded="false" />
-                <element signature="e#11426#11497#0" expanded="false" />
-                <element signature="e#12268#12466#0" expanded="false" />
-                <element signature="e#12757#12954#0" expanded="false" />
-                <element signature="e#12997#13143#0" expanded="false" />
-                <element signature="e#13184#13556#0" expanded="false" />
-                <element signature="e#16196#16882#0" expanded="false" />
-                <element signature="e#16922#17817#0" expanded="false" />
-                <element signature="e#17908#18126#0" expanded="false" />
-                <element signature="e#18169#18338#0" expanded="false" />
-                <element signature="e#18379#19096#0" expanded="false" />
-                <element signature="e#19147#21448#0" expanded="false" />
-                <element signature="e#21500#22285#0" expanded="false" />
+                <element signature="e#4446#5077#0" expanded="false" />
+                <element signature="e#5122#5447#0" expanded="false" />
+                <element signature="e#6930#7243#0" expanded="false" />
+                <element signature="e#7289#8537#0" expanded="false" />
+                <element signature="e#8576#9872#0" expanded="false" />
+                <element signature="e#9915#10814#0" expanded="false" />
+                <element signature="e#10852#11127#0" expanded="false" />
+                <element signature="e#11167#11351#0" expanded="false" />
+                <element signature="e#11392#11744#0" expanded="false" />
+                <element signature="e#11787#12287#0" expanded="false" />
+                <element signature="e#12332#14165#0" expanded="false" />
+                <element signature="e#14207#16395#0" expanded="false" />
+                <element signature="e#16439#18043#0" expanded="false" />
+                <element signature="e#18104#18459#0" expanded="false" />
+                <marker date="1482776768664" expanded="true" signature="5147:5171" ph="SELECT * FRO... CTB_BANCOS" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="productos.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/inventario/productos.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="150" column="46" selection-start-line="150" selection-start-column="46" selection-end-line="150" selection-end-column="46" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -91,21 +79,14 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="349" column="23" selection-start-line="349" selection-start-column="23" selection-end-line="349" selection-end-column="23" />
+            <state relative-caret-position="681">
+              <caret line="508" column="47" selection-start-line="508" selection-start-column="47" selection-end-line="508" selection-end-column="47" />
               <folding>
-                <element signature="e#575#689#0" expanded="false" />
-                <element signature="e#3812#3998#0" expanded="false" />
-                <element signature="e#4044#4187#0" expanded="false" />
-                <element signature="e#4228#4442#0" expanded="false" />
-                <element signature="e#4478#5201#0" expanded="false" />
-                <element signature="e#5240#5372#0" expanded="false" />
-                <element signature="e#8495#8516#0" expanded="false" />
-                <element signature="e#14103#14321#0" expanded="false" />
-                <element signature="e#15324#16680#0" expanded="false" />
-                <element signature="e#16315#16427#1" expanded="false" />
-                <element signature="e#16727#17031#0" expanded="false" />
-                <element signature="e#18080#18319#0" expanded="false" />
+                <element signature="e#14193#14411#0" expanded="false" />
+                <element signature="e#15414#16770#0" expanded="false" />
+                <element signature="e#16405#16517#1" expanded="false" />
+                <element signature="e#16817#17121#0" expanded="false" />
+                <element signature="e#18219#18458#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -114,9 +95,21 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
+            <state relative-caret-position="329">
+              <caret line="116" column="23" selection-start-line="116" selection-start-column="11" selection-end-line="116" selection-end-column="23" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="821" column="60" selection-start-line="821" selection-start-column="60" selection-end-line="821" selection-end-column="60" />
+              <folding>
+                <element signature="e#31599#50742#0#DjangoTemplate" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,21 +168,21 @@
         <option value="$PROJECT_DIR$/app/templates/app/cobranza_cliente.html" />
         <option value="$PROJECT_DIR$/app/templates/cartera/recibos_provicionales.html" />
         <option value="$PROJECT_DIR$/app/templates/cartera/plantilla_recibo_provicional.html" />
-        <option value="$PROJECT_DIR$/segdel/urls.py" />
         <option value="$PROJECT_DIR$/app/templates/app/perfil.html" />
         <option value="$PROJECT_DIR$/app/admin.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/segdel/settings.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
-        <option value="$PROJECT_DIR$/app/templates/app/index.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" />
-        <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/proformas.html" />
-        <option value="$PROJECT_DIR$/app/models.py" />
-        <option value="$PROJECT_DIR$/app/inventario/views.py" />
         <option value="$PROJECT_DIR$/app/static/app/js/underscore-min.js" />
+        <option value="$PROJECT_DIR$/app/inventario/views.py" />
+        <option value="$PROJECT_DIR$/app/models.py" />
+        <option value="$PROJECT_DIR$/segdel/urls.py" />
+        <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/app/templates/inventario/productos.html" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/app/templates/app/index.html" />
       </list>
     </option>
   </component>
@@ -337,55 +330,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="segdel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="segdel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="segdel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="segdel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="inventario" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="segdel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="segdel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,7 +369,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
-    <property name="SearchEverywhereHistoryKey" value="render_nuevo_pedido&#9;null&#9;null&#10;models&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/models.py&#10;model&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/inventario/models.py&#10;Producto&#9;null&#9;null&#10;datetimepicker&#9;FILE&#9;file:///home/twine/WORKSPACE/segdel/app/static/app/js/bootstrap-datetimepicker.js&#10;_pedido&#9;null&#9;null&#10;set&#9;FILE&#9;file:///home/twine/WORKSPACE/segdel/segdel/settings.py&#10;ses&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/templates/app/index.html&#10;url&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/urls.py&#10;render_nuevo_pedido&#9;null&#9;null&#10;models&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/models.py&#10;model&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/inventario/models.py&#10;Producto&#9;null&#9;null&#10;datetimepicker&#9;FILE&#9;file:///home/twine/WORKSPACE/segdel/app/static/app/js/bootstrap-datetimepicker.js&#10;_pedido&#9;null&#9;null&#10;set&#9;FILE&#9;file:///home/twine/WORKSPACE/segdel/segdel/settings.py&#10;ses&#9;null&#9;null" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="151" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="151" />
@@ -831,7 +798,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49667773" sideWeight="0.48782343" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2740864" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26578072" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -902,7 +869,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/app/views.py</url>
-          <line>345</line>
+          <line>370</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -917,7 +884,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/app/models.py</url>
-          <line>244</line>
+          <line>248</line>
           <option name="timeStamp" value="115" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -927,7 +894,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/app/views.py</url>
-          <line>78</line>
+          <line>103</line>
           <option name="timeStamp" value="129" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -945,6 +912,16 @@
           <line>13</line>
           <option name="timeStamp" value="133" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/app/views.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/app/views.py</url>
+          <line>52</line>
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/templates/app/perfil.html</url>
           <line>27</line>
@@ -958,18 +935,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="148" />
+      <option name="time" value="151" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/static/app/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="937" column="27" selection-start-line="937" selection-start-column="27" selection-end-line="937" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/django/contrib/admin/options.py" />
     <entry file="file://$PROJECT_DIR$/app/static/app/js/jquery.elevatezoom-3.0.8.min.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1093,13 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/segdel/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/inventario/facturar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1123,14 +1086,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/views/decorators/csrf.py" />
-    <entry file="file://$PROJECT_DIR$/app/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/dbmanager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1177,39 +1132,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2703">
-          <caret line="544" column="0" selection-start-line="544" selection-start-column="0" selection-end-line="544" selection-end-column="0" />
-          <folding>
-            <element signature="e#631#1174#0" expanded="false" />
-            <element signature="e#1209#2490#0" expanded="false" />
-            <element signature="e#2536#3284#0" expanded="false" />
-            <element signature="e#3606#4237#0" expanded="false" />
-            <element signature="e#6090#6403#0" expanded="false" />
-            <element signature="e#7736#9032#0" expanded="false" />
-            <element signature="e#9075#9974#0" expanded="false" />
-            <element signature="e#10012#10287#0" expanded="false" />
-            <element signature="e#10327#10511#0" expanded="false" />
-            <element signature="e#10552#10904#0" expanded="false" />
-            <element signature="e#10947#11447#0" expanded="false" />
-            <element signature="e#11492#13325#0" expanded="false" />
-            <element signature="e#13367#15555#0" expanded="false" />
-            <element signature="e#15599#17203#0" expanded="false" />
-            <element signature="e#17264#17619#0" expanded="false" />
-            <marker date="1481843820613" expanded="true" signature="4307:4331" ph="SELECT * FRO... CTB_BANCOS" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="130" selection-start-line="28" selection-start-column="130" selection-end-line="28" selection-end-column="130" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/inventario/partial/_productos.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1242,57 +1164,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="349" column="23" selection-start-line="349" selection-start-column="23" selection-end-line="349" selection-end-column="23" />
-          <folding>
-            <element signature="e#575#689#0" expanded="false" />
-            <element signature="e#3812#3998#0" expanded="false" />
-            <element signature="e#4044#4187#0" expanded="false" />
-            <element signature="e#4228#4442#0" expanded="false" />
-            <element signature="e#4478#5201#0" expanded="false" />
-            <element signature="e#5240#5372#0" expanded="false" />
-            <element signature="e#8495#8516#0" expanded="false" />
-            <element signature="e#14103#14321#0" expanded="false" />
-            <element signature="e#15324#16680#0" expanded="false" />
-            <element signature="e#16315#16427#1" expanded="false" />
-            <element signature="e#16727#17031#0" expanded="false" />
-            <element signature="e#18080#18319#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/app/js/underscore-min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/inventario/productos.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="150" column="46" selection-start-line="150" selection-start-column="46" selection-end-line="150" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="118" column="19" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
           <folding>
             <element signature="e#7454#7655#0" expanded="false" />
             <element signature="e#7699#7850#0" expanded="false" />
@@ -1313,6 +1198,94 @@
             <element signature="e#18379#19096#0" expanded="false" />
             <element signature="e#19147#21448#0" expanded="false" />
             <element signature="e#21500#22285#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/segdel/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="508" column="47" selection-start-line="508" selection-start-column="47" selection-end-line="508" selection-end-column="47" />
+          <folding>
+            <element signature="e#14193#14411#0" expanded="false" />
+            <element signature="e#15414#16770#0" expanded="false" />
+            <element signature="e#16405#16517#1" expanded="false" />
+            <element signature="e#16817#17121#0" expanded="false" />
+            <element signature="e#18219#18458#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="116" column="23" selection-start-line="116" selection-start-column="11" selection-end-line="116" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/inventario/productos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="162" column="19" selection-start-line="162" selection-start-column="19" selection-end-line="162" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#4446#5077#0" expanded="false" />
+            <element signature="e#5122#5447#0" expanded="false" />
+            <element signature="e#6930#7243#0" expanded="false" />
+            <element signature="e#7289#8537#0" expanded="false" />
+            <element signature="e#8576#9872#0" expanded="false" />
+            <element signature="e#9915#10814#0" expanded="false" />
+            <element signature="e#10852#11127#0" expanded="false" />
+            <element signature="e#11167#11351#0" expanded="false" />
+            <element signature="e#11392#11744#0" expanded="false" />
+            <element signature="e#11787#12287#0" expanded="false" />
+            <element signature="e#12332#14165#0" expanded="false" />
+            <element signature="e#14207#16395#0" expanded="false" />
+            <element signature="e#16439#18043#0" expanded="false" />
+            <element signature="e#18104#18459#0" expanded="false" />
+            <marker date="1482776768664" expanded="true" signature="5147:5171" ph="SELECT * FRO... CTB_BANCOS" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="821" column="60" selection-start-line="821" selection-start-column="60" selection-end-line="821" selection-end-column="60" />
+          <folding>
+            <element signature="e#31599#50742#0#DjangoTemplate" expanded="false" />
           </folding>
         </state>
       </provider>

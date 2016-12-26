@@ -21,7 +21,7 @@ from app.views import index
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    url(r'^$', login_required(index.as_view()), name='index'),
-    url(r'^app/', include('app.urls')),
-    url(r'^admin/', admin.site.urls),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  url(r'^$', login_required(index.as_view()), name='index'),
+                  url(r'^app/', include('app.urls')),
+                  url(r'^admin/', admin.site.urls),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
