@@ -3,10 +3,10 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title" style="margin-bottom: 0px;">
-                <h1>Inventario<small></small></h1>
+                <h1>Mi Perfil<small></small></h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-product-hunt"></i></a></li>
-                    <li class="active">Catalogo de productos</li>
+                    <li class="active">Datos del usuario</li>
                 </ol>
             </div>
         </div>
@@ -54,6 +54,24 @@
                         <div class="form-group">
                             <label for="email"><strong>Correo Electronico:</strong></label>
                             <input type="email" id="email" name="email" class="form-control" value="{{ usuario.email }}">
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="empresa"><strong>Empresa:</strong></label>
+                            <select name="empresa" data-live-search="true" class="form-control select2" type="text">
+                                <option selected="selected" disabled="disabled">--seleccione una empresa--</option>
+                                {% for empresa in empresas %}
+                                    {% if empresa == usuario.profile.empresa %}
+                                        <option selected="selected" value="{{ empresa.id }}">{{ empresa.razon_social }}</option>
+                                    {% else %}
+                                        <option value="{{ empresa.id }}">{{ empresa.razon_social }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
                   </div>

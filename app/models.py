@@ -19,17 +19,6 @@ def get_media_url(self, filename):
     return '%s/%s/%s' % (clase, code, filename)
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    foto = models.ImageField(upload_to=get_media_url, null=True)
-
-    def imagen_url(self):
-        if self.foto:
-            return self.foto.url
-        else:
-            return "/media/foto-no-disponible.jpg"
-
-
 # region OTROS
 class Import(models.Model):
     razon_social = models.CharField(max_length=255)
@@ -109,6 +98,17 @@ class Empresa(models.Model):
     def __unicode__(self):
         return "%s-%s" % (self.numero_ruc, self.razon_social)
 
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    foto = models.ImageField(upload_to=get_media_url, null=True)
+    empresa = models.ForeignKey(Empresa, null=True, blank=True)
+
+    def imagen_url(self):
+        if self.foto:
+            return self.foto.url
+        else:
+            return "/media/foto-no-disponible.jpg"
 
 class Gestion_Resultado(models.Model):
     nombre = models.CharField(max_length=100)

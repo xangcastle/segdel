@@ -63,6 +63,7 @@ class perfil(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
         context['usuario'] = User.objects.get(id=request.user.id)
+        context['empresas'] = Empresa.objects.all()
         return super(perfil, self).render_to_response(context)
 
     def post(self, request, *args, **kwargs):
@@ -73,11 +74,17 @@ class perfil(TemplateView):
         lastname = request.POST.get('lastname')
         email = request.POST.get('email')
         imagen = request.FILES.get('imagen')
+        id_empresa = request.POST.get('empresa')
 
-        user = User.objects.get(id=request.user.id);
+        user = User.objects.get(id=request.user.id)
+        empresa = Empresa.objects.filter(id=id_empresa).first()
+
         if not user:
             obj_json['code'] = "400"
-            obj_json['mensaje'] = "ERROR: usuario invalido";
+            obj_json['mensaje'] = "ERROR: usuario invalido"
+        elif not empresa:
+            obj_json['code'] = "400"
+            obj_json['mensaje'] = "ERROR: empresa invalida"
         else:
 
             user.first_name = firstname
@@ -88,13 +95,16 @@ class perfil(TemplateView):
             if perf:
                 if imagen:
                     perf.foto = imagen
-                    perf.save()
+
+                perf.empresa = empresa
+                perf.save()
 
             user.save()
 
             obj_json['code'] = "200"
             obj_json['mensaje'] = "Perfil actualizado exitosamente!"
             context['usuario'] = user
+            context['empresas'] = Empresa.objects.all()
             return super(perfil, self).render_to_response(context)
 
 @csrf_exempt
@@ -106,10 +116,11 @@ def save_profile(request):
     email = request.POST.get('email')
     imagen = request.FILES.get('imagen')
 
-    user = User.objects.get(id=request.user.id);
+    user = User.objects.get(id=request.user.id)
+
     if not user:
         obj_json['code'] = "400"
-        obj_json['mensaje'] = "ERROR: usuario invalido";
+        obj_json['mensaje'] = "ERROR: usuario invalido"
     else:
 
         user.first_name = firstname
