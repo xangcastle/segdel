@@ -5,7 +5,7 @@
 {% block css-content %}
     <link href="/static/app/css/sweetalert.css" rel="stylesheet">
     <link href="/static/app/css/magicsuggest-min.css" rel="stylesheet">
-    <link href="https://raw.githubusercontent.com/truckingsim/Ajax-Bootstrap-Select/master/dist/css/ajax-bootstrap-select.min.css" rel="stylesheet">
+    <link href="https://rawgit.com/truckingsim/Ajax-Bootstrap-Select/master/dist/css/ajax-bootstrap-select.min.css" rel="stylesheet">
 {% endblock css-content %}
 {% block breadcrums %}
 <div class="row">
@@ -100,7 +100,7 @@
     <script src="/static/app/js/data-tables/dataTables.responsive.js"></script>
     <script src="/static/app/js/data-tables/tables-data.js"></script>
     <script src="/static/app/js/sweet-alert/sweetalert.min.js"></script>
-    <script src="https://raw.githubusercontent.com/truckingsim/Ajax-Bootstrap-Select/master/dist/js/ajax-bootstrap-select.min.js"></script>
+    <script src="https://rawgit.com/truckingsim/Ajax-Bootstrap-Select/master/dist/js/ajax-bootstrap-select.min.js"></script>
     <script src="/static/app/js/magicsuggest-min.js"></script>
     <script>
         $(document).ready(function () {
@@ -109,15 +109,8 @@
                 nuevoPedido();
             });
         });
-        $(document).ajaxStop(function () {
-            //$(".select2").select2();
-            $(".select2").selectpicker();
-
-            $('select').trigger('change');
-        });
-        var ms;
         function init_atocomple_productos(){
-            ms = $('#searchProducto').magicSuggest({
+          var ms = $('#searchProducto').magicSuggest({
                 placeholder: 'Busque su producto',
                 data: '../get_productos_autocomplete/',
                 valueField: 'value',
@@ -157,7 +150,7 @@
                 }
             });
 
-            ms.on('selectionchange', function(e,m){
+            $(ms).on('selectionchange', function(e,m){
               alert("values: " + JSON.stringify(this.getValue()));
             });
         }
@@ -176,6 +169,7 @@
                 type:"GET",
                 success: function (result) {
                     $("#conten-pedido").empty().html(result);
+                    $(".select2").select2();
                     $("#myModal").modal({
                       backdrop: 'static',
                       keyboard: false

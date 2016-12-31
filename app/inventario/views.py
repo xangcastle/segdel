@@ -322,7 +322,7 @@ class proformas(TemplateView):
 
 
 def render_listado_pedido(request):
-    pedidos = Pedido.objects.all()
+    pedidos = Pedido.objects.filter(usuario_creacion=request.user, cerrado=False)
     html = render_to_string('inventario/partial/_pedidos.html', {'pedidos': pedidos})
     return HttpResponse(html)
 
@@ -487,7 +487,7 @@ class recibos_provicionales(TemplateView):
 
 
 def render_listado_recibo(request):
-    recibos = Recibo_Provicional.objects.all()
+    recibos = Recibo_Provicional.objects.filter(usuario_creacion=request.user, cerrado=False)
     html = render_to_string('cartera/partial/_recibos_provicionales.html', {'recibos': recibos})
     return HttpResponse(html)
 

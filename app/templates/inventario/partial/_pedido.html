@@ -22,7 +22,7 @@
         <label class="col-sm-4 control-label">Cliente:</label>
         <div class="col-sm-8">
             <select name="cliente" data-live-search="true" class="form-control select2" type="text">
-                <option selected="selected" disabled="disabled">--seleccione cliente--</option>
+                <option selected="selected">--seleccione cliente--</option>
                 {% for cliente in clientes %}
                 <option value="{{ cliente.id }}">{{ cliente.identificacion }}; {{ cliente.nombre }}; {{ cliente.telefono }}</option>
                 {% endfor %}
