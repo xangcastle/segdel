@@ -496,10 +496,7 @@ def render_nuevo_recibo(request):
     vendedores = Vendedor.objects.filter(activo=True)
     clientes = Cliente.objects.all()
     formas_pago = Forma_Pago.objects.filter(activo=True)
-    try:
-        no_recibo = int(Recibo_Provicional.objects.all().aggregate(Max('no_recibo'))['no_recibo__max']) + 1
-    except:
-        no_recibo = 1
+    no_recibo = get_no_recibo(request.user)
     html = render_to_string('cartera/partial/_recibo_provicional.html', {'vendedores': vendedores,
                                                                          'clientes': clientes,
                                                                          'formas_pago': formas_pago,

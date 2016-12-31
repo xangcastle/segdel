@@ -5,7 +5,7 @@ from string import upper
 
 from app.numero_letras import numero_a_letras
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, Max
 from django.contrib.auth.models import User
 
 
@@ -400,7 +400,7 @@ class Producto(base_inventario):
     class Meta:
         app_label = "inventario"
         verbose_name = "producto"
-        verbose_name_plural = "Productos del Invetnario"
+        verbose_name_plural = "Productos del Inventario"
 
     def __unicode__(self):
         return "%s %s" % (self.codigo, self.nombre)
@@ -445,6 +445,11 @@ class Bodega_Detalle(base_inventario):
 class Forma_Pago(base_inventario):
     forma_pago = models.CharField(max_length=50)
     activo = models.BooleanField(null=False, default=True)
+
+    class Meta:
+        verbose_name = "Forma de pago"
+        verbose_name_plural = "formas de pago"
+        app_label = "inventario"
 
     def __unicode__(self):
         return self.forma_pago
@@ -502,7 +507,7 @@ class Pedido(base_inventario):
     no_pedido = models.CharField(max_length=10)
     cliente = models.ForeignKey(Cliente, null=False)
     vendedor = models.ForeignKey(Vendedor, null=False, related_name="pedido_usuario_vendedor")
-    stotal = models.FloatField(null=False)
+    stotal = models.FloatField(null=False, verbose_name="subtotal")
     impuesto = models.FloatField(null=False)
     total = models.FloatField(null=False)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
@@ -535,7 +540,21 @@ class Recibo_Provicional(base_inventario):
     referencia = models.CharField(max_length=20, null=True, blank=True)
     cerrado = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name = "Recibo Provicional"
+        verbose_name_plural = "Recibos Provicionales de Caja"
+        app_label = "inventario"
+
     def monto_letras(self):
         return "%s NETOS" % (upper(numero_a_letras(self.monto)))
 
-# endregion
+
+def get_no_recibo(user):
+    no_recibo = 1
+    v = Vendedor.objects.get(usuario=user)
+    if v:
+        try:
+            no_recibo = int(Recibo_Provicional.objects.filter(usuario_creacion=user).aggregate(Max('no_recibo'))['no_recibo__max']) + 1
+        except:
+            no_recibo = v.numero_inicial
+    return no_recibo
