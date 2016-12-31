@@ -180,7 +180,12 @@ class Cliente(models.Model):
 
 class Vendedor(models.Model):
     usuario = models.ForeignKey(User, null=False)
+    serie = models.CharField(max_length=25, null=True, blank=True, verbose_name="Serie de Recibos")
+    numero_inicial = models.PositiveIntegerField(null=True, blank=True, verbose_name="Numero Inicial para los recibos")
     activo = models.BooleanField(default=True, null=False)
+
+    class Meta:
+        verbose_name_plural = "vendedores"
 
     def __unicode__(self):
         return '%s | %s' % (self.usuario.get_full_name(), self.usuario.get_username())
