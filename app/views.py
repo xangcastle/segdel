@@ -598,18 +598,18 @@ def inventario_general(request):
 
 def recuperacion(request):
     data = []
-    ps = Recibo_Provicional.objects.all()
-    data.append(("Fecha", "Cliente", "Forma de Pago", "Comentario",
+    ps = Recibo_Provicional.objects.filter(usuario_creacion=request.user, cerrado=False)
+    data.append(("Numero", "Fecha", "Cliente", "Forma de Pago", "Comentario",
         "Referencia", "Monto"))
     for p in ps:
-        data.append((format_fecha(p.fecha_creacion), p.cliente.nombre, p.forma_pago.forma_pago, p.comentario, p.referencia, p.monto))
+        data.append((p.no_recibo, format_fecha(p.fecha_creacion), p.cliente.nombre, p.forma_pago.forma_pago, p.comentario, p.referencia, p.monto))
     return render_to_excel("Recuperacion al Dia.xls", data)
 
 
 def pedidos(request):
     data = []
-    queryset = Pedido.objects.all()
-    data.append(("Fecha", "Cliente", "Comentario", "Total"))
+    queryset = Pedido.objects.filter(usuario_creacion=request.user, cerrado=False)
+    data.append(("Numero", "Fecha", "Cliente", "Comentario", "Total"))
     for p in queryset:
-        data.append((format_fecha(p.fecha_creacion), p.cliente.nombre, p.comentario, p.total))
+        data.append((p.no_pedido, format_fecha(p.fecha_creacion), p.cliente.nombre, p.comentario, p.total))
     return render_to_excel("Pedidos al Dia.xls", data)
