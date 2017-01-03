@@ -3,16 +3,7 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Vendedor:</label>
         <div class="col-sm-8">
-            <select name="vendedor_select" data-live-search="true" class="form-control select2" disabled="disabled">
-                <option selected="selected" disabled="disabled">--seleccione vendedor--</option>
-                {% for vendedor in vendedores %}
-                    {% if vendedor.usuario == actual_vendedor %}
-                        <option selected="selected" value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
-                    {% else %}
-                        <option value="{{ vendedor.id }}">{{ vendedor.usuario.get_username }}; {{ vendedor.usuario.get_full_name }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
+            <input type="text" name="name_vendedor" value="{{ actual_vendedor }}" class="form-control" readonly>
             <input name="vendedor" type="hidden" value="{{ actual_vendedor.id }}">
         </div>
     </div>
@@ -46,7 +37,7 @@
     <div class="col-sm-12">
         <input type="text" data-live-search="true" class="form-control" id="searchProducto">
         </input>
-{#        <button id="addProducto" onclick="showaddProducto()"><i class="fa fa-plus fa-fw"></i> Agregar Producto</button>#}
+       <button id="addProducto" onclick="showaddProducto()"><i class="fa fa-plus fa-fw"></i> Agregar Producto</button>
         <table id="table_pedido_detalle" class="table table-bordered tablesaw-swipe table-responsive" >
             <thead>
             <tr>

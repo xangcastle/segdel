@@ -330,7 +330,7 @@ def render_listado_pedido(request):
 def render_nuevo_pedido(request):
     vendedores = Vendedor.objects.filter(activo=True)
     clientes = Cliente.objects.all()
-    vendedor = request.user
+    vendedor = Vendedor.objects.get(usuario=request.user)
     html = render_to_string('inventario/partial/_pedido.html',
                             {'vendedores': vendedores,
                              'clientes': clientes,
