@@ -492,12 +492,14 @@ def render_listado_recibo(request):
     return HttpResponse(html)
 
 
+@csrf_exempt
 def render_nuevo_recibo(request):
-    vendedores = Vendedor.objects.filter(activo=True)
+    user = User.objects.get(id=request.GET.get('user', ''))
+    vendedor = Vendedor.objects.get(usuario=user)
     clientes = Cliente.objects.all()
     formas_pago = Forma_Pago.objects.filter(activo=True)
-    no_recibo = get_no_recibo(request.user)
-    html = render_to_string('cartera/partial/_recibo_provicional.html', {'vendedores': vendedores,
+    no_recibo = get_no_recibo(user)
+    html = render_to_string('cartera/partial/_recibo_provicional.html', {'vendedor': vendedor,
                                                                          'clientes': clientes,
                                                                          'formas_pago': formas_pago,
                                                                          'no_recibo': no_recibo})

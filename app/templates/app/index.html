@@ -261,6 +261,7 @@
                                     </span>
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                         <span class="clear" style="display: block;">
+                                            <input type="hidden" name="user_id" value="{{user.id}}">
                                             <span class="block m-t-xs"> <strong class="font-bold">{{user.username}} <b class="caret"></b></strong>
                                             </span>
                                         </span>
@@ -788,6 +789,7 @@
         </section>
 
         <script type="text/javascript" src="/static/app/js/jquery.min.js"></script>
+        <script src="/static/app/js/jquery.cookie.js"></script>
         <script type="text/javascript" src="/static/app/bootstrap/js/bootstrap.min.js"></script>
         <script src="/static/app/js/metisMenu.min.js"></script>
         <script src="/static/app/js/jquery.nanoscroller.min.js"></script>

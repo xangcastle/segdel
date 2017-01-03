@@ -106,6 +106,7 @@
             $.ajax({
                 url:"../render_nuevo_recibo/",
                 type:"GET",
+                data:{'user': $('input[name="user_id"]').val()},
                 success: function (result) {
                     $("#conten-recibo").empty().html(result);
                     $("#myModal").modal({

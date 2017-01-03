@@ -93,7 +93,7 @@ urlpatterns = [
         name='lrecibo_provicional'),
     url(r'^render_listado_recibo/', login_required(render_listado_recibo),
         name='render_listado_recibo'),
-    url(r'^render_nuevo_recibo/', login_required(render_nuevo_recibo),
+    url(r'^render_nuevo_recibo/', render_nuevo_recibo,
         name='render_nuevo_recibo'),
     url(r'^add_nuevo_recibo/', login_required(add_nuevo_recibo),
         name='add_nuevo_recibo'),
