@@ -41,7 +41,7 @@ admin.site.register(Forma_Pago)
 
 class recibo_admin(admin.ModelAdmin):
     date_hierarchy = "fecha_creacion"
-    list_display = ("no_recibo", "cliente", "forma_pago", "monto", "comentario", "referencia")
+    list_display = ("no_recibo", "cliente", "forma_pago", "monto", "comentario", "referencia", "cerrado")
     list_filter = ("usuario_creacion", "forma_pago", "cerrado")
     search_fields = ("cliente", 'no_recibo', "comentario")
 admin.site.register(Recibo_Provicional, recibo_admin)
@@ -49,7 +49,7 @@ admin.site.register(Recibo_Provicional, recibo_admin)
 
 class pedido_admin(admin.ModelAdmin):
     date_hierarchy = "fecha_creacion"
-    list_display = ("no_pedido", "cliente", "total", "comentario", "cerrado")
+    list_display = ("no_pedido", "cliente", "total", "comentario", "vendedor", "cerrado", "anulado")
     list_filter = ("usuario_creacion", "cerrado")
     search_fields = ("cliente", "no_pedido", "comentario")
 
