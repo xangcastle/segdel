@@ -372,7 +372,7 @@ def add_nuevo_pedido(request):
             obj_json['mensaje'] = "Cliente no encontrado"
         else:
             try:
-                no_pedido = int(Pedido.objects.all().aggregate(Max('no_pedido'))['no_pedido__max']) + 1
+                no_pedido = next_pedido()
             except:
                 no_pedido = 1
 

@@ -504,7 +504,8 @@ class Factura_Abono(base_inventario):
 
 
 class Pedido(base_inventario):
-    no_pedido = models.CharField(max_length=10)
+    #no_pedido = models.CharField(max_length=10)
+    no_pedido = models.IntegerField(null=True, blank=True)
     cliente = models.ForeignKey(Cliente, null=False)
     vendedor = models.ForeignKey(Vendedor, null=False, related_name="pedido_usuario_vendedor")
     stotal = models.FloatField(null=False, verbose_name="subtotal")
@@ -558,3 +559,7 @@ def get_no_recibo(user):
         except:
             no_recibo = v.numero_inicial
     return no_recibo
+
+
+def next_pedido():
+    return int(Pedido.objects.all().aggregate(Max('no_pedido'))['no_pedido__max']) + 1
