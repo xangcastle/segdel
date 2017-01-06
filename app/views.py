@@ -24,7 +24,7 @@ class index(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        recibos = Recibo_Provicional.objects.filter(cerrado=False, usuario_creacion=request.user)
+        recibos = Recibo_Provicional.objects.filter(cerrado=False, usuario_creacion=request.user, anulado=False)
         ventas = Pedido.objects.filter(cerrado=False, usuario_creacion=request.user, anulado=False)
         if recibos:
             context['total_recuperado'] = recibos.aggregate(Sum('monto'))['monto__sum']

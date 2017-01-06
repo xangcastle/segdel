@@ -135,7 +135,7 @@
                 }
             });
         }
-        function anular_recibo(factura) {
+        function anular_recibo(recibo) {
             swal({
                 title: "Anulación",
                 text: "Esta seguro que desea anular este recibo?",
@@ -148,12 +148,12 @@
             function(){
                 $.ajax({
                     url:"../anular_recibo/",
-                    data: {id_factura:factura, csrfmiddlewaretoken: '{{ csrf_token }}' },
+                    data: {id_recibo:recibo, csrfmiddlewaretoken: '{{ csrf_token }}' },
                     type:"POST",
                     success:function (result) {
                         data=result[0];
                         if(data.code==200){
-                            mostrarFacturas();
+                            mostrarRecibos();
                             swal({
                                  title: "Exito!",
                                 text: data.mensaje,

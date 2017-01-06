@@ -628,4 +628,27 @@ def execute_import_inventario(request):
     data = json.dumps(data)
     return HttpResponse(data, content_type='application/json')
 
-# endregion
+def anular_recibo(request):
+    data = []
+    obj_json = {}
+    id_recibo = request.POST.get('id_recibo')
+    if not id_recibo:
+        obj_json['code'] = 400
+        obj_json['mensaje'] = "Recibo invalido"
+    else:
+        try:
+            recibo = Recibo_Provicional.objects.get(id=id_recibo)
+        except:
+            pedido = None
+
+        if not pedido:
+            obj_json['code'] = 400
+            obj_json['mensaje'] = "Recibo no encontrado"
+        else:
+            recibo.anulado = True
+            recibo.save()
+            obj_json['code'] = 200
+            obj_json['mensaje'] = "Recibo anulado!"
+    data.append(obj_json)
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')

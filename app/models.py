@@ -540,6 +540,7 @@ class Recibo_Provicional(base_inventario):
     fecha_cobro_ck = models.DateTimeField(null=True, blank=True)
     referencia = models.CharField(max_length=20, null=True, blank=True)
     cerrado = models.BooleanField(default=False)
+    anulado = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = "Recibo Provicional"

@@ -99,6 +99,8 @@ urlpatterns = [
         name='add_nuevo_recibo'),
     url(r'^mostrar_recibo_provicional_pdf/', login_required(mostrar_recibo_provicional_pdf),
         name='mostrar_recibo_provicional_pdf'),
+    url(r'^anular_recibo/', login_required(anular_recibo),
+        name='anular_recibo'),
 
     url(r'^execute_import_inventario/', execute_import_inventario,
         name='execute_import_inventario'),
