@@ -27,11 +27,11 @@ class index(TemplateView):
         recibos = Recibo_Provicional.objects.filter(cerrado=False, usuario_creacion=request.user, anulado=False)
         ventas = Pedido.objects.filter(cerrado=False, usuario_creacion=request.user, anulado=False)
         if recibos:
-            context['total_recuperado'] = recibos.aggregate(Sum('monto'))['monto__sum']
+            context['total_recuperado'] = round(recibos.aggregate(Sum('monto'))['monto__sum'], 2)
         else:
             context['total_recuperado'] = 0.0
         if ventas:
-            context['total_vendido'] = ventas.aggregate(Sum('total'))['total__sum']
+            context['total_vendido'] = round(ventas.aggregate(Sum('total'))['total__sum'], 2)
         else:
             context['total_vendido'] = 0.0
         return super(index, self).render_to_response(context)

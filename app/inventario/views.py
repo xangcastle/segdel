@@ -639,9 +639,9 @@ def anular_recibo(request):
         try:
             recibo = Recibo_Provicional.objects.get(id=id_recibo)
         except:
-            pedido = None
+            recibo = None
 
-        if not pedido:
+        if not recibo:
             obj_json['code'] = 400
             obj_json['mensaje'] = "Recibo no encontrado"
         else:
