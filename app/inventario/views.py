@@ -487,7 +487,7 @@ class recibos_provicionales(TemplateView):
 
 
 def render_listado_recibo(request):
-    recibos = Recibo_Provicional.objects.filter(usuario_creacion=request.user, cerrado=False)
+    recibos = Recibo_Provicional.objects.filter(usuario_creacion=request.user, cerrado=False).order_by('-numero')
     html = render_to_string('cartera/partial/_recibos_provicionales.html', {'recibos': recibos})
     return HttpResponse(html)
 
