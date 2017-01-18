@@ -335,28 +335,34 @@ class Import_Imventario(base_inventario):
         return o
 
     def get_producto(self):
-        producto, create = Producto.objects.get_or_create(
-            codigo=self.producto_codigo,
-            serie=self.producto_serie,
-            empresa=self.get_empresa())
+        #ESTA VALIDACION SE REALIZA DEBIDO A QUE DIO UN ERROR AL ENCONTRAR DOS PRODUCTOS CON EL MISMO CODIGO
+        try:
+            producto, create = Producto.objects.get_or_create(
+                codigo=self.producto_codigo,
+                serie=self.producto_serie,
+                empresa=self.get_empresa())
+        except:
+            producto = Producto.objects.filter(
+                codigo=self.producto_codigo,
+                serie=self.producto_serie,
+                empresa=self.get_empresa()).first()
+        if producto:
+            producto.nombre = self.producto_nombre
+            producto.categoria = self.get_categoria()
+            producto.medida = self.get_medida()
+            producto.marca = self.get_marca()
+            producto.costo_promedio = self.producto_costo
+            producto.precio = self.producto_precio
+            # producto.costo_promedio = (producto.costo_promedio + self.producto_costo) / 2
+            producto.save()
 
-        producto.nombre = self.producto_nombre
-        producto.categoria = self.get_categoria()
-        producto.medida = self.get_medida()
-        producto.marca = self.get_marca()
-        producto.costo_promedio = self.producto_costo
-        producto.precio = self.producto_precio
-        # producto.costo_promedio = (producto.costo_promedio + self.producto_costo) / 2
-        producto.save()
-
-        # REGISTRO DE LA EXISTENCIA
-        bodega = self.get_bodega()
-        detalle , create = Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto)
-        # detalle.existencia += self.producto_existencia
-        detalle.existencia = self.producto_existencia
-        detalle.save()
-
-        return producto
+            # REGISTRO DE LA EXISTENCIA
+            bodega = self.get_bodega()
+            detalle , create = Bodega_Detalle.objects.get_or_create(bodega=bodega, producto=producto)
+            # detalle.existencia += self.producto_existencia
+            detalle.existencia = self.producto_existencia
+            detalle.save()
+            return producto
 
     def save(self, *args, **kwargs):
         self.get_producto()
