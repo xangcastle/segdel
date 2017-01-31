@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import datetime
 from string import upper
 
+import app
 from app.numero_letras import numero_a_letras
 from django.db import models
 from django.db.models import Sum, Max
@@ -238,25 +239,18 @@ class Documento_Abono(models.Model):
 # endregion
 # region CONTABILIDAD
 
-class base_contabilidad(models.Model):
-    class Meta:
-        app_label = "contabilidad"
-        abstract = True
 
 
-class Moneda(base_contabilidad):
+class Moneda(models.Model):
     nombre = models.CharField(max_length=50)
     simbolo = models.CharField(max_length=4)
     activo = models.BooleanField(default=True)
     principal = models.BooleanField(default=False)
 
-    # def save(self, *args, **kwargs):
-    #    if self.principal:
-    #        Moneda.objects.all().update(principal=False)
 
 
-class Tipo_Cambio(base_contabilidad):
-    moneda = models.ForeignKey(Moneda)
+class Tipo_Cambio(models.Model):
+    moneda = models.ForeignKey(Moneda, null=True, blank=True)
     cambio = models.FloatField(null=False)
     fecha = models.DateField(null=False)
 
@@ -264,13 +258,10 @@ class Tipo_Cambio(base_contabilidad):
 # endregion
 # region INVENTARIO
 
-class base_inventario(models.Model):
-    class Meta:
-        app_label = "inventario"
-        abstract = True
 
 
-class Import_Imventario(base_inventario):
+
+class Import_Imventario(models.Model):
     razon_social = models.CharField(max_length=255)
     numero_ruc = models.CharField(max_length=14)
     producto_codigo = models.CharField(max_length=50)
@@ -369,28 +360,28 @@ class Import_Imventario(base_inventario):
         self.delete()
 
 
-class Producto_Marca(base_inventario):
+class Producto_Marca(models.Model):
     marca = models.CharField(max_length=100)
 
     def __unicode__(self):
         return "%s" % (self.marca)
 
 
-class Producto_Categoria(base_inventario):
+class Producto_Categoria(models.Model):
     categoria = models.CharField(max_length=100)
 
     def __unicode__(self):
         return "%s" % (self.categoria)
 
 
-class Producto_Medida(base_inventario):
+class Producto_Medida(models.Model):
     medida = models.CharField(max_length=100)
 
     def __unicode__(self):
         return "%s" % (self.medida)
 
 
-class Producto(base_inventario):
+class Producto(models.Model):
     codigo = models.CharField(max_length=50)
     serie = models.CharField(max_length=50, null=True, blank=True)  # REGISTRO DE PRODUCTOS POR SERIE
     nombre = models.CharField(max_length=200)
@@ -404,7 +395,6 @@ class Producto(base_inventario):
     activo = models.BooleanField(default=True, null=False)
 
     class Meta:
-        app_label = "inventario"
         verbose_name = "producto"
         verbose_name_plural = "Productos del Inventario"
 
@@ -418,18 +408,16 @@ class Producto(base_inventario):
             return "/media/foto-no-disponible.jpg"
 
 
-class Bodega(base_inventario):
+class Bodega(models.Model):
     nombre = models.CharField(max_length=100, null=False)
     encargado = models.ForeignKey(User, null=True)
 
     def __unicode__(self):
         return "%s" % (self.nombre)
 
-    class Meta:
-        app_label = "inventario"
 
 
-class Bodega_Detalle(base_inventario):
+class Bodega_Detalle(models.Model):
     bodega = models.ForeignKey(Bodega, null=False)
     producto = models.ForeignKey(Producto, null=False)
     existencia = models.FloatField(default=0.0, null=False)
@@ -448,20 +436,19 @@ class Bodega_Detalle(base_inventario):
             return self.existencia
 
 
-class Forma_Pago(base_inventario):
+class Forma_Pago(models.Model):
     forma_pago = models.CharField(max_length=50)
     activo = models.BooleanField(null=False, default=True)
 
     class Meta:
         verbose_name = "Forma de pago"
         verbose_name_plural = "formas de pago"
-        app_label = "inventario"
 
     def __unicode__(self):
         return self.forma_pago
 
 
-class Factura(base_inventario):
+class Factura(models.Model):
     no_fac = models.CharField(max_length=10)
     serie = models.CharField(max_length=2, default="A")
     cliente = models.ForeignKey(Cliente, null=False, related_name="inventario_factura_cliente")
@@ -493,7 +480,7 @@ class Factura(base_inventario):
             return self.total
 
 
-class Factura_Detalle(base_inventario):
+class Factura_Detalle(models.Model):
     factura = models.ForeignKey(Factura, null=False)
     producto = models.ForeignKey(Producto, null=False)
     bodega = models.ForeignKey(Bodega, null=False)
@@ -502,14 +489,14 @@ class Factura_Detalle(base_inventario):
     entregado = models.BooleanField(default=False, null=False)
 
 
-class Factura_Abono(base_inventario):
+class Factura_Abono(models.Model):
     factura = models.ForeignKey(Factura)
     monto_abono = models.FloatField(null=False)
     fecha_abono = models.DateField(auto_now_add=True)
     usuario = models.ForeignKey(User, null=True)
 
 
-class Pedido(base_inventario):
+class Pedido(models.Model):
     #no_pedido = models.CharField(max_length=10)
     no_pedido = models.IntegerField(null=True, blank=True)
     cliente = models.ForeignKey(Cliente, null=False)
@@ -526,7 +513,7 @@ class Pedido(base_inventario):
     cerrado = models.BooleanField(default=False)
 
 
-class Pedido_Detalle(base_inventario):
+class Pedido_Detalle(models.Model):
     pedido = models.ForeignKey(Pedido, null=False)
     producto = models.ForeignKey(Producto, null=False)
     bodega = models.ForeignKey(Bodega, null=False)
@@ -534,7 +521,7 @@ class Pedido_Detalle(base_inventario):
     valor = models.FloatField(null=False)
 
 
-class Recibo_Provicional(base_inventario):
+class Recibo_Provicional(models.Model):
     no_recibo = models.IntegerField(null=False)
     cliente = models.ForeignKey(Cliente)
     monto = models.FloatField(null=False)
@@ -551,7 +538,6 @@ class Recibo_Provicional(base_inventario):
     class Meta:
         verbose_name = "Recibo Provicional"
         verbose_name_plural = "Recibos Provicionales de Caja"
-        app_label = "inventario"
 
     def monto_letras(self):
         return "%s NETOS" % (upper(numero_a_letras(self.monto)))
@@ -559,7 +545,7 @@ class Recibo_Provicional(base_inventario):
 
 def get_no_recibo(user):
     no_recibo = 1
-    v = Vendedor.objects.get(usuario=user)
+    v = Vendedor.objects.filter(usuario=user).first()
     if v:
         try:
             no_recibo = int(Recibo_Provicional.objects.filter(usuario_creacion=user).aggregate(Max('no_recibo'))['no_recibo__max']) + 1

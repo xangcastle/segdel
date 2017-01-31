@@ -330,7 +330,7 @@ def render_listado_pedido(request):
 def render_nuevo_pedido(request):
     vendedores = Vendedor.objects.filter(activo=True)
     clientes = Cliente.objects.all()
-    vendedor = Vendedor.objects.get(usuario=request.user)
+    vendedor = Vendedor.objects.filter(usuario=request.user).first()
     html = render_to_string('inventario/partial/_pedido.html',
                             {'vendedores': vendedores,
                              'clientes': clientes,
@@ -495,7 +495,7 @@ def render_listado_recibo(request):
 @csrf_exempt
 def render_nuevo_recibo(request):
     user = User.objects.get(id=request.GET.get('user', ''))
-    vendedor = Vendedor.objects.get(usuario=user)
+    vendedor = Vendedor.objects.filter(usuario=user).first()
     clientes = Cliente.objects.all()
     formas_pago = Forma_Pago.objects.filter(activo=True)
     no_recibo = get_no_recibo(user)

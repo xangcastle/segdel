@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'segdel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'inblensa',
+        'NAME': 'linker',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'demos.deltacopiers.com',
+        'HOST': 'localhost', #'demos.deltacopiers.com',
         'PORT': '5432',
     },
     'inblensa': {

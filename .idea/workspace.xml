@@ -5,8 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a26dd6c-92f4-4a28-949c-be83e9209ce9" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/contabilidad/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/contabilidad/migrations/0002_moneda_principal.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/contabilidad/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/contabilidad/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/contabilidad/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0002_producto_activo.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0003_auto_20161201_1448.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0004_recibo_provicional_referencia.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0005_auto_20161215_1109.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0006_auto_20161221_1715.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0007_auto_20161226_1103.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0008_auto_20170105_0124.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0009_remove_pedido_no_pedido.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0010_auto_20170105_0127.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/0011_recibo_provicional_anulado.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/inventario/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0002_profile.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0003_auto_20161214_2240.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0004_auto_20161215_1109.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0005_auto_20161215_1608.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0006_auto_20161215_1610.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0007_profile_empresa.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0008_auto_20161231_1742.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0009_auto_20170105_0124.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/__init__.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/inventario/admin.py" afterPath="$PROJECT_DIR$/app/inventario/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/inventario/views.py" afterPath="$PROJECT_DIR$/app/inventario/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/segdel/settings.py" afterPath="$PROJECT_DIR$/segdel/settings.py" />
     </list>
     <ignored path="segdel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,58 +77,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1513">
-              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-              <folding>
-                <element signature="e#4874#5505#0" expanded="false" />
-                <element signature="e#5550#5875#0" expanded="false" />
-                <element signature="e#7358#7671#0" expanded="false" />
-                <element signature="e#7717#8965#0" expanded="false" />
-                <element signature="e#9004#10300#0" expanded="false" />
-                <element signature="e#10343#11242#0" expanded="false" />
-                <element signature="e#11280#11555#0" expanded="false" />
-                <element signature="e#11595#11779#0" expanded="false" />
-                <element signature="e#11820#12172#0" expanded="false" />
-                <element signature="e#12215#12715#0" expanded="false" />
-                <element signature="e#12760#14593#0" expanded="false" />
-                <element signature="e#14635#16823#0" expanded="false" />
-                <element signature="e#16867#18471#0" expanded="false" />
-                <element signature="e#18532#18887#0" expanded="false" />
-                <marker date="1484060773388" expanded="true" signature="5575:5599" ph="SELECT * FRO... CTB_BANCOS" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="314" column="61" selection-start-line="314" selection-start-column="61" selection-end-line="314" selection-end-column="61" />
+            <state relative-caret-position="165">
+              <caret line="547" column="53" selection-start-line="547" selection-start-column="53" selection-end-line="547" selection-end-column="53" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <element signature="e#475#489#0" expanded="false" />
-                <element signature="e#8931#8952#0" expanded="false" />
-                <element signature="e#14962#15180#0" expanded="false" />
-                <element signature="e#16319#17675#0" expanded="false" />
-                <element signature="e#17310#17422#1" expanded="false" />
-                <element signature="e#17722#18026#0" expanded="false" />
-                <element signature="e#19209#19448#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/apps.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#380#483#0" expanded="false" />
+                <element signature="e#486#500#0" expanded="false" />
+                <element signature="e#9446#13023#0" expanded="false" />
+                <element signature="e#13066#13169#0" expanded="false" />
+                <element signature="e#13216#13327#0" expanded="false" />
+                <element signature="e#13371#13476#0" expanded="false" />
+                <element signature="e#14799#15513#0" expanded="false" />
+                <element signature="e#15552#15817#0" expanded="false" />
+                <element signature="e#16844#16956#1" expanded="false" />
+                <element signature="e#17253#17557#0" expanded="false" />
+                <element signature="e#18731#18970#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -116,18 +113,18 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="316">
               <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9843">
-              <caret line="622" column="0" selection-start-line="622" selection-start-column="0" selection-end-line="622" selection-end-column="0" />
+            <state relative-caret-position="191">
+              <caret line="495" column="33" selection-start-line="495" selection-start-column="33" selection-end-line="495" selection-end-column="33" />
               <folding>
                 <element signature="e#7454#7655#0" expanded="false" />
                 <element signature="e#7699#7850#0" expanded="false" />
@@ -138,24 +135,64 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/segdel/settings.py">
+      <file leaf-file-name="csrf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/views/decorators/csrf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1496">
-              <caret line="88" column="6" selection-start-line="88" selection-start-column="6" selection-end-line="88" selection-end-column="6" />
+            <state relative-caret-position="269">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/inventario/models.py">
+      <file leaf-file-name="decorators.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/decorators.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="238">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/segdel/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/inventario/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#0#68#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ogrinspect.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/gis/utils/ogrinspect.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="127">
+              <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,9 +203,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Python Script" />
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -206,7 +243,6 @@
         <option value="$PROJECT_DIR$/app/templates/cartera/plantilla_estado_cuenta.html" />
         <option value="$PROJECT_DIR$/app/templates/app/cobranza.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_factura.html" />
-        <option value="$PROJECT_DIR$/app/inventario/admin.py" />
         <option value="$PROJECT_DIR$/app/templates/inventario/facturacion.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_facturas.html" />
         <option value="$PROJECT_DIR$/app/templates/cartera/partial/_facturas_select.html" />
@@ -216,18 +252,19 @@
         <option value="$PROJECT_DIR$/app/templates/cartera/plantilla_recibo_provicional.html" />
         <option value="$PROJECT_DIR$/app/admin.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/segdel/settings.py" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_productos.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/partial/_pedido.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/proformas.html" />
         <option value="$PROJECT_DIR$/app/static/app/js/underscore-min.js" />
-        <option value="$PROJECT_DIR$/app/inventario/views.py" />
         <option value="$PROJECT_DIR$/segdel/urls.py" />
         <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/templates/app/index.html" />
         <option value="$PROJECT_DIR$/app/templates/app/perfil.html" />
         <option value="$PROJECT_DIR$/app/templates/inventario/productos.html" />
+        <option value="$PROJECT_DIR$/app/inventario/admin.py" />
+        <option value="$PROJECT_DIR$/segdel/settings.py" />
+        <option value="$PROJECT_DIR$/app/inventario/views.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
       </list>
     </option>
@@ -240,9 +277,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="1370" />
-    <option name="height" value="735" />
+    <option name="x" value="1" />
+    <option name="y" value="1" />
+    <option name="width" value="1364" />
+    <option name="height" value="726" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -288,34 +326,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="segdel">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="segdel">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="segdel">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -364,18 +375,45 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="segdel">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="segdel">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="segdel">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../multipagos" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
-    <property name="SearchEverywhereHistoryKey" value="under&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/static/app/js/underscore-min.js&#10;index&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/templates/app/index.html&#10;url&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/urls.py&#10;render_nuevo_pedido&#9;null&#9;null&#10;models&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/models.py&#10;model&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/inventario/models.py&#10;Producto&#9;null&#9;null&#10;datetimepicker&#9;FILE&#9;file:///home/twine/WORKSPACE/segdel/app/static/app/js/bootstrap-datetimepicker.js&#10;_pedido&#9;null&#9;null&#10;set&#9;FILE&#9;file:///home/twine/WORKSPACE/segdel/segdel/settings.py&#10;ses&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="render_nuevo_recibo&#9;null&#9;null&#10;render_nuevo_pedido&#9;null&#9;null&#10;under&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/static/app/js/underscore-min.js&#10;index&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/templates/app/index.html&#10;url&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/urls.py&#10;models&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/models.py&#10;model&#9;FILE&#9;file://C:/Users/TWINE-DELL/WORKSPACE/segdel/app/inventario/models.py&#10;Producto&#9;null&#9;null&#10;datetimepicker&#9;FILE&#9;file:///home/twine/WORKSPACE/segdel/app/static/app/js/bootstrap-datetimepicker.js&#10;_pedido&#9;null&#9;null&#10;set&#9;FILE&#9;file:///home/twine/WORKSPACE/segdel/segdel/settings.py&#10;ses&#9;null&#9;null" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="151" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="151" />
@@ -789,31 +827,40 @@
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="3195000" />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
+    <frame x="1" y="1" width="1364" height="726" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3480916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@segdel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38134205" sideWeight="0.49695587" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5030441" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290469" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33887044" sideWeight="0.49086758" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62193125" sideWeight="0.4939117" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33878887" sideWeight="0.49086758" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33551556" sideWeight="0.4939117" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26022914" sideWeight="0.47356495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40589198" sideWeight="0.48782343" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15644172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290469" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27150086" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@segdel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44019935" sideWeight="0.49695587" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26022914" sideWeight="0.47356495" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2487725" sideWeight="0.49695587" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26350245" sideWeight="0.4611872" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -889,11 +936,6 @@
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/app/models.py</url>
-          <line>253</line>
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/app/inventario/views.py</url>
           <line>182</line>
           <option name="timeStamp" value="116" />
@@ -933,6 +975,16 @@
           <line>71</line>
           <option name="timeStamp" value="152" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/app/inventario/views.py</url>
+          <line>330</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/app/inventario/views.py</url>
+          <line>496</line>
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/templates/app/perfil.html</url>
           <line>27</line>
@@ -946,27 +998,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="155" />
+      <option name="time" value="158" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/local/lib/python2.7/site-packages/django/contrib/admin/options.py" />
-    <entry file="file://$PROJECT_DIR$/app/static/app/js/jquery.elevatezoom-3.0.8.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="65" column="261" selection-start-line="65" selection-start-column="261" selection-end-line="65" selection-end-column="261" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/app/js/list/list.pagination.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5465" selection-start-line="0" selection-start-column="5465" selection-end-line="0" selection-end-column="5465" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/db/models/manager.py" />
     <entry file="file://$PROJECT_DIR$/app/templates/inventario/plantilla_factura.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -991,13 +1027,6 @@
     </entry>
     <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/contrib/admin/options.py" />
     <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/contrib/auth/decorators.py" />
-    <entry file="file://$PROJECT_DIR$/app/inventario/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/utils/decorators.py" />
     <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/views/decorators/cache.py" />
     <entry file="file://$USER_HOME$/segdel27/local/lib/python2.7/site-packages/django/contrib/admin/sites.py" />
@@ -1117,13 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/views/decorators/csrf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1136,13 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1182,14 +1197,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/segdel/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" column="6" selection-start-line="88" selection-start-column="6" selection-end-line="88" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1513">
@@ -1214,43 +1221,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9843">
-          <caret line="622" column="0" selection-start-line="622" selection-start-column="0" selection-end-line="622" selection-end-column="0" />
-          <folding>
-            <element signature="e#7454#7655#0" expanded="false" />
-            <element signature="e#7699#7850#0" expanded="false" />
-            <element signature="e#7914#8393#0" expanded="false" />
-            <element signature="e#8435#8809#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="314" column="61" selection-start-line="314" selection-start-column="61" selection-end-line="314" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#475#489#0" expanded="false" />
-            <element signature="e#8931#8952#0" expanded="false" />
-            <element signature="e#14962#15180#0" expanded="false" />
-            <element signature="e#16319#17675#0" expanded="false" />
-            <element signature="e#17310#17422#1" expanded="false" />
-            <element signature="e#17722#18026#0" expanded="false" />
-            <element signature="e#19209#19448#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/apps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="85">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/inventario/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/gis/utils/ogrinspect.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/contabilidad/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/contabilidad/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/inventario/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1262,20 +1297,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/urls.py">
+    <entry file="file://$PROJECT_DIR$/segdel/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+        <state relative-caret-position="230">
+          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/inventario/models.py">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/decorators.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="238">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/views/decorators/csrf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="547" column="53" selection-start-line="547" selection-start-column="53" selection-end-line="547" selection-end-column="53" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#380#483#0" expanded="false" />
+            <element signature="e#486#500#0" expanded="false" />
+            <element signature="e#9446#13023#0" expanded="false" />
+            <element signature="e#13066#13169#0" expanded="false" />
+            <element signature="e#13216#13327#0" expanded="false" />
+            <element signature="e#13371#13476#0" expanded="false" />
+            <element signature="e#14799#15513#0" expanded="false" />
+            <element signature="e#15552#15817#0" expanded="false" />
+            <element signature="e#16844#16956#1" expanded="false" />
+            <element signature="e#17253#17557#0" expanded="false" />
+            <element signature="e#18731#18970#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/inventario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="495" column="33" selection-start-line="495" selection-start-column="33" selection-end-line="495" selection-end-column="33" />
+          <folding>
+            <element signature="e#7454#7655#0" expanded="false" />
+            <element signature="e#7699#7850#0" expanded="false" />
+            <element signature="e#7914#8393#0" expanded="false" />
+            <element signature="e#8435#8809#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -1,5 +1,5 @@
+from app.models import Import_Imventario, Producto, Vendedor, Moneda
 from django.contrib import admin
-from .models import *
 from import_export.admin import ImportExportModelAdmin
 
 class import_producto(ImportExportModelAdmin):
